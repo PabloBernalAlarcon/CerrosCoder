@@ -1,0 +1,26 @@
+{
+  "id": "saludo",
+  "titulo": "Saludo personalizado",
+  "enunciado": "Escribe un programa que pregunte el nombre con `input()` y luego muestre exactamente:\n\n```\nHola, Ana. ¡A programar!\n```\n\n(cambiando *Ana* por el nombre que se escriba).\n\nEl texto de la pregunta dentro de `input()` puede ser el que quieras: las pruebas solo revisan lo que muestra `print()`.\n\n**Pista:** usa una f-string.",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana",
+  "codigo_inicial": "# 1. Pregunta el nombre y guárdalo en una variable\n\n\n# 2. Muestra el saludo con print()\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Con el nombre Ana",
+      "entradas": [
+        "Ana"
+      ],
+      "esperado": "Hola, Ana. ¡A programar!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Con el nombre Juan David",
+      "entradas": [
+        "Juan David"
+      ],
+      "esperado": "Hola, Juan David. ¡A programar!"
+    }
+  ]
+}

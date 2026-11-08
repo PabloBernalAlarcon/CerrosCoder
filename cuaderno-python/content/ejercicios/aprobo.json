@@ -1,0 +1,28 @@
+{
+  "id": "aprobo",
+  "titulo": "¿Aprobó?",
+  "enunciado": "En el colegio las notas van de 1.0 a 7.0, y se aprueba con **4.5 o más**.\n\nCrea una función `aprobo(nota)` que devuelva `True` si la nota aprueba y `False` si no.\n\n```python\naprobo(5.2)   # True\naprobo(4.5)   # True\naprobo(3.9)   # False\n```",
+  "codigo_inicial": "def aprobo(nota):\n    pass\n\n\nprint(aprobo(5.2))\n",
+  "pruebas": [
+    {
+      "descripcion": "Una nota alta: 6.8",
+      "expresion": "aprobo(6.8)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Justo en el límite: 4.5",
+      "expresion": "aprobo(4.5)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Casi: 4.4",
+      "expresion": "aprobo(4.4)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "La nota mínima: 1.0",
+      "expresion": "aprobo(1.0)",
+      "esperado": "False"
+    }
+  ]
+}

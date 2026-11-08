@@ -1,0 +1,28 @@
+{
+  "id": "doble",
+  "titulo": "El doble",
+  "enunciado": "Crea una función llamada `doble` que reciba un número y **devuelva** (con `return`) el doble de ese número.\n\n```python\ndoble(4)    # debe dar 8\ndoble(2.5)  # debe dar 5.0\n```\n\nPuedes usar el botón **Ejecutar** para probarla con `print(doble(4))`, y **Comprobar** cuando creas que está lista.",
+  "codigo_inicial": "def doble(n):\n    # escribe aquí tu código\n    pass\n\n\nprint(doble(4))\n",
+  "pruebas": [
+    {
+      "descripcion": "doble(4)",
+      "expresion": "doble(4)",
+      "esperado": "8"
+    },
+    {
+      "descripcion": "doble(0)",
+      "expresion": "doble(0)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "Con un negativo",
+      "expresion": "doble(-3)",
+      "esperado": "-6"
+    },
+    {
+      "descripcion": "Con decimales",
+      "expresion": "doble(2.5)",
+      "esperado": "5.0"
+    }
+  ]
+}

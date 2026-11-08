@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Inicio · Cuaderno Python</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+</head>
+<body>
+<header class="cabecera" data-header></header>
+<main class="hoja">
+  <p class="texto-suave">Cargando…</p>
+</main>
+
+<script type="module">
+import { sb, CONFIG, requireLogin, loadCourse, flatten, isUnlocked, formatDate, esc, relativeTime, showFatal } from "./js/app.js";
+
+const { user, profile } = await requireLogin();
+document.title = `Inicio · ${CONFIG.APP_NAME}`;
+const main = document.querySelector("main");
+
+try {
+  const [curso, envios] = await Promise.all([
+    loadCourse(),
+    sb.from("submissions").select("exercise_id, passed, updated_at").eq("user_id", user.id),
+  ]);
+  if (envios.error) throw envios.error;
+
+  const estado = new Map(envios.data.map((s) => [s.exercise_id, s]));
+  const { exercises } = flatten(curso);
+  const disponibles = exercises.filter((e) => isUnlocked(e.unit, profile));
+  const resueltos = disponibles.filter((e) => estado.get(e.id)?.passed).length;
+
+  // "Continue where you left off": the last exercise touched (if unfinished),
+  // otherwise the first unfinished exercise that is open.
+  let sugerido = null;
+  let motivo = "";
+  const ultimo = [...envios.data].sort((a, b) => b.updated_at.localeCompare(a.updated_at))[0];
+  if (ultimo && !ultimo.passed) {
+    sugerido = disponibles.find((e) => e.id === ultimo.exercise_id);
+    motivo = `Lo dejaste a medias ${relativeTime(ultimo.updated_at)}.`;
+  }
+  if (!sugerido) {
+    sugerido = disponibles.find((e) => !estado.get(e.id)?.passed);
+    motivo = envios.data.length ? "Es tu siguiente ejercicio pendiente." : "Empieza por aquí.";
+  }
+
+  const continuar = sugerido
+    ? `<section class="continuar">
+         <h2>Continúa donde quedaste</h2>
+         <a class="continuar-enlace" href="ejercicio.html?id=${encodeURIComponent(sugerido.id)}">${esc(sugerido.titulo)}</a>
+         <p>${esc(motivo)} Unidad ${sugerido.unit.numero}: ${esc(sugerido.unit.titulo)}.</p>
+       </section>`
+    : disponibles.length
+      ? `<section class="continuar"><h2>Vas al día</h2><p>Resolviste todos los ejercicios disponibles. Puedes repasar cualquier lección mientras se abre la siguiente unidad.</p></section>`
+      : "";
+
+  const pct = disponibles.length ? Math.round((100 * resueltos) / disponibles.length) : 0;
+  const progreso = disponibles.length
+    ? `<section class="progreso" aria-label="Tu progreso">
+         <p>Has resuelto <strong>${resueltos} de ${disponibles.length}</strong> ejercicios.</p>
+         <div class="barra-progreso" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><span style="width:${pct}%"></span></div>
+       </section>`
+    : "";
+
+  const marcaEstado = (id) => {
+    const s = estado.get(id);
+    if (s?.passed) return `<span class="estado estado-ok" aria-label="Resuelto">✓</span>`;
+    if (s) return `<span class="estado estado-progreso" aria-label="En progreso"></span>`;
+    return `<span class="estado" aria-label="Sin empezar"></span>`;
+  };
+
+  const unidades = curso.unidades.map((unit) => {
+    const abierta = isUnlocked(unit, profile);
+    const abiertaParaEstudiantes = isUnlocked(unit, null);
+    let aviso = "";
+    if (!abierta) aviso = `<p class="unidad-aviso">Se abre el ${formatDate(unit.desbloqueo)}.</p>`;
+    else if (!abiertaParaEstudiantes) aviso = `<p class="unidad-aviso">Los estudiantes la verán a partir del ${formatDate(unit.desbloqueo)}.</p>`;
+
+    const lecciones = (unit.lecciones || []).map((l) => abierta
+      ? `<li><a href="leccion.html?id=${encodeURIComponent(l.id)}">${esc(l.titulo)}</a></li>`
+      : `<li><span>${esc(l.titulo)}</span></li>`).join("");
+    const ejercicios = (unit.ejercicios || []).map((e) => abierta
+      ? `<li><a href="ejercicio.html?id=${encodeURIComponent(e.id)}">${marcaEstado(e.id)} ${esc(e.titulo)}</a></li>`
+      : `<li><span><span class="estado"></span> ${esc(e.titulo)}</span></li>`).join("");
+
+    return `<section class="unidad ${abierta ? "" : "unidad-bloqueada"}">
+      <h2>Unidad ${unit.numero}: ${esc(unit.titulo)}</h2>
+      ${aviso}
+      <div class="unidad-columnas">
+        <div><h3>Lecciones</h3><ul class="lista">${lecciones || "<li><span>Sin lecciones todavía.</span></li>"}</ul></div>
+        <div><h3>Ejercicios</h3><ul class="lista">${ejercicios || "<li><span>Sin ejercicios todavía.</span></li>"}</ul></div>
+      </div>
+    </section>`;
+  }).join("");
+
+  main.innerHTML = `
+    <h1>Hola, ${esc(profile.username)}</h1>
+    ${continuar}
+    ${progreso}
+    ${unidades}`;
+} catch (err) {
+  console.error(err);
+  showFatal("No se pudo cargar el curso. Revisa la conexión a internet y recarga la página.");
+}
+</script>
+</body>
+</html>

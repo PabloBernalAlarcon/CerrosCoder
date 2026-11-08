@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<title>Ejercicio · Cuaderno Python</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/runmode/runmode.min.js"></script>
+</head>
+<body>
+<header class="cabecera" data-header></header>
+<main class="hoja hoja-ancha">
+  <p class="texto-suave">Cargando…</p>
+</main>
+
+<template id="plantilla">
+  <nav class="migas" aria-label="Ruta" id="migas"></nav>
+  <div class="ejercicio">
+    <section class="enunciado" id="enunciado"></section>
+    <section class="trabajo" aria-label="Tu código">
+      <div class="barra">
+        <button type="button" class="boton" id="btn-ejecutar" disabled title="Ctrl + Enter">Ejecutar</button>
+        <button type="button" class="boton boton-principal" id="btn-comprobar" disabled>Comprobar</button>
+        <span class="estado-python" id="estado-python">Preparando Python…</span>
+        <span class="barra-espacio"></span>
+        <span class="estado-guardado" id="estado-guardado" aria-live="polite"></span>
+        <button type="button" class="boton boton-suave boton-pequeno" id="btn-reiniciar">Volver al código inicial</button>
+      </div>
+      <div class="editor" id="editor"></div>
+      <div class="entradas" id="caja-entradas" hidden>
+        <label for="entradas">Entradas para input() <small>(una por línea, se usan al ejecutar)</small></label>
+        <textarea id="entradas" rows="3" spellcheck="false"></textarea>
+      </div>
+      <div class="consola" id="consola" aria-live="polite">
+        <p class="consola-vacia">Aquí aparecerá lo que muestre tu programa cuando lo ejecutes.</p>
+      </div>
+      <div class="resultados" id="resultados" aria-live="polite"></div>
+    </section>
+  </div>
+</template>
+
+<script type="module">
+import { sb, CONFIG, requireLogin, loadCourse, flatten, isUnlocked, formatDate, fetchJSON, param, esc, showFatal, highlightPython } from "./js/app.js";
+import { PyRunner } from "./js/py-runner.js";
+
+const { user, profile } = await requireLogin();
+const main = document.querySelector("main");
+
+async function iniciar() {
+  const id = param("id");
+  const curso = await loadCourse();
+  const { exercises } = flatten(curso);
+  const posicion = exercises.findIndex((e) => e.id === id);
+  if (posicion < 0) return showFatal("No encontramos este ejercicio.");
+  const meta = exercises[posicion];
+  if (!isUnlocked(meta.unit, profile)) return showFatal(`Este ejercicio se abre el ${formatDate(meta.unit.desbloqueo)}.`);
+
+  const ej = await fetchJSON(`content/ejercicios/${encodeURIComponent(id)}.json`);
+  const { data: guardado, error } = await sb
+    .from("submissions")
+    .select("code, passed, attempts, updated_at")
+    .eq("user_id", user.id)
+    .eq("exercise_id", id)
+    .maybeSingle();
+  if (error) throw error;
+
+  document.title = `${ej.titulo} · ${CONFIG.APP_NAME}`;
+  main.replaceChildren(document.getElementById("plantilla").content.cloneNode(true));
+  const $ = (sel) => main.querySelector(sel);
+
+  let estado = guardado ?? { passed: false, attempts: 0 };
+  const siguiente = exercises[posicion + 1];
+
+  // ----- Statement -----
+  $("#migas").innerHTML = `<a href="inicio.html">Inicio</a> / Unidad ${meta.unit.numero}: ${esc(meta.unit.titulo)}`;
+  function pintarEnunciado() {
+    $("#enunciado").innerHTML = `
+      <h1>${esc(ej.titulo)}</h1>
+      ${estado.passed ? `<p class="insignia">✓ Ya lo resolviste</p>` : ""}
+      ${window.marked.parse(ej.enunciado || "")}`;
+    highlightPython($("#enunciado"));
+  }
+  pintarEnunciado();
+
+  // ----- Starting code: the newest of server copy and local draft -----
+  const claveLocal = `borrador:${user.id}:${id}`;
+  let local = null;
+  try { local = JSON.parse(localStorage.getItem(claveLocal)); } catch { /* ignore */ }
+  let codigo = ej.codigo_inicial ?? "";
+  if (guardado?.code != null) codigo = guardado.code;
+  if (local?.code != null && (!guardado || local.t > Date.parse(guardado.updated_at))) codigo = local.code;
+
+  const editor = window.CodeMirror($("#editor"), {
+    value: codigo,
+    mode: "python",
+    lineNumbers: true,
+    indentUnit: 4,
+    tabSize: 4,
+    indentWithTabs: false,
+    matchBrackets: true,
+    viewportMargin: Infinity,
+    extraKeys: {
+      Tab: (cm) => cm.somethingSelected() ? cm.indentSelection("add") : cm.replaceSelection("    ", "end"),
+      "Shift-Tab": (cm) => cm.indentSelection("subtract"),
+      "Ctrl-Enter": () => ejecutar(),
+      "Cmd-Enter": () => ejecutar(),
+    },
+  });
+
+  // The inputs box shows for input() exercises, or as soon as the student's code uses input().
+  $("#entradas").value = ej.entradas_ejemplo ?? "";
+  const usaInput = () => Boolean(ej.usa_input) || /\binput\s*\(/.test(editor.getValue());
+  const actualizarEntradas = () => { $("#caja-entradas").hidden = !usaInput(); };
+  actualizarEntradas();
+
+  // ----- Saving -----
+  const estadoGuardado = $("#estado-guardado");
+  let reloj = null;
+  let sinGuardar = false;
+  let lineaMarcada = null;
+
+  function avisoGuardado(texto, esError = false) {
+    estadoGuardado.textContent = texto;
+    estadoGuardado.classList.toggle("error", esError);
+  }
+
+  function guardarLocal() {
+    try { localStorage.setItem(claveLocal, JSON.stringify({ code: editor.getValue(), t: Date.now() })); } catch { /* storage full or blocked */ }
+  }
+
+  // verificacion: undefined = just save the code; true/false = result of "Comprobar"
+  async function guardar(verificacion) {
+    clearTimeout(reloj);
+    const fila = { user_id: user.id, exercise_id: id, code: editor.getValue() };
+    if (verificacion !== undefined) {
+      fila.attempts = (estado.attempts ?? 0) + 1;
+      if (verificacion) {
+        fila.passed = true;
+        if (!estado.passed) fila.passed_at = new Date().toISOString();
+      }
+    }
+    avisoGuardado("Guardando…");
+    const { error } = await sb.from("submissions").upsert(fila, { onConflict: "user_id,exercise_id" });
+    if (error) {
+      console.error(error);
+      avisoGuardado("No se pudo guardar en el servidor. Tu código queda guardado en este equipo.", true);
+      return;
+    }
+    estado = { ...estado, ...fila, passed: estado.passed || Boolean(fila.passed) };
+    sinGuardar = false;
+    avisoGuardado("Guardado");
+  }
+
+  editor.on("change", () => {
+    sinGuardar = true;
+    guardarLocal();
+    avisoGuardado("Cambios sin guardar");
+    actualizarEntradas();
+    $("#resultados").classList.add("resultados-viejos"); // results no longer match the code
+    clearTimeout(reloj);
+    reloj = setTimeout(() => guardar(), 2500);
+    if (lineaMarcada !== null) {
+      editor.removeLineClass(lineaMarcada, "background", "linea-error");
+      lineaMarcada = null;
+    }
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden" && sinGuardar) guardar();
+  });
+  window.addEventListener("beforeunload", () => { if (sinGuardar) guardarLocal(); });
+
+  $("#btn-reiniciar").addEventListener("click", () => {
+    if (confirm("¿Borrar tu código y volver al código inicial?")) editor.setValue(ej.codigo_inicial ?? "");
+  });
+
+  // ----- Python -----
+  const botonEjecutar = $("#btn-ejecutar");
+  const botonComprobar = $("#btn-comprobar");
+  const estadoPython = $("#estado-python");
+  let pythonListo = false;
+  let ocupado = false;
+
+  function actualizarBotones() {
+    botonEjecutar.disabled = botonComprobar.disabled = !pythonListo || ocupado;
+  }
+
+  const runner = new PyRunner({
+    onStatus: (s) => {
+      pythonListo = s === "listo";
+      estadoPython.textContent = {
+        cargando: "Preparando Python…",
+        listo: "",
+        error: "No se pudo cargar Python. Revisa la conexión y recarga la página.",
+      }[s];
+      actualizarBotones();
+    },
+  });
+
+  function marcarLinea(linea) {
+    if (!linea) return;
+    lineaMarcada = editor.addLineClass(linea - 1, "background", "linea-error");
+  }
+
+  function htmlError(err) {
+    return `<div class="error-python" role="alert">
+      <strong>${err.linea ? `Error en la línea ${err.linea}` : "Error"}</strong>
+      <pre>${esc(err.mensaje)}</pre>
+      ${err.pista ? `<p>${esc(err.pista)}</p>` : ""}
+    </div>`;
+  }
+
+  function htmlTiempo(r) {
+    return htmlError({
+      mensaje: `Tu programa tardó más de ${r.limiteSegundos} segundos y lo detuvimos.`,
+      pista: "¿Hay un ciclo while que nunca termina? Revisa que la condición llegue a ser falsa en algún momento.",
+    });
+  }
+
+  async function ejecutar() {
+    if (ocupado || !pythonListo) return;
+    ocupado = true;
+    actualizarBotones();
+    const consola = $("#consola");
+    consola.innerHTML = `<p class="consola-vacia">Ejecutando…</p>`;
+    const texto = usaInput() ? $("#entradas").value.replace(/\n$/, "") : "";
+    const entradas = texto === "" ? [] : texto.split("\n");
+    const r = await runner.run(editor.getValue(), entradas);
+    ocupado = false;
+    actualizarBotones();
+
+    if (r.timeout) {
+      consola.innerHTML = htmlTiempo(r);
+    } else if (r.internalError) {
+      consola.innerHTML = htmlError({ mensaje: r.internalError, pista: "Algo falló al ejecutar. Recarga la página e inténtalo de nuevo." });
+    } else {
+      const salida = r.salida
+        ? `<p class="consola-titulo">Salida</p><pre>${esc(r.salida)}</pre>`
+        : r.error ? "" : `<p class="consola-vacia">Tu programa terminó sin mostrar nada. ¿Te faltó un print()?</p>`;
+      consola.innerHTML = salida + (r.error ? htmlError(r.error) : "");
+      if (r.error) marcarLinea(r.error.linea);
+    }
+    if (sinGuardar) guardar();
+  }
+
+  function htmlPrueba(p) {
+    const icono = p.ok
+      ? `<span class="estado estado-ok" aria-label="Correcta">✓</span>`
+      : `<span class="estado estado-mal" aria-label="Incorrecta">✗</span>`;
+    let detalle = "";
+    if (!p.ok) {
+      if (p.tipo === "salida") {
+        detalle += p.entradas?.length ? `<p>Con las entradas: <code>${p.entradas.map(esc).join("</code>, <code>")}</code></p>` : "";
+        detalle += `<p>Se esperaba que mostrara:</p><pre>${esc(p.esperado)}</pre>`;
+        if (!p.error) detalle += `<p>Tu programa mostró:</p><pre>${esc(p.obtenido || "(nada)")}</pre>`;
+      } else if (p.tipo === "expresion") {
+        detalle += `<p><code>${esc(p.expresion)}</code> debería dar <code>${esc(p.esperado)}</code>${p.error ? "" : `, pero dio <code>${esc(p.obtenido)}</code>`}.</p>`;
+      }
+      if (p.error) detalle += htmlError(p.error);
+      if (p.nota) detalle += `<p><strong>${esc(p.nota)}</strong></p>`;
+    }
+    return `<li>
+      <div class="prueba-cabeza">${icono} ${esc(p.descripcion)}</div>
+      ${detalle ? `<div class="prueba-detalle">${detalle}</div>` : ""}
+    </li>`;
+  }
+
+  async function comprobar() {
+    if (ocupado || !pythonListo) return;
+    ocupado = true;
+    actualizarBotones();
+    const caja = $("#resultados");
+    caja.classList.remove("resultados-viejos");
+    caja.innerHTML = `<p class="texto-suave">Comprobando…</p>`;
+    const r = await runner.check(editor.getValue(), ej.pruebas || [], ej.no_usar || []);
+    ocupado = false;
+    actualizarBotones();
+
+    if (r.timeout) { caja.innerHTML = htmlTiempo(r); return; }
+    if (r.internalError) { caja.innerHTML = htmlError({ mensaje: r.internalError }); return; }
+
+    const pruebas = r.pruebas;
+    const bien = pruebas.filter((p) => p.ok).length;
+    const todoBien = pruebas.length > 0 && bien === pruebas.length;
+    const errorLinea = pruebas.find((p) => p.error?.linea)?.error.linea;
+    if (errorLinea) marcarLinea(errorLinea);
+
+    const abiertoSiguiente = siguiente && isUnlocked(siguiente.unit, profile);
+    caja.innerHTML = `
+      <h2 class="resultados-titulo ${todoBien ? "ok" : ""}">
+        ${todoBien ? "¡Resuelto! Pasaste todas las pruebas." : `Pasaste ${bien} de ${pruebas.length} pruebas.`}
+      </h2>
+      <ul class="lista-pruebas">${pruebas.map(htmlPrueba).join("")}</ul>
+      ${todoBien && abiertoSiguiente ? `<p class="siguiente"><a class="boton boton-principal" href="ejercicio.html?id=${encodeURIComponent(siguiente.id)}">Siguiente ejercicio: ${esc(siguiente.titulo)}</a></p>` : ""}
+      ${todoBien && !abiertoSiguiente ? `<p class="siguiente"><a class="boton" href="inicio.html">Volver al inicio</a></p>` : ""}`;
+
+    await guardar(todoBien);
+    if (todoBien) pintarEnunciado();
+  }
+
+  botonEjecutar.addEventListener("click", ejecutar);
+  botonComprobar.addEventListener("click", comprobar);
+}
+
+iniciar().catch((err) => {
+  console.error(err);
+  showFatal("No se pudo cargar el ejercicio. Revisa la conexión a internet y recarga la página.");
+});
+</script>
+</body>
+</html>
