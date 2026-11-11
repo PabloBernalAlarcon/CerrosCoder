@@ -1,0 +1,31 @@
+{
+  "unidades": [
+    {
+      "id": "u1",
+      "titulo": "Primeros pasos",
+      "desbloqueo": "2026-01-01",
+      "lecciones": [
+        { "id": "print", "titulo": "Hablar con la computadora: print()" },
+        { "id": "variables-input", "titulo": "Variables y preguntas con input()" }
+      ],
+      "ejercicios": [
+        { "id": "saludo", "titulo": "Saludo personalizado" },
+        { "id": "suma", "titulo": "Sumar dos números" }
+      ]
+    },
+    {
+      "id": "u2",
+      "titulo": "Funciones y decisiones",
+      "desbloqueo": "2026-01-01",
+      "lecciones": [
+        { "id": "funciones", "titulo": "Funciones: def y return" },
+        { "id": "decisiones", "titulo": "Decisiones con if, elif y else" }
+      ],
+      "ejercicios": [
+        { "id": "doble", "titulo": "El doble" },
+        { "id": "aprobo", "titulo": "¿Aprobó?" },
+        { "id": "mayor-de-tres", "titulo": "El mayor de tres" }
+      ]
+    }
+  ]
+}
