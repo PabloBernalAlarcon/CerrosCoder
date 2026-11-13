@@ -2,29 +2,29 @@
   "unidades": [
     {
       "id": "u1",
-      "titulo": "Primeros pasos",
+      "titulo": "First steps",
       "desbloqueo": "2026-01-01",
       "lecciones": [
-        { "id": "print", "titulo": "Hablar con la computadora: print()" },
-        { "id": "variables-input", "titulo": "Variables y preguntas con input()" }
+        { "id": "print", "titulo": "Talking to the computer: print()" },
+        { "id": "variables-input", "titulo": "Variables and questions with input()" }
       ],
       "ejercicios": [
-        { "id": "saludo", "titulo": "Saludo personalizado" },
-        { "id": "suma", "titulo": "Sumar dos números" }
+        { "id": "greeting", "titulo": "Personal greeting" },
+        { "id": "sum", "titulo": "Adding two numbers" }
       ]
     },
     {
       "id": "u2",
-      "titulo": "Funciones y decisiones",
+      "titulo": "Functions and decisions",
       "desbloqueo": "2026-01-01",
       "lecciones": [
-        { "id": "funciones", "titulo": "Funciones: def y return" },
-        { "id": "decisiones", "titulo": "Decisiones con if, elif y else" }
+        { "id": "functions", "titulo": "Functions: def and return" },
+        { "id": "decisions", "titulo": "Decisions with if, elif and else" }
       ],
       "ejercicios": [
-        { "id": "doble", "titulo": "El doble" },
-        { "id": "aprobo", "titulo": "¿Aprobó?" },
-        { "id": "mayor-de-tres", "titulo": "El mayor de tres" }
+        { "id": "double", "titulo": "Double it" },
+        { "id": "is-passing", "titulo": "Did it pass?" },
+        { "id": "largest-of-three", "titulo": "The largest of three" }
       ]
     }
   ]

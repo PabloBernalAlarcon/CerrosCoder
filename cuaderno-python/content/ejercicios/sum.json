@@ -1,0 +1,37 @@
+{
+  "id": "sum",
+  "titulo": "Adding two numbers",
+  "enunciado": "Ask for two whole numbers with `input()` (one question each) and print their sum like this:\n\n```\nThe sum is 12\n```\n\nRemember that `input()` gives you text: convert it with `int()` before adding.",
+  "usa_input": true,
+  "entradas_ejemplo": "5\n7",
+  "codigo_inicial": "a = input(\"First number: \")\nb = input(\"Second number: \")\n\n# Convert, add and print the result\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "5 and 7",
+      "entradas": [
+        "5",
+        "7"
+      ],
+      "esperado": "The sum is 12"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "A negative number: -3 and 10",
+      "entradas": [
+        "-3",
+        "10"
+      ],
+      "esperado": "The sum is 7"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0 and 0",
+      "entradas": [
+        "0",
+        "0"
+      ],
+      "esperado": "The sum is 0"
+    }
+  ]
+}

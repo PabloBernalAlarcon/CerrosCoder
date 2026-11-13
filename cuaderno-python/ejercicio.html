@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
-<title>Ejercicio · Cuaderno Python</title>
+<title>Exercise · Python Notebook</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,29 +20,29 @@
 <body>
 <header class="cabecera" data-header></header>
 <main class="hoja hoja-ancha">
-  <p class="texto-suave">Cargando…</p>
+  <p class="texto-suave">Loading…</p>
 </main>
 
 <template id="plantilla">
-  <nav class="migas" aria-label="Ruta" id="migas"></nav>
+  <nav class="migas" aria-label="Breadcrumb" id="migas"></nav>
   <div class="ejercicio">
     <section class="enunciado" id="enunciado"></section>
-    <section class="trabajo" aria-label="Tu código">
+    <section class="trabajo" aria-label="Your code">
       <div class="barra">
-        <button type="button" class="boton" id="btn-ejecutar" disabled title="Ctrl + Enter">Ejecutar</button>
-        <button type="button" class="boton boton-principal" id="btn-comprobar" disabled>Comprobar</button>
-        <span class="estado-python" id="estado-python">Preparando Python…</span>
+        <button type="button" class="boton" id="btn-ejecutar" disabled title="Ctrl + Enter">Run</button>
+        <button type="button" class="boton boton-principal" id="btn-comprobar" disabled>Check</button>
+        <span class="estado-python" id="estado-python">Getting Python ready…</span>
         <span class="barra-espacio"></span>
         <span class="estado-guardado" id="estado-guardado" aria-live="polite"></span>
-        <button type="button" class="boton boton-suave boton-pequeno" id="btn-reiniciar">Volver al código inicial</button>
+        <button type="button" class="boton boton-suave boton-pequeno" id="btn-reiniciar">Reset to starter code</button>
       </div>
       <div class="editor" id="editor"></div>
       <div class="entradas" id="caja-entradas" hidden>
-        <label for="entradas">Entradas para input() <small>(una por línea, se usan al ejecutar)</small></label>
+        <label for="entradas">Inputs for input() <small>(one per line, used when you press Run)</small></label>
         <textarea id="entradas" rows="3" spellcheck="false"></textarea>
       </div>
       <div class="consola" id="consola" aria-live="polite">
-        <p class="consola-vacia">Aquí aparecerá lo que muestre tu programa cuando lo ejecutes.</p>
+        <p class="consola-vacia">What your program prints will appear here when you run it.</p>
       </div>
       <div class="resultados" id="resultados" aria-live="polite"></div>
     </section>
@@ -61,9 +61,9 @@ async function iniciar() {
   const curso = await loadCourse();
   const { exercises } = flatten(curso);
   const posicion = exercises.findIndex((e) => e.id === id);
-  if (posicion < 0) return showFatal("No encontramos este ejercicio.");
+  if (posicion < 0) return showFatal("We couldn't find this exercise.");
   const meta = exercises[posicion];
-  if (!isUnlocked(meta.unit, profile)) return showFatal(`Este ejercicio se abre el ${formatDate(meta.unit.desbloqueo)}.`);
+  if (!isUnlocked(meta.unit, profile)) return showFatal(`This exercise opens on ${formatDate(meta.unit.desbloqueo)}.`);
 
   const ej = await fetchJSON(`content/ejercicios/${encodeURIComponent(id)}.json`);
   const { data: guardado, error } = await sb
@@ -82,11 +82,11 @@ async function iniciar() {
   const siguiente = exercises[posicion + 1];
 
   // ----- Statement -----
-  $("#migas").innerHTML = `<a href="inicio.html">Inicio</a> / Unidad ${meta.unit.numero}: ${esc(meta.unit.titulo)}`;
+  $("#migas").innerHTML = `<a href="inicio.html">Home</a> / Unit ${meta.unit.numero}: ${esc(meta.unit.titulo)}`;
   function pintarEnunciado() {
     $("#enunciado").innerHTML = `
       <h1>${esc(ej.titulo)}</h1>
-      ${estado.passed ? `<p class="insignia">✓ Ya lo resolviste</p>` : ""}
+      ${estado.passed ? `<p class="insignia">✓ You solved this one</p>` : ""}
       ${window.marked.parse(ej.enunciado || "")}`;
     highlightPython($("#enunciado"));
   }
@@ -149,22 +149,22 @@ async function iniciar() {
         if (!estado.passed) fila.passed_at = new Date().toISOString();
       }
     }
-    avisoGuardado("Guardando…");
+    avisoGuardado("Saving…");
     const { error } = await sb.from("submissions").upsert(fila, { onConflict: "user_id,exercise_id" });
     if (error) {
       console.error(error);
-      avisoGuardado("No se pudo guardar en el servidor. Tu código queda guardado en este equipo.", true);
+      avisoGuardado("Couldn't save to the server. Your code is still saved on this computer.", true);
       return;
     }
     estado = { ...estado, ...fila, passed: estado.passed || Boolean(fila.passed) };
     sinGuardar = false;
-    avisoGuardado("Guardado");
+    avisoGuardado("Saved");
   }
 
   editor.on("change", () => {
     sinGuardar = true;
     guardarLocal();
-    avisoGuardado("Cambios sin guardar");
+    avisoGuardado("Unsaved changes");
     actualizarEntradas();
     $("#resultados").classList.add("resultados-viejos"); // results no longer match the code
     clearTimeout(reloj);
@@ -180,7 +180,7 @@ async function iniciar() {
   window.addEventListener("beforeunload", () => { if (sinGuardar) guardarLocal(); });
 
   $("#btn-reiniciar").addEventListener("click", () => {
-    if (confirm("¿Borrar tu código y volver al código inicial?")) editor.setValue(ej.codigo_inicial ?? "");
+    if (confirm("Delete your code and go back to the starter code?")) editor.setValue(ej.codigo_inicial ?? "");
   });
 
   // ----- Python -----
@@ -198,9 +198,9 @@ async function iniciar() {
     onStatus: (s) => {
       pythonListo = s === "listo";
       estadoPython.textContent = {
-        cargando: "Preparando Python…",
+        cargando: "Getting Python ready…",
         listo: "",
-        error: "No se pudo cargar Python. Revisa la conexión y recarga la página.",
+        error: "Couldn't load Python. Check your connection and reload the page.",
       }[s];
       actualizarBotones();
     },
@@ -213,7 +213,7 @@ async function iniciar() {
 
   function htmlError(err) {
     return `<div class="error-python" role="alert">
-      <strong>${err.linea ? `Error en la línea ${err.linea}` : "Error"}</strong>
+      <strong>${err.linea ? `Error on line ${err.linea}` : "Error"}</strong>
       <pre>${esc(err.mensaje)}</pre>
       ${err.pista ? `<p>${esc(err.pista)}</p>` : ""}
     </div>`;
@@ -221,8 +221,8 @@ async function iniciar() {
 
   function htmlTiempo(r) {
     return htmlError({
-      mensaje: `Tu programa tardó más de ${r.limiteSegundos} segundos y lo detuvimos.`,
-      pista: "¿Hay un ciclo while que nunca termina? Revisa que la condición llegue a ser falsa en algún momento.",
+      mensaje: `Your program ran for more than ${r.limiteSegundos} seconds, so we stopped it.`,
+      pista: "Is there a while loop that never ends? Check that its condition eventually becomes False.",
     });
   }
 
@@ -231,7 +231,7 @@ async function iniciar() {
     ocupado = true;
     actualizarBotones();
     const consola = $("#consola");
-    consola.innerHTML = `<p class="consola-vacia">Ejecutando…</p>`;
+    consola.innerHTML = `<p class="consola-vacia">Running…</p>`;
     const texto = usaInput() ? $("#entradas").value.replace(/\n$/, "") : "";
     const entradas = texto === "" ? [] : texto.split("\n");
     const r = await runner.run(editor.getValue(), entradas);
@@ -241,11 +241,11 @@ async function iniciar() {
     if (r.timeout) {
       consola.innerHTML = htmlTiempo(r);
     } else if (r.internalError) {
-      consola.innerHTML = htmlError({ mensaje: r.internalError, pista: "Algo falló al ejecutar. Recarga la página e inténtalo de nuevo." });
+      consola.innerHTML = htmlError({ mensaje: r.internalError, pista: "Something went wrong while running. Reload the page and try again." });
     } else {
       const salida = r.salida
-        ? `<p class="consola-titulo">Salida</p><pre>${esc(r.salida)}</pre>`
-        : r.error ? "" : `<p class="consola-vacia">Tu programa terminó sin mostrar nada. ¿Te faltó un print()?</p>`;
+        ? `<p class="consola-titulo">Output</p><pre>${esc(r.salida)}</pre>`
+        : r.error ? "" : `<p class="consola-vacia">Your program finished without printing anything. Did you forget a print()?</p>`;
       consola.innerHTML = salida + (r.error ? htmlError(r.error) : "");
       if (r.error) marcarLinea(r.error.linea);
     }
@@ -254,16 +254,16 @@ async function iniciar() {
 
   function htmlPrueba(p) {
     const icono = p.ok
-      ? `<span class="estado estado-ok" aria-label="Correcta">✓</span>`
-      : `<span class="estado estado-mal" aria-label="Incorrecta">✗</span>`;
+      ? `<span class="estado estado-ok" aria-label="Passed">✓</span>`
+      : `<span class="estado estado-mal" aria-label="Failed">✗</span>`;
     let detalle = "";
     if (!p.ok) {
       if (p.tipo === "salida") {
-        detalle += p.entradas?.length ? `<p>Con las entradas: <code>${p.entradas.map(esc).join("</code>, <code>")}</code></p>` : "";
-        detalle += `<p>Se esperaba que mostrara:</p><pre>${esc(p.esperado)}</pre>`;
-        if (!p.error) detalle += `<p>Tu programa mostró:</p><pre>${esc(p.obtenido || "(nada)")}</pre>`;
+        detalle += p.entradas?.length ? `<p>With the inputs: <code>${p.entradas.map(esc).join("</code>, <code>")}</code></p>` : "";
+        detalle += `<p>It should print:</p><pre>${esc(p.esperado)}</pre>`;
+        if (!p.error) detalle += `<p>Your program printed:</p><pre>${esc(p.obtenido || "(nothing)")}</pre>`;
       } else if (p.tipo === "expresion") {
-        detalle += `<p><code>${esc(p.expresion)}</code> debería dar <code>${esc(p.esperado)}</code>${p.error ? "" : `, pero dio <code>${esc(p.obtenido)}</code>`}.</p>`;
+        detalle += `<p><code>${esc(p.expresion)}</code> should give <code>${esc(p.esperado)}</code>${p.error ? "" : `, but it gave <code>${esc(p.obtenido)}</code>`}.</p>`;
       }
       if (p.error) detalle += htmlError(p.error);
       if (p.nota) detalle += `<p><strong>${esc(p.nota)}</strong></p>`;
@@ -280,7 +280,7 @@ async function iniciar() {
     actualizarBotones();
     const caja = $("#resultados");
     caja.classList.remove("resultados-viejos");
-    caja.innerHTML = `<p class="texto-suave">Comprobando…</p>`;
+    caja.innerHTML = `<p class="texto-suave">Checking…</p>`;
     const r = await runner.check(editor.getValue(), ej.pruebas || [], ej.no_usar || []);
     ocupado = false;
     actualizarBotones();
@@ -297,11 +297,11 @@ async function iniciar() {
     const abiertoSiguiente = siguiente && isUnlocked(siguiente.unit, profile);
     caja.innerHTML = `
       <h2 class="resultados-titulo ${todoBien ? "ok" : ""}">
-        ${todoBien ? "¡Resuelto! Pasaste todas las pruebas." : `Pasaste ${bien} de ${pruebas.length} pruebas.`}
+        ${todoBien ? "Solved! You passed every test." : `You passed ${bien} of ${pruebas.length} tests.`}
       </h2>
       <ul class="lista-pruebas">${pruebas.map(htmlPrueba).join("")}</ul>
-      ${todoBien && abiertoSiguiente ? `<p class="siguiente"><a class="boton boton-principal" href="ejercicio.html?id=${encodeURIComponent(siguiente.id)}">Siguiente ejercicio: ${esc(siguiente.titulo)}</a></p>` : ""}
-      ${todoBien && !abiertoSiguiente ? `<p class="siguiente"><a class="boton" href="inicio.html">Volver al inicio</a></p>` : ""}`;
+      ${todoBien && abiertoSiguiente ? `<p class="siguiente"><a class="boton boton-principal" href="ejercicio.html?id=${encodeURIComponent(siguiente.id)}">Next exercise: ${esc(siguiente.titulo)}</a></p>` : ""}
+      ${todoBien && !abiertoSiguiente ? `<p class="siguiente"><a class="boton" href="inicio.html">Back to home</a></p>` : ""}`;
 
     await guardar(todoBien);
     if (todoBien) pintarEnunciado();
@@ -313,7 +313,7 @@ async function iniciar() {
 
 iniciar().catch((err) => {
   console.error(err);
-  showFatal("No se pudo cargar el ejercicio. Revisa la conexión a internet y recarga la página.");
+  showFatal("Couldn't load the exercise. Check your internet connection and reload the page.");
 });
 </script>
 </body>

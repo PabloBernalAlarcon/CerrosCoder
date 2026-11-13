@@ -2,7 +2,7 @@
 Runs student code and exercise tests inside Pyodide (loaded by py-worker.js).
 
 The worker calls _atender(request_json) and receives a JSON string back.
-Student-facing messages are in Spanish; comments are in English.
+Student-facing messages are in simple English.
 """
 import ast
 import builtins
@@ -13,27 +13,27 @@ import sys
 import traceback
 from contextlib import contextmanager
 
-ARCHIVO = "<tu código>"   # filename shown in error messages
+ARCHIVO = "<your code>"   # filename shown in error messages
 MAX_SALIDA = 20_000        # characters of output before we stop a runaway print loop
 
 # Friendly hints for the most common beginner errors.
 PISTAS = {
-    "IndentationError": "La sangría (los espacios al inicio de la línea) no está bien. "
-                        "El código que va dentro de un if, for, while o def debe ir corrido hacia la derecha.",
-    "SyntaxError": "Python no entiende cómo está escrita esta línea. Revisa paréntesis, comillas "
-                   "y los dos puntos (:) al final de if, else, for, while y def.",
-    "NameError": "Usaste un nombre que Python no conoce. ¿Está bien escrito (mayúsculas incluidas)? "
-                 "¿Creaste la variable antes de usarla? ¿Olvidaste las comillas de un texto?",
-    "TypeError": "Estás mezclando tipos de datos que no combinan, por ejemplo sumar un texto con un número. "
-                 "Usa int(), float() o str() para convertir.",
-    "ValueError": "El valor no tiene la forma esperada, por ejemplo int(\"hola\"). Revisa los datos que escribiste.",
-    "ZeroDivisionError": "Estás dividiendo entre cero.",
-    "IndexError": "Intentas usar una posición que no existe. Recuerda que se empieza a contar desde 0.",
-    "KeyError": "Esa clave no existe en el diccionario.",
-    "AttributeError": "Ese tipo de dato no tiene ese método. Revisa cómo está escrito.",
-    "EOFError": "El programa pidió más datos con input() de los que escribiste en la caja de entradas.",
-    "RecursionError": "Una función se está llamando a sí misma sin parar.",
-    "DemasiadaSalida": "Tu programa imprimió muchísimo texto. ¿Hay un ciclo que nunca termina?",
+    "IndentationError": "The indentation (the spaces at the start of the line) isn't right. "
+                        "Code inside an if, for, while or def must be moved to the right.",
+    "SyntaxError": "Python can't understand how this line is written. Check your parentheses, quotes "
+                   "and the colon (:) at the end of if, else, for, while and def.",
+    "NameError": "You used a name Python doesn't know. Is it spelled correctly (capital letters too)? "
+                 "Did you create the variable before using it? Did you forget the quotes around some text?",
+    "TypeError": "You're mixing data types that don't go together, like adding text to a number. "
+                 "Use int(), float() or str() to convert.",
+    "ValueError": "The value isn't in the expected form, for example int(\"hello\"). Check the data you typed.",
+    "ZeroDivisionError": "You're dividing by zero.",
+    "IndexError": "You're using a position that doesn't exist. Remember that counting starts at 0.",
+    "KeyError": "That key doesn't exist in the dictionary.",
+    "AttributeError": "That kind of data doesn't have that method. Check how it's spelled.",
+    "EOFError": "Your program asked for more input() answers than you typed in the inputs box.",
+    "RecursionError": "A function keeps calling itself without stopping.",
+    "DemasiadaSalida": "Your program printed a huge amount of text. Is there a loop that never ends?",
 }
 
 
@@ -45,7 +45,7 @@ class _SalidaLimitada(io.StringIO):
     def write(self, s):
         if self.tell() + len(s) > MAX_SALIDA:
             super().write(s[: max(0, MAX_SALIDA - self.tell())])
-            raise DemasiadaSalida("Demasiada salida")
+            raise DemasiadaSalida("Too much output")
         return super().write(s)
 
 
@@ -61,7 +61,7 @@ class _Entradas:
         if self.eco:
             self.salida.write(str(mensaje))
         if not self.valores:
-            raise EOFError("input() pidió un dato, pero ya no quedan entradas")
+            raise EOFError("input() asked for a value, but there are no inputs left")
         valor = self.valores.pop(0)
         if self.eco:
             self.salida.write(valor + "\n")
@@ -100,7 +100,7 @@ def _info_error(exc):
         if marco.filename == ARCHIVO:
             linea = marco.lineno
     if isinstance(exc, DemasiadaSalida):
-        mensaje = "Tu programa imprimió demasiado texto y lo detuvimos."
+        mensaje = "Your program printed too much text, so we stopped it."
     else:
         try:
             partes = traceback.TracebackException.from_exception(exc).format_exception_only()
@@ -181,7 +181,7 @@ def _prueba_expresion(espacio, prueba, desc):
     r = {"descripcion": desc, "tipo": "expresion", "expresion": expresion, "esperado": prueba["esperado"]}
     with _aislado([], eco=False) as salida:
         try:
-            obtenido = eval(compile(expresion, "<prueba>", "eval"), espacio)
+            obtenido = eval(compile(expresion, "<test>", "eval"), espacio)
             fallo = None
         except BaseException as exc:
             fallo = exc
@@ -189,16 +189,16 @@ def _prueba_expresion(espacio, prueba, desc):
         r.update(ok=False, error=_info_error(fallo))
         nombre = getattr(fallo, "name", None)
         if isinstance(fallo, NameError) and nombre and nombre in expresion:
-            r["nota"] = f"No encontramos {nombre}. Revisa que tu función se llame exactamente {nombre}."
+            r["nota"] = f"We couldn't find {nombre}. Check that your function is named exactly {nombre}."
         return r
     esperado = ast.literal_eval(prueba["esperado"])
     r["obtenido"] = repr(obtenido)
     r["ok"] = _iguales(obtenido, esperado)
     if obtenido is None and not r["ok"]:
         if salida.getvalue().strip():
-            r["nota"] = "Tu función imprimió algo, pero no devolvió nada. ¿Usaste print() en lugar de return?"
+            r["nota"] = "Your function printed something but didn't return anything. Did you use print() instead of return?"
         else:
-            r["nota"] = "Tu función no devolvió nada. ¿Te faltó escribir return?"
+            r["nota"] = "Your function didn't return anything. Did you forget to write return?"
     return r
 
 
@@ -208,18 +208,18 @@ def _comprobar(codigo, pruebas, prohibidos):
     usados = _nombres_usados(codigo) & set(prohibidos or [])
     if usados:
         resultados.append({
-            "descripcion": "Reglas del ejercicio",
+            "descripcion": "Exercise rules",
             "tipo": "regla",
             "ok": False,
-            "nota": "En este ejercicio no puedes usar: " + ", ".join(sorted(usados))
-                    + ". Intenta resolverlo con lo que has aprendido.",
+            "nota": "In this exercise you can't use: " + ", ".join(sorted(usados))
+                    + ". Try to solve it with what you've learned.",
         })
 
     espacio_funciones = None   # the program is run once and shared by all expression tests
     error_funciones = None
 
     for i, prueba in enumerate(pruebas, start=1):
-        desc = prueba.get("descripcion") or f"Prueba {i}"
+        desc = prueba.get("descripcion") or f"Test {i}"
         if prueba.get("tipo") == "salida":
             resultados.append(_prueba_salida(codigo, prueba, desc))
             continue

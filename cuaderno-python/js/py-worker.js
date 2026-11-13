@@ -6,7 +6,7 @@ importScripts(`https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/pyodide
 const listo = (async () => {
   const pyodide = await loadPyodide();
   const respuesta = await fetch("harness.py", { cache: "no-cache" });
-  if (!respuesta.ok) throw new Error("No se encontró js/harness.py");
+  if (!respuesta.ok) throw new Error("js/harness.py not found");
   pyodide.runPython(await respuesta.text());
   return pyodide;
 })();

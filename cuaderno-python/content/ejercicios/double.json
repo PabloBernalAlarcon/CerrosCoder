@@ -1,0 +1,28 @@
+{
+  "id": "double",
+  "titulo": "Double it",
+  "enunciado": "Create a function called `double` that receives a number and **returns** (with `return`) double that number.\n\n```python\ndouble(4)    # should give 8\ndouble(2.5)  # should give 5.0\n```\n\nUse **Run** to try it with `print(double(4))`, and **Check** when you think it's ready.",
+  "codigo_inicial": "def double(n):\n    # write your code here\n    pass\n\n\nprint(double(4))\n",
+  "pruebas": [
+    {
+      "descripcion": "double(4)",
+      "expresion": "double(4)",
+      "esperado": "8"
+    },
+    {
+      "descripcion": "double(0)",
+      "expresion": "double(0)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "A negative number",
+      "expresion": "double(-3)",
+      "esperado": "-6"
+    },
+    {
+      "descripcion": "A decimal number",
+      "expresion": "double(2.5)",
+      "esperado": "5.0"
+    }
+  ]
+}

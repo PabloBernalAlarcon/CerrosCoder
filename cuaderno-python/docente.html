@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
-<title>Panel docente · Cuaderno Python</title>
+<title>Teacher panel · Python Notebook</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
@@ -18,24 +18,24 @@
 <header class="cabecera" data-header></header>
 <main class="hoja hoja-ancha">
   <div class="panel-cabecera">
-    <h1>Panel docente</h1>
+    <h1>Teacher panel</h1>
     <div class="panel-controles">
-      <label>Grupo <select id="grupo"></select></label>
-      <button type="button" class="boton" id="btn-actualizar">Actualizar</button>
-      <button type="button" class="boton" id="btn-csv">Descargar CSV</button>
+      <label>Group <select id="grupo"></select></label>
+      <button type="button" class="boton" id="btn-actualizar">Refresh</button>
+      <button type="button" class="boton" id="btn-csv">Download CSV</button>
     </div>
   </div>
-  <p class="resumen" id="resumen">Cargando…</p>
+  <p class="resumen" id="resumen">Loading…</p>
   <div class="tabla-envoltura"><table class="tabla-progreso" id="tabla"></table></div>
   <ul class="leyenda">
-    <li><span class="celda celda-ok">✓</span> Resuelto</li>
-    <li><span class="celda celda-progreso">2</span> En progreso (número de veces que comprobó)</li>
-    <li><span class="celda-vacia"></span> Sin empezar</li>
-    <li><span class="inactivo">Rojo</span> Sin actividad en los últimos días</li>
+    <li><span class="celda celda-ok">✓</span> Solved</li>
+    <li><span class="celda celda-progreso">2</span> In progress (number of times they pressed Check)</li>
+    <li><span class="celda-vacia"></span> Not started</li>
+    <li><span class="inactivo">Red</span> No recent activity</li>
   </ul>
 
   <dialog class="dialogo" id="dialogo" aria-labelledby="dialogo-titulo">
-    <form method="dialog" class="dialogo-cerrar"><button class="boton boton-suave boton-pequeno">Cerrar</button></form>
+    <form method="dialog" class="dialogo-cerrar"><button class="boton boton-suave boton-pequeno">Close</button></form>
     <h2 id="dialogo-titulo"></h2>
     <p id="dialogo-detalle" class="texto-suave"></p>
     <pre><code id="dialogo-codigo" class="language-python"></code></pre>
@@ -46,7 +46,7 @@
 import { sb, CONFIG, requireLogin, loadCourse, flatten, isUnlocked, fetchAll, esc, relativeTime, daysSince, showFatal } from "./js/app.js";
 
 await requireLogin({ teacherOnly: true });
-document.title = `Panel docente · ${CONFIG.APP_NAME}`;
+document.title = `Teacher panel · ${CONFIG.APP_NAME}`;
 
 const selectGrupo = document.getElementById("grupo");
 const tabla = document.getElementById("tabla");
@@ -62,7 +62,7 @@ let envios = new Map();     // "userId|exerciseId" -> row
 let ultimaVez = new Map();  // userId -> latest updated_at
 
 async function cargar() {
-  resumen.textContent = "Cargando…";
+  resumen.textContent = "Loading…";
   const [perfiles, filas] = await Promise.all([
     fetchAll(() => sb.from("profiles").select("id, username, grupo").eq("role", "student").order("grupo").order("username")),
     fetchAll(() => sb.from("submissions").select("user_id, exercise_id, passed, attempts, updated_at").order("user_id").order("exercise_id")),
@@ -77,7 +77,7 @@ async function cargar() {
 
   const grupos = [...new Set(estudiantes.map((e) => e.grupo).filter(Boolean))].sort();
   const elegido = selectGrupo.value || "__todos";
-  selectGrupo.innerHTML = `<option value="__todos">Todos</option>` +
+  selectGrupo.innerHTML = `<option value="__todos">All</option>` +
     grupos.map((g) => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
   selectGrupo.value = grupos.includes(elegido) ? elegido : "__todos";
   pintar();
@@ -93,24 +93,24 @@ const resueltosDe = (uid) => disponibles.filter((e) => envios.get(`${uid}|${e.id
 function pintar() {
   const lista = filtrados();
   if (!lista.length) {
-    resumen.textContent = "Todavía no hay estudiantes en este grupo. Créalos con scripts/estudiantes.py.";
+    resumen.textContent = "There are no students in this group yet. Create them with scripts/estudiantes.py.";
     tabla.innerHTML = "";
     return;
   }
   const activosSemana = lista.filter((e) => daysSince(ultimaVez.get(e.id)) < 7).length;
-  resumen.textContent = `${lista.length} estudiantes. ${activosSemana} trabajaron en la plataforma durante los últimos 7 días.`;
+  resumen.textContent = `${lista.length} students. ${activosSemana} worked on the platform in the last 7 days.`;
 
   const cabeza = exercises.map((e, i) => {
     const abierto = isUnlocked(e.unit, null);
-    return `<th class="col-ejercicio ${abierto ? "" : "bloqueado"}" scope="col" title="Unidad ${e.unit.numero}: ${esc(e.titulo)}${abierto ? "" : " (aún cerrado para estudiantes)"}">
+    return `<th class="col-ejercicio ${abierto ? "" : "bloqueado"}" scope="col" title="Unit ${e.unit.numero}: ${esc(e.titulo)}${abierto ? "" : " (not open to students yet)"}">
       <span class="vertical">${i + 1}. ${esc(e.titulo)}</span></th>`;
   }).join("");
 
   const filas = lista.map((est) => {
     const celdas = exercises.map((e) => {
       const f = envios.get(`${est.id}|${e.id}`);
-      if (!f) return `<td><span class="celda-vacia" aria-label="Sin empezar"></span></td>`;
-      const etiqueta = `${est.username}, ${e.titulo}: ${f.passed ? "resuelto" : "en progreso"}, ${f.attempts} comprobaciones`;
+      if (!f) return `<td><span class="celda-vacia" aria-label="Not started"></span></td>`;
+      const etiqueta = `${est.username}, ${e.titulo}: ${f.passed ? "solved" : "in progress"}, checked ${f.attempts} times`;
       return `<td><button type="button" class="celda ${f.passed ? "celda-ok" : "celda-progreso"}"
         data-u="${est.id}" data-e="${esc(e.id)}" aria-label="${esc(etiqueta)}" title="${esc(etiqueta)}">${f.passed ? "✓" : f.attempts}</button></td>`;
     }).join("");
@@ -130,9 +130,9 @@ function pintar() {
   }).join("");
 
   tabla.innerHTML = `
-    <thead><tr><th class="col-estudiante" scope="col">Estudiante</th>${cabeza}<th scope="col">Resueltos</th><th scope="col">Última actividad</th></tr></thead>
+    <thead><tr><th class="col-estudiante" scope="col">Student</th>${cabeza}<th scope="col">Solved</th><th scope="col">Last active</th></tr></thead>
     <tbody>${filas}</tbody>
-    <tfoot><tr><td class="col-estudiante">Resuelto por</td>${pie}<td></td><td></td></tr></tfoot>`;
+    <tfoot><tr><td class="col-estudiante">Solved by</td>${pie}<td></td><td></td></tr></tfoot>`;
 }
 
 tabla.addEventListener("click", async (event) => {
@@ -143,14 +143,14 @@ tabla.addEventListener("click", async (event) => {
   const f = envios.get(`${celda.dataset.u}|${celda.dataset.e}`);
   document.getElementById("dialogo-titulo").textContent = `${est.username}: ${ej.titulo}`;
   document.getElementById("dialogo-detalle").textContent =
-    `${f.passed ? "Resuelto" : "En progreso"}. Comprobó ${f.attempts} ${f.attempts === 1 ? "vez" : "veces"}. Último cambio: ${relativeTime(f.updated_at)}.`;
+    `${f.passed ? "Solved" : "In progress"}. Checked ${f.attempts} ${f.attempts === 1 ? "time" : "times"}. Last change: ${relativeTime(f.updated_at)}.`;
   const codigo = document.getElementById("dialogo-codigo");
-  codigo.textContent = "Cargando…";
+  codigo.textContent = "Loading…";
   dialogo.showModal();
   const { data, error } = await sb.from("submissions").select("code")
     .eq("user_id", celda.dataset.u).eq("exercise_id", celda.dataset.e).single();
   codigo.textContent = "";
-  if (error) { codigo.textContent = "No se pudo cargar el código."; return; }
+  if (error) { codigo.textContent = "Couldn't load the code."; return; }
   if (window.CodeMirror?.runMode) window.CodeMirror.runMode(data.code || "", "python", codigo);
   else codigo.textContent = data.code;
 });
@@ -159,9 +159,9 @@ function descargarCSV() {
   const lista = filtrados();
   const estadoTexto = (uid, eid) => {
     const f = envios.get(`${uid}|${eid}`);
-    return !f ? "" : f.passed ? "resuelto" : "en progreso";
+    return !f ? "" : f.passed ? "solved" : "in progress";
   };
-  const filas = [["usuario", "grupo", ...exercises.map((e) => e.id), "resueltos", "disponibles", "porcentaje", "ultima_actividad"]];
+  const filas = [["username", "group", ...exercises.map((e) => e.id), "solved", "available", "percent", "last_active"]];
   for (const est of lista) {
     const r = resueltosDe(est.id);
     filas.push([
@@ -174,9 +174,9 @@ function descargarCSV() {
   const csv = filas.map((f) => f.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\r\n");
   const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" }); // BOM so Excel shows accents
   const enlace = document.createElement("a");
-  const grupo = selectGrupo.value === "__todos" ? "todos" : selectGrupo.value;
+  const grupo = selectGrupo.value === "__todos" ? "all" : selectGrupo.value;
   enlace.href = URL.createObjectURL(blob);
-  enlace.download = `progreso-${grupo}-${new Date().toISOString().slice(0, 10)}.csv`;
+  enlace.download = `progress-${grupo}-${new Date().toISOString().slice(0, 10)}.csv`;
   enlace.click();
   URL.revokeObjectURL(enlace.href);
 }
@@ -187,7 +187,7 @@ document.getElementById("btn-csv").addEventListener("click", descargarCSV);
 
 function fallo(err) {
   console.error(err);
-  showFatal("No se pudo cargar el progreso. Revisa la conexión a internet y recarga la página.");
+  showFatal("Couldn't load the progress data. Check your internet connection and reload the page.");
 }
 cargar().catch(fallo);
 </script>

@@ -42,7 +42,7 @@ export async function requireLogin({ teacherOnly = false } = {}) {
   try {
     profile = await getProfile(user.id);
   } catch {
-    showFatal("No se pudo cargar tu perfil. Revisa la conexión a internet y recarga la página.");
+    showFatal("Couldn't load your profile. Check your internet connection and reload the page.");
     return NUNCA;
   }
   if (teacherOnly && profile.role !== "teacher") {
@@ -64,12 +64,12 @@ export function renderHeader(profile) {
   const docente = profile.role === "teacher";
   header.innerHTML = `
     <a class="cabecera-marca" href="inicio.html">${esc(CONFIG.APP_NAME)}</a>
-    <nav class="cabecera-nav" aria-label="Principal">
-      <a href="inicio.html">Inicio</a>
-      ${docente ? `<a href="docente.html">Panel docente</a>` : ""}
-      <a href="index.html?cambiar=1">Cambiar contraseña</a>
+    <nav class="cabecera-nav" aria-label="Main">
+      <a href="inicio.html">Home</a>
+      ${docente ? `<a href="docente.html">Teacher panel</a>` : ""}
+      <a href="index.html?cambiar=1">Change password</a>
       <span class="cabecera-usuario">${esc(profile.username)}</span>
-      <button type="button" class="boton boton-suave boton-pequeno" data-salir>Salir</button>
+      <button type="button" class="boton boton-suave boton-pequeno" data-salir>Log out</button>
     </nav>`;
   header.querySelector("[data-salir]").addEventListener("click", logout);
   const aqui = location.pathname.split("/").pop() || "index.html";
@@ -110,20 +110,20 @@ export function isUnlocked(unit, profile) {
 }
 
 export function formatDate(texto) {
-  return parseLocalDate(texto).toLocaleDateString("es-CO", { day: "numeric", month: "long" });
+  return parseLocalDate(texto).toLocaleDateString("en-US", { month: "long", day: "numeric" });
 }
 
 // ---------- Data ----------
 
 export async function fetchJSON(url) {
   const r = await fetch(url, { cache: "no-cache" });
-  if (!r.ok) throw new Error(`No se pudo cargar ${url}`);
+  if (!r.ok) throw new Error(`Could not load ${url}`);
   return r.json();
 }
 
 export async function fetchText(url) {
   const r = await fetch(url, { cache: "no-cache" });
-  if (!r.ok) throw new Error(`No se pudo cargar ${url}`);
+  if (!r.ok) throw new Error(`Could not load ${url}`);
   return r.text();
 }
 
@@ -167,11 +167,11 @@ export function daysSince(iso) {
 
 export function relativeTime(iso) {
   const dias = daysSince(iso);
-  if (dias === Infinity) return "nunca";
-  if (dias <= 0) return "hoy";
-  if (dias === 1) return "ayer";
-  if (dias < 30) return `hace ${dias} días`;
-  return new Date(iso).toLocaleDateString("es-CO", { day: "numeric", month: "short" });
+  if (dias === Infinity) return "never";
+  if (dias <= 0) return "today";
+  if (dias === 1) return "yesterday";
+  if (dias < 30) return `${dias} days ago`;
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 // Colors Python code inside <pre><code> blocks (lessons, teacher code viewer).

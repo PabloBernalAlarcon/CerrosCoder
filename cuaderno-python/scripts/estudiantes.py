@@ -1,14 +1,16 @@
 """
-Manage student accounts for Cuaderno Python. Run it on YOUR computer only.
+Manage student accounts for the Python Notebook platform. Run it on YOUR computer only.
 
-    python estudiantes.py crear lista.csv          create accounts from a CSV (nombre,usuario,grupo)
-    python estudiantes.py reiniciar 8a-07          give a student a new temporary password
-    python estudiantes.py docente profe            create your teacher account
+    python estudiantes.py create students-8a.csv   create accounts from a CSV (name,username,group)
+    python estudiantes.py reset 8a-07              give a student a new temporary password
+    python estudiantes.py teacher profe            create your teacher account
 
-It needs your project's URL and its *secret* (service_role) key. You can put them in
-environment variables SUPABASE_URL and SUPABASE_SECRET_KEY, or just paste them when asked.
-The secret key can do anything in your database: never put it in the website, in GitHub,
-or anywhere students can see it.
+(The older Spanish commands crear, reiniciar and docente still work.)
+
+It needs your Project URL and your *secret* key (sb_secret_... or the legacy service_role key).
+You can put them in environment variables SUPABASE_URL and SUPABASE_SECRET_KEY, or paste them
+when asked. The secret key can do anything in your database: never put it in the website,
+in GitHub, or anywhere students can see it.
 
 Only uses Python's standard library: nothing to install.
 """
@@ -28,159 +30,166 @@ from pathlib import Path
 # Must match EMAIL_DOMAIN in js/config.js
 EMAIL_DOMAIN = os.environ.get("EMAIL_DOMAIN", "alumnos.example.com")
 
-PALABRAS = [
-    "arepa", "bambu", "cafe", "colibri", "condor", "cometa", "delfin", "guadua", "jaguar",
-    "lapiz", "loro", "mango", "nube", "orquidea", "palma", "piedra", "puma", "rio",
-    "tigre", "tucan", "volcan", "brisa", "lulo", "mora", "faro", "ancla",
+WORDS = [
+    "apple", "banana", "cloud", "comet", "condor", "dolphin", "falcon", "forest", "jaguar",
+    "lemon", "mango", "maple", "ocean", "orbit", "panda", "parrot", "pencil", "planet",
+    "puma", "river", "rocket", "tiger", "toucan", "volcano", "wave", "zebra",
 ]
 
-USUARIO_VALIDO = re.compile(r"^[a-z0-9][a-z0-9._-]{1,30}$")
+VALID_USERNAME = re.compile(r"^[a-z0-9][a-z0-9._-]{1,30}$")
 
 
-def limpiar_url(url):
+def clean_url(url):
     """Accept only the API URL (https://<ref>.supabase.co), dropping any extra path."""
-    partes = urllib.parse.urlparse(url.strip())
-    host = partes.netloc.lower()
-    if partes.scheme != "https" or not host.endswith(".supabase.co"):
+    parts = urllib.parse.urlparse(url.strip())
+    host = parts.netloc.lower()
+    if parts.scheme != "https" or not host.endswith(".supabase.co"):
         sys.exit(
-            f"La URL {url!r} no es la URL del proyecto.\n"
-            "Debe tener esta forma: https://abcdefghijklmnop.supabase.co\n"
-            "La encuentras en Supabase → Project Settings → Data API (o API) → Project URL.\n"
-            "No uses la dirección del navegador (https://supabase.com/dashboard/...)."
+            f"{url!r} is not your Project URL.\n"
+            "It should look like this: https://abcdefghijklmnop.supabase.co\n"
+            "Find it in Supabase → Project Settings → Data API → Project URL.\n"
+            "Don't use the address from your browser bar (https://supabase.com/dashboard/...)."
         )
     return f"https://{host}"
 
 
-def pedir_credenciales():
-    url = os.environ.get("SUPABASE_URL") or input("URL del proyecto (https://....supabase.co): ")
-    url = limpiar_url(url)
-    clave = os.environ.get("SUPABASE_SECRET_KEY") or getpass.getpass("Clave secreta (service_role o sb_secret_..., no se mostrará): ").strip()
-    if not clave:
-        sys.exit("Falta la clave secreta.")
-    if not (clave.startswith("eyJ") or clave.startswith("sb_secret_")):
-        sys.exit("Esa no parece la clave secreta. Debe empezar por sb_secret_ o por eyJ (service_role).\n"
-                 "Ojo: no es la contraseña de la base de datos.")
-    return url, clave
+def ask_credentials():
+    url = clean_url(os.environ.get("SUPABASE_URL") or input("Project URL (https://....supabase.co): "))
+    key = (os.environ.get("SUPABASE_SECRET_KEY")
+           or getpass.getpass("Secret key (sb_secret_..., it won't be shown as you type): ")).strip()
+    if not key:
+        sys.exit("The secret key is missing.")
+    if not (key.startswith("sb_secret_") or key.startswith("eyJ")):
+        sys.exit("That doesn't look like the secret key. It should start with sb_secret_ "
+                 "(or eyJ for the legacy service_role key).\n"
+                 "Note: it is not your database password.")
+    return url, key
 
 
-def peticion(url_base, clave, metodo, ruta, cuerpo=None, extra=None):
-    cabeceras = {"apikey": clave, "Content-Type": "application/json"}
-    if clave.startswith("eyJ"):  # legacy JWT-style keys also go in Authorization
-        cabeceras["Authorization"] = f"Bearer {clave}"
-    cabeceras.update(extra or {})
-    datos = json.dumps(cuerpo).encode() if cuerpo is not None else None
-    req = urllib.request.Request(url_base + ruta, data=datos, method=metodo, headers=cabeceras)
+def request(base_url, key, method, path, body=None, extra_headers=None):
+    headers = {"apikey": key, "Content-Type": "application/json"}
+    if key.startswith("eyJ"):  # legacy JWT-style keys also go in Authorization
+        headers["Authorization"] = f"Bearer {key}"
+    headers.update(extra_headers or {})
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(base_url + path, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
-            texto = r.read().decode()
-            return json.loads(texto) if texto else None
+            text = r.read().decode()
+            return json.loads(text) if text else None
     except urllib.error.HTTPError as e:
-        cuerpo = e.read().decode(errors="replace")
-        if cuerpo.lstrip().startswith("<"):
-            sys.exit(f"Error {e.code}: el servidor respondió con una página web, no con la API de Supabase. "
-                     "Revisa la URL del proyecto.")
+        text = e.read().decode(errors="replace")
+        if text.lstrip().startswith("<"):
+            sys.exit(f"Error {e.code}: the server answered with a web page instead of the Supabase API. "
+                     "Check your Project URL.")
         if e.code in (401, 403):
-            sys.exit(f"Error {e.code}: la clave no fue aceptada. Usa la clave secreta (service_role / sb_secret_...).\n{cuerpo}")
-        raise RuntimeError(f"{e.code}: {cuerpo}") from None
+            sys.exit(f"Error {e.code}: the key was not accepted. Use the secret key (sb_secret_...).\n{text}")
+        raise RuntimeError(f"{e.code}: {text}") from None
     except urllib.error.URLError as e:
-        sys.exit(f"No se pudo conectar con {url_base}: {e.reason}")
+        sys.exit(f"Could not connect to {base_url}: {e.reason}")
 
 
-def nueva_clave():
-    return f"{secrets.choice(PALABRAS)}-{secrets.randbelow(9000) + 1000}"
+def new_password():
+    return f"{secrets.choice(WORDS)}-{secrets.randbelow(9000) + 1000}"
 
 
-def crear_cuenta(url, clave, usuario, grupo, password):
-    return peticion(url, clave, "POST", "/auth/v1/admin/users", {
-        "email": f"{usuario}@{EMAIL_DOMAIN}",
+def create_account(url, key, username, group, password):
+    return request(url, key, "POST", "/auth/v1/admin/users", {
+        "email": f"{username}@{EMAIL_DOMAIN}",
         "password": password,
         "email_confirm": True,
-        "user_metadata": {"username": usuario, "grupo": grupo, "must_change_password": True},
+        "user_metadata": {"username": username, "grupo": group, "must_change_password": True},
     })
 
 
-def buscar_perfil(url, clave, usuario):
-    q = urllib.parse.quote(usuario)
-    filas = peticion(url, clave, "GET", f"/rest/v1/profiles?username=eq.{q}&select=id,username,grupo")
-    if not filas:
-        sys.exit(f"No existe el usuario {usuario}.")
-    return filas[0]
+def find_profile(url, key, username):
+    q = urllib.parse.quote(username)
+    rows = request(url, key, "GET", f"/rest/v1/profiles?username=eq.{q}&select=id,username,grupo")
+    if not rows:
+        sys.exit(f"There is no user called {username}.")
+    return rows[0]
 
 
-def cmd_crear(args):
-    archivo = Path(args.csv)
-    with archivo.open(encoding="utf-8-sig", newline="") as f:
-        filas = list(csv.DictReader(f))
-    if not filas or not {"usuario", "grupo"} <= set(filas[0].keys()):
-        sys.exit("El CSV debe tener columnas: nombre,usuario,grupo")
+def column(row, *names):
+    for n in names:
+        if n in row and row[n] is not None:
+            return row[n].strip()
+    return ""
 
-    errores = []
-    for fila in filas:
-        usuario = fila["usuario"].strip().lower()
-        if not USUARIO_VALIDO.match(usuario):
-            errores.append(f"Usuario no válido: {usuario!r} (usa minúsculas, números y guiones)")
-    if errores:
-        sys.exit("\n".join(errores))
 
-    url, clave = pedir_credenciales()
-    salida = archivo.with_name(f"credenciales-{archivo.stem}.csv")
-    creadas = 0
-    with salida.open("w", encoding="utf-8-sig", newline="") as f:
-        escritor = csv.writer(f)
-        escritor.writerow(["nombre", "usuario", "grupo", "contraseña_temporal"])
-        for fila in filas:
-            usuario = fila["usuario"].strip().lower()
-            grupo = fila["grupo"].strip()
-            password = nueva_clave()
+def cmd_create(args):
+    path = Path(args.csv)
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        sys.exit("The CSV is empty.")
+    headers = set(rows[0].keys())
+    if not ({"username", "group"} <= headers or {"usuario", "grupo"} <= headers):
+        sys.exit("The CSV needs these columns: name,username,group")
+
+    students = [(column(r, "name", "nombre"), column(r, "username", "usuario").lower(), column(r, "group", "grupo"))
+                for r in rows]
+    bad = [u for _, u, _ in students if not VALID_USERNAME.match(u)]
+    if bad:
+        sys.exit("Invalid usernames (use lowercase letters, numbers and hyphens): " + ", ".join(map(repr, bad)))
+
+    url, key = ask_credentials()
+    out = path.with_name(f"credentials-{path.stem}.csv")
+    created = 0
+    with out.open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["name", "username", "group", "temporary_password"])
+        for name, username, group in students:
+            password = new_password()
             try:
-                crear_cuenta(url, clave, usuario, grupo, password)
+                create_account(url, key, username, group, password)
             except RuntimeError as e:
-                print(f"  ✗ {usuario}: {e}")
+                print(f"  ✗ {username}: {e}")
                 continue
-            escritor.writerow([fila.get("nombre", "").strip(), usuario, grupo, password])
-            creadas += 1
-            print(f"  ✓ {usuario}")
-    print(f"\n{creadas} de {len(filas)} cuentas creadas.")
-    print(f"Contraseñas temporales en: {salida}")
-    print("Guárdalo en un lugar privado. Cada estudiante deberá cambiarla la primera vez que entre.")
+            writer.writerow([name, username, group, password])
+            created += 1
+            print(f"  ✓ {username}")
+    print(f"\nCreated {created} of {len(students)} accounts.")
+    print(f"Temporary passwords are in: {out}")
+    print("Keep that file private. Each student will choose a new password the first time they log in.")
 
 
-def cmd_reiniciar(args):
-    url, clave = pedir_credenciales()
-    perfil = buscar_perfil(url, clave, args.usuario.strip().lower())
-    password = nueva_clave()
-    peticion(url, clave, "PUT", f"/auth/v1/admin/users/{perfil['id']}", {
+def cmd_reset(args):
+    url, key = ask_credentials()
+    profile = find_profile(url, key, args.username.strip().lower())
+    password = new_password()
+    request(url, key, "PUT", f"/auth/v1/admin/users/{profile['id']}", {
         "password": password,
-        "user_metadata": {"username": perfil["username"], "grupo": perfil["grupo"], "must_change_password": True},
+        "user_metadata": {"username": profile["username"], "grupo": profile["grupo"], "must_change_password": True},
     })
-    print(f"Nueva contraseña temporal para {perfil['username']}: {password}")
-    print("La cambiará la próxima vez que entre. Su progreso no se pierde.")
+    print(f"New temporary password for {profile['username']}: {password}")
+    print("They'll choose a new one at their next login. Their progress is kept.")
 
 
-def cmd_docente(args):
-    usuario = args.usuario.strip().lower()
-    if not USUARIO_VALIDO.match(usuario):
-        sys.exit("Usuario no válido (usa minúsculas, números y guiones).")
-    url, clave = pedir_credenciales()
-    password = nueva_clave()
-    cuenta = crear_cuenta(url, clave, usuario, "", password)
-    peticion(url, clave, "PATCH", f"/rest/v1/profiles?id=eq.{cuenta['id']}", {"role": "teacher"},
-             extra={"Prefer": "return=minimal"})
-    print(f"Cuenta docente creada: {usuario}  Contraseña temporal: {password}")
+def cmd_teacher(args):
+    username = args.username.strip().lower()
+    if not VALID_USERNAME.match(username):
+        sys.exit("Invalid username (use lowercase letters, numbers and hyphens).")
+    url, key = ask_credentials()
+    password = new_password()
+    account = create_account(url, key, username, "", password)
+    request(url, key, "PATCH", f"/rest/v1/profiles?id=eq.{account['id']}", {"role": "teacher"},
+            extra_headers={"Prefer": "return=minimal"})
+    print(f"Teacher account created: {username}   Temporary password: {password}")
 
 
 def main():
-    p = argparse.ArgumentParser(description="Cuentas de Cuaderno Python")
-    sub = p.add_subparsers(dest="comando", required=True)
-    c = sub.add_parser("crear", help="crear cuentas desde un CSV (nombre,usuario,grupo)")
+    p = argparse.ArgumentParser(description="Python Notebook accounts")
+    sub = p.add_subparsers(dest="command", required=True)
+    c = sub.add_parser("create", aliases=["crear"], help="create accounts from a CSV (name,username,group)")
     c.add_argument("csv")
-    c.set_defaults(func=cmd_crear)
-    r = sub.add_parser("reiniciar", help="dar una contraseña temporal nueva")
-    r.add_argument("usuario")
-    r.set_defaults(func=cmd_reiniciar)
-    d = sub.add_parser("docente", help="crear una cuenta de docente")
-    d.add_argument("usuario")
-    d.set_defaults(func=cmd_docente)
+    c.set_defaults(func=cmd_create)
+    r = sub.add_parser("reset", aliases=["reiniciar"], help="give a student a new temporary password")
+    r.add_argument("username")
+    r.set_defaults(func=cmd_reset)
+    t = sub.add_parser("teacher", aliases=["docente"], help="create a teacher account")
+    t.add_argument("username")
+    t.set_defaults(func=cmd_teacher)
     args = p.parse_args()
     args.func(args)
 

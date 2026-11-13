@@ -1,46 +1,46 @@
-# Variables y preguntas con `input()`
+# Variables and questions with `input()`
 
-Una **variable** es como una caja con nombre donde guardamos un dato para usarlo después.
-
-```python
-nombre = "Valentina"
-edad = 14
-print(nombre, "tiene", edad, "años")
-```
-
-El signo `=` no significa "igual" como en matemáticas: significa **guarda esto en la caja**.
-
-## Reglas para los nombres
-
-Los nombres de variables van en minúsculas, sin espacios ni tildes, y no pueden empezar con un número. Si necesitas varias palabras, únelas con guion bajo: `nota_final`, `numero_de_goles`.
-
-## Preguntar al usuario
-
-`input()` hace una pregunta y espera a que la persona escriba algo:
+A **variable** is like a labeled box where we keep a value so we can use it later.
 
 ```python
-ciudad = input("¿En qué ciudad vives? ")
-print("¡Qué bien!", ciudad, "es una gran ciudad.")
+name = "Valentina"
+age = 14
+print(name, "is", age, "years old")
 ```
 
-En esta plataforma, lo que el usuario "escribe" lo pones en la caja **Entradas para input()**, una respuesta por línea.
+The `=` sign doesn't mean "equals" like in math class. It means **put this value in the box**.
 
-## Mezclar texto y variables con f-strings
+## Rules for names
 
-Si pones una `f` antes de las comillas, puedes meter variables entre llaves `{ }`:
+Variable names are written in lowercase, with no spaces, and they can't start with a number. If you need several words, join them with an underscore: `final_grade`, `number_of_goals`.
+
+## Asking the user
+
+`input()` asks a question and waits for the person to type something:
 
 ```python
-nombre = "Samuel"
-print(f"Hola, {nombre}. Bienvenido.")
+city = input("Which city do you live in? ")
+print("Nice!", city, "is a great city.")
 ```
 
-## ¡Cuidado! `input()` siempre devuelve texto
+On this platform, what the user "types" goes in the **Inputs for input()** box, one answer per line.
 
-Aunque escribas un número, `input()` lo entrega como texto. Para hacer cuentas, conviértelo con `int()` (números enteros) o `float()` (números con decimales):
+## Mixing text and variables with f-strings
+
+If you put an `f` before the quotes, you can place variables inside curly braces `{ }`:
 
 ```python
-goles = int(input("¿Cuántos goles hizo tu equipo? "))
-print(f"El doble serían {goles * 2} goles")
+name = "Samuel"
+print(f"Hello, {name}. Welcome.")
 ```
 
-> Si olvidas el `int()`, `"3" + "4"` da `"34"`: Python pega los textos en lugar de sumarlos.
+## Careful! `input()` always gives you text
+
+Even if you type a number, `input()` hands it to you as text. To do math, convert it with `int()` (whole numbers) or `float()` (numbers with decimals):
+
+```python
+goals = int(input("How many goals did your team score? "))
+print(f"Double would be {goals * 2} goals")
+```
+
+> If you forget `int()`, `"3" + "4"` gives `"34"`: Python glues the texts together instead of adding them.

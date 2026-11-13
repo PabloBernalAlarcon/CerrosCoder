@@ -1,0 +1,26 @@
+{
+  "id": "greeting",
+  "titulo": "Personal greeting",
+  "enunciado": "Write a program that asks for a name with `input()` and then prints exactly:\n\n```\nHello, Ana. Let's code!\n```\n\n(with *Ana* replaced by whatever name was typed).\n\nThe question inside `input()` can say anything you like: the tests only look at what `print()` shows.\n\n**Hint:** use an f-string.",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana",
+  "codigo_inicial": "# 1. Ask for the name and keep it in a variable\n\n\n# 2. Print the greeting\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "With the name Ana",
+      "entradas": [
+        "Ana"
+      ],
+      "esperado": "Hello, Ana. Let's code!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "With the name Juan David",
+      "entradas": [
+        "Juan David"
+      ],
+      "esperado": "Hello, Juan David. Let's code!"
+    }
+  ]
+}

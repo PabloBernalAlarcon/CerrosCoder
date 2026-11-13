@@ -1,0 +1,38 @@
+{
+  "id": "largest-of-three",
+  "titulo": "The largest of three",
+  "enunciado": "Create a function `largest_of_three(a, b, c)` that returns the largest of the three numbers.\n\nIn this exercise **you can't use `max()`**: solve it with `if`, `elif` and `else`.\n\n```python\nlargest_of_three(4, 9, 2)   # 9\n```",
+  "codigo_inicial": "def largest_of_three(a, b, c):\n    pass\n\n\nprint(largest_of_three(4, 9, 2))\n",
+  "no_usar": [
+    "max",
+    "sorted",
+    "sort"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "The largest is last",
+      "expresion": "largest_of_three(1, 2, 3)",
+      "esperado": "3"
+    },
+    {
+      "descripcion": "The largest is first",
+      "expresion": "largest_of_three(9, 2, 3)",
+      "esperado": "9"
+    },
+    {
+      "descripcion": "The largest is in the middle",
+      "expresion": "largest_of_three(4, 8, 1)",
+      "esperado": "8"
+    },
+    {
+      "descripcion": "Two equal numbers",
+      "expresion": "largest_of_three(5, 5, 2)",
+      "esperado": "5"
+    },
+    {
+      "descripcion": "All negative",
+      "expresion": "largest_of_three(-1, -7, -3)",
+      "esperado": "-1"
+    }
+  ]
+}

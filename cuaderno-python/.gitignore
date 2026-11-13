@@ -1,0 +1,5 @@
+# Student names and passwords must never be uploaded to GitHub
+scripts/*.csv
+!scripts/example_students.csv
+__pycache__/
+.DS_Store

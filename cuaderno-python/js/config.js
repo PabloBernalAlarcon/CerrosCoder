@@ -1,10 +1,11 @@
 // ⚙️ Platform settings. Fill these in after creating your Supabase project (see README).
 export const CONFIG = {
-  APP_NAME: "Cuaderno Python",
-  COURSE_SUBTITLE: "Fundamentos de Python, grado 8.º",
+  APP_NAME: "Python Notebook",
+  COURSE_SUBTITLE: "Python Fundamentals, Grade 8",
 
-  // Supabase → Project Settings → API. The anon/publishable key is meant to be public;
-  // the database rules (row-level security) are what protect students' data.
+  // URL: Project Settings → Data API → Project URL (https://xxxx.supabase.co)
+  // Key: Project Settings → API Keys → Publishable key (sb_publishable_...). It's meant to be
+  // public; the database rules (row-level security) are what protect students' data.
   SUPABASE_URL: "https://TU-PROYECTO.supabase.co",
   SUPABASE_ANON_KEY: "TU-CLAVE-ANON-PUBLICA",
 

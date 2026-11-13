@@ -1,0 +1,28 @@
+{
+  "id": "is-passing",
+  "titulo": "Did it pass?",
+  "enunciado": "At school, grades go from 1.0 to 7.0, and you pass with **4.5 or more**.\n\nCreate a function `is_passing(grade)` that returns `True` if the grade passes and `False` if it doesn't.\n\n```python\nis_passing(5.2)   # True\nis_passing(4.5)   # True\nis_passing(3.9)   # False\n```",
+  "codigo_inicial": "def is_passing(grade):\n    pass\n\n\nprint(is_passing(5.2))\n",
+  "pruebas": [
+    {
+      "descripcion": "A high grade: 6.8",
+      "expresion": "is_passing(6.8)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Right at the limit: 4.5",
+      "expresion": "is_passing(4.5)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Almost: 4.4",
+      "expresion": "is_passing(4.4)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "The lowest grade: 1.0",
+      "expresion": "is_passing(1.0)",
+      "esperado": "False"
+    }
+  ]
+}

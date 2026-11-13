@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
-<title>Lección · Cuaderno Python</title>
+<title>Lesson · Python Notebook</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
@@ -18,7 +18,7 @@
 <body>
 <header class="cabecera" data-header></header>
 <main class="hoja">
-  <p class="texto-suave">Cargando…</p>
+  <p class="texto-suave">Loading…</p>
 </main>
 
 <script type="module">
@@ -32,10 +32,10 @@ async function mostrar() {
   const curso = await loadCourse();
   const { lessons } = flatten(curso);
   const i = lessons.findIndex((l) => l.id === id);
-  if (i < 0) return showFatal("No encontramos esta lección.");
+  if (i < 0) return showFatal("We couldn't find this lesson.");
   const leccion = lessons[i];
   const unit = leccion.unit;
-  if (!isUnlocked(unit, profile)) return showFatal(`Esta lección se abre el ${formatDate(unit.desbloqueo)}.`);
+  if (!isUnlocked(unit, profile)) return showFatal(`This lesson opens on ${formatDate(unit.desbloqueo)}.`);
 
   document.title = `${leccion.titulo} · ${CONFIG.APP_NAME}`;
   const markdown = await fetchText(`content/lecciones/${encodeURIComponent(id)}.md`);
@@ -48,19 +48,19 @@ async function mostrar() {
     `<li><a href="ejercicio.html?id=${encodeURIComponent(e.id)}">${esc(e.titulo)}</a></li>`).join("");
 
   main.innerHTML = `
-    <nav class="migas" aria-label="Ruta"><a href="inicio.html">Inicio</a> / Unidad ${unit.numero}: ${esc(unit.titulo)}</nav>
+    <nav class="migas" aria-label="Breadcrumb"><a href="inicio.html">Home</a> / Unit ${unit.numero}: ${esc(unit.titulo)}</nav>
     <article class="leccion">${window.marked.parse(markdown)}</article>
-    ${ejercicios ? `<section class="practica"><h2>Practica lo que aprendiste</h2><ul class="lista">${ejercicios}</ul></section>` : ""}
-    <nav class="leccion-nav" aria-label="Lecciones">
-      ${enlaceLeccion(lessons[i - 1], "Anterior")}
-      ${enlaceLeccion(lessons[i + 1], "Siguiente")}
+    ${ejercicios ? `<section class="practica"><h2>Practice what you learned</h2><ul class="lista">${ejercicios}</ul></section>` : ""}
+    <nav class="leccion-nav" aria-label="Lessons">
+      ${enlaceLeccion(lessons[i - 1], "Previous")}
+      ${enlaceLeccion(lessons[i + 1], "Next")}
     </nav>`;
   highlightPython(main);
 }
 
 mostrar().catch((err) => {
   console.error(err);
-  showFatal("No se pudo cargar la lección. Revisa la conexión a internet y recarga la página.");
+  showFatal("Couldn't load the lesson. Check your internet connection and reload the page.");
 });
 </script>
 </body>
