@@ -82,6 +82,10 @@ def request(base_url, key, method, path, body=None, extra_headers=None):
         if text.lstrip().startswith("<"):
             sys.exit(f"Error {e.code}: the server answered with a web page instead of the Supabase API. "
                      "Check your Project URL.")
+        if '"42501"' in text or "permission denied" in text:
+            sys.exit(f"Error {e.code}: the key works, but the database tables don't have permissions yet.\n"
+                     "In Supabase, open SQL Editor, paste the contents of supabase/permisos.sql, press Run, "
+                     "and then run this command again.")
         if e.code in (401, 403):
             sys.exit(f"Error {e.code}: the key was not accepted. Use the secret key (sb_secret_...).\n{text}")
         raise RuntimeError(f"{e.code}: {text}") from None
@@ -172,10 +176,22 @@ def cmd_teacher(args):
         sys.exit("Invalid username (use lowercase letters, numbers and hyphens).")
     url, key = ask_credentials()
     password = new_password()
-    account = create_account(url, key, username, "", password)
-    request(url, key, "PATCH", f"/rest/v1/profiles?id=eq.{account['id']}", {"role": "teacher"},
+    try:
+        account_id = create_account(url, key, username, "", password)["id"]
+        action = "created"
+    except RuntimeError as e:
+        if "already" not in str(e) and "email_exists" not in str(e):
+            raise
+        # The account exists (e.g. an earlier attempt stopped halfway): give it a new password.
+        account_id = find_profile(url, key, username)["id"]
+        request(url, key, "PUT", f"/auth/v1/admin/users/{account_id}", {
+            "password": password,
+            "user_metadata": {"username": username, "grupo": "", "must_change_password": True},
+        })
+        action = "already existed, so it was updated"
+    request(url, key, "PATCH", f"/rest/v1/profiles?id=eq.{account_id}", {"role": "teacher"},
             extra_headers={"Prefer": "return=minimal"})
-    print(f"Teacher account created: {username}   Temporary password: {password}")
+    print(f"Teacher account {username} {action}.   Temporary password: {password}")
 
 
 def main():

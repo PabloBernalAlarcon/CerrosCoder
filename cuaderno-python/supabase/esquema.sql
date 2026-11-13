@@ -22,6 +22,16 @@ create table public.submissions (
   primary key (user_id, exercise_id)
 );
 
+-- ---------- Table permissions ----------
+-- Newer Supabase projects don't grant the API roles access to new tables automatically.
+-- Row-level security below still decides which rows each person can see.
+
+grant usage on schema public to authenticated, service_role;
+grant select, insert, update, delete on public.profiles    to service_role;
+grant select, insert, update, delete on public.submissions to service_role;
+grant select                 on public.profiles    to authenticated;
+grant select, insert, update on public.submissions to authenticated;
+
 -- ---------- Helper: is the current user a teacher? ----------
 
 create or replace function public.is_teacher()
@@ -38,6 +48,8 @@ $$;
 
 alter table public.profiles enable row level security;
 alter table public.submissions enable row level security;
+
+grant execute on function public.is_teacher() to authenticated;
 
 create policy "profiles: own row, or teacher sees all"
   on public.profiles for select
