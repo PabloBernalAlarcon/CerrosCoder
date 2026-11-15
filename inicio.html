@@ -18,7 +18,7 @@
 </main>
 
 <script type="module">
-import { sb, CONFIG, requireLogin, loadCourse, flatten, isUnlocked, formatDate, esc, relativeTime, showFatal } from "./js/app.js";
+import { sb, CONFIG, showMascot, requireLogin, loadCourse, flatten, isUnlocked, formatDate, esc, relativeTime, showFatal } from "./js/app.js";
 
 const { user, profile } = await requireLogin();
 document.title = `Home · ${CONFIG.APP_NAME}`;
@@ -100,10 +100,14 @@ try {
   }).join("");
 
   main.innerHTML = `
-    <h1>Hi, ${esc(profile.username)}</h1>
+    <div class="titulo-mascota">
+      <img class="mascota" data-mascota alt="" hidden>
+      <h1>Hi, ${esc(profile.username)}</h1>
+    </div>
     ${continuar}
     ${progreso}
     ${unidades}`;
+  showMascot(main.querySelector("[data-mascota]"));
 } catch (err) {
   console.error(err);
   showFatal("Couldn't load the course. Check your internet connection and reload the page.");

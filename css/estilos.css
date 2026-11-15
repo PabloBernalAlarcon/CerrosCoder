@@ -240,6 +240,15 @@ code, pre, kbd { font-family: var(--fuente-codigo); }
 .acceso .boton-principal { width: 100%; justify-content: center; padding: 0.65rem; font-size: 1rem; }
 .acceso-nota { font-size: 0.92rem; color: var(--tinta-suave); margin: 1.25rem 0 0; }
 
+/* ---------- Mascot ---------- */
+
+.titulo-mascota { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+.titulo-mascota h1 { margin: 0; }
+.mascota { flex: none; height: 3.2rem; width: auto; }
+/* Login page: the hat sits above the title, tipped slightly */
+.mascota-grande { display: block; height: 5.5rem; margin: -0.25rem 0 0.75rem -0.25rem; transform: rotate(-7deg); }
+.mascota[hidden] { display: none; }
+
 /* ---------- Home ---------- */
 
 .continuar {

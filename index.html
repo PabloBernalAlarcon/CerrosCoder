@@ -14,6 +14,7 @@
 <body>
 <main class="acceso">
   <div class="hoja">
+    <img class="mascota mascota-grande" data-mascota alt="" hidden>
     <p class="acceso-curso" data-subtitulo></p>
     <h1 data-nombre-app>Python Notebook</h1>
     <p class="acceso-saludo" aria-hidden="true">print("Welcome back!")</p>
@@ -51,10 +52,11 @@
 </main>
 
 <script type="module">
-import { sb, CONFIG, usernameToEmail, currentUser, getProfile, param } from "./js/app.js";
+import { sb, CONFIG, usernameToEmail, currentUser, getProfile, param, showMascot } from "./js/app.js";
 
 document.title = CONFIG.APP_NAME;
 document.querySelector("[data-nombre-app]").textContent = CONFIG.APP_NAME;
+showMascot(document.querySelector("[data-mascota]"));
 document.querySelector("[data-subtitulo]").textContent = CONFIG.COURSE_SUBTITLE;
 
 const formEntrar = document.getElementById("form-entrar");

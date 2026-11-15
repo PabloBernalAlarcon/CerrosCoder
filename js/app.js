@@ -82,6 +82,16 @@ export function renderHeader(profile) {
   });
 }
 
+// ---------- Mascot ----------
+
+// Shows the mascot in an <img data-mascota hidden> if CONFIG.MASCOT is set.
+// If the file is missing, the image simply stays hidden.
+export function showMascot(img) {
+  if (!img || !CONFIG.MASCOT) return;
+  img.addEventListener("load", () => { img.hidden = false; }, { once: true });
+  img.src = CONFIG.MASCOT;
+}
+
 // ---------- Course content ----------
 
 let cursoCache;
