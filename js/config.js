@@ -15,4 +15,5 @@ export const CONFIG = {
 
   // Students who haven't worked for this many days are highlighted in the teacher panel.
   DIAS_INACTIVO: 14,
+  MASCOT: "images/mascot.png"
 };
