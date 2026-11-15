@@ -1,6 +1,6 @@
 // ⚙️ Platform settings. Fill these in after creating your Supabase project (see README).
 export const CONFIG = {
-  APP_NAME: "Python Notebook",
+  APP_NAME: "Cerros Coder",
   COURSE_SUBTITLE: "Python Fundamentals, Grade 9",
 
   // URL: Project Settings → Data API → Project URL (https://xxxx.supabase.co)
