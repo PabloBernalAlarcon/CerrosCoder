@@ -245,7 +245,11 @@ def cmd_check(args):
     print("\n2. The project the script uses")
     url, key = ask_credentials()
     print(f"   Project URL: {url}")
-    if site_url.rstrip("/").lower() == url:
+    site_origin = "{0.scheme}://{0.netloc}".format(urllib.parse.urlparse(site_url.strip().lower()))
+    if site_origin == url and site_url.rstrip("/").lower() != url:
+        bad(f"config.js has extra text after the Project URL. Change SUPABASE_URL to exactly: {url}")
+        problems += 1
+    elif site_origin == url:
         ok("config.js and the script point to the same project.")
     else:
         bad("config.js points to a DIFFERENT project. Copy this Project URL into js/config.js, "
@@ -280,7 +284,7 @@ def cmd_check(args):
 
     print("\n4. Logging in exactly like the website does")
     password = getpass.getpass(f"   Temporary password for {username} (hidden): ").strip()
-    login_url = site_url.rstrip("/") or url
+    login_url = site_origin if site_origin.startswith("http") else url
     success, detail = try_login(login_url, site["SUPABASE_ANON_KEY"], expected_email, password)
     if success:
         ok("Login works with these settings.")

@@ -2,7 +2,11 @@
 import { CONFIG } from "./config.js";
 
 export { CONFIG };
-export const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+// Keep only https://<project>.supabase.co, in case "/rest/v1/" was pasted along with the URL.
+function projectOrigin(url) {
+  try { return new URL(url.trim()).origin; } catch { return url; }
+}
+export const sb = window.supabase.createClient(projectOrigin(CONFIG.SUPABASE_URL), CONFIG.SUPABASE_ANON_KEY);
 
 const NUNCA = new Promise(() => {}); // used to stop a page while it redirects
 
