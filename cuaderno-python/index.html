@@ -93,7 +93,7 @@ formEntrar.addEventListener("submit", async (e) => {
   e.preventDefault();
   errorEntrar.textContent = "";
   const usuario = formEntrar.usuario.value.trim();
-  const clave = formEntrar.clave.value;
+  const clave = formEntrar.clave.value.trim(); // copy-paste often adds a stray space
   if (!usuario || !clave) {
     errorEntrar.textContent = "Type your username and your password.";
     return;
@@ -105,9 +105,14 @@ formEntrar.addEventListener("submit", async (e) => {
   boton.disabled = false;
   boton.textContent = "Log in";
   if (error) {
-    errorEntrar.textContent = /fetch|network/i.test(error.message)
-      ? "Can't reach the server. Check your internet connection and try again."
-      : "Wrong username or password.";
+    console.error("Login error:", error.status, error.message);
+    const m = error.message || "";
+    if (/fetch|network/i.test(m)) errorEntrar.textContent = "Can't reach the server. Check your internet connection and try again.";
+    else if (/invalid login credentials/i.test(m)) errorEntrar.textContent = "Wrong username or password.";
+    else if (/email logins are disabled|provider is disabled/i.test(m)) errorEntrar.textContent = "Password login is turned off in Supabase (teacher: see Troubleshooting in the README).";
+    else if (/not confirmed/i.test(m)) errorEntrar.textContent = "This account isn't confirmed yet (teacher: see Troubleshooting in the README).";
+    else if (/invalid api key|no api key/i.test(m)) errorEntrar.textContent = "The site's key is wrong (teacher: check js/config.js).";
+    else errorEntrar.textContent = `Couldn't log in: ${m}`;
     return;
   }
   if (data.user.user_metadata?.must_change_password) mostrarCambio(true);
@@ -117,12 +122,12 @@ formEntrar.addEventListener("submit", async (e) => {
 formCambiar.addEventListener("submit", async (e) => {
   e.preventDefault();
   errorCambiar.textContent = "";
-  const nueva = formCambiar.nueva.value;
+  const nueva = formCambiar.nueva.value.trim();
   if (nueva.length < 6) {
     errorCambiar.textContent = "Your password must have at least 6 characters.";
     return;
   }
-  if (nueva !== formCambiar.repetir.value) {
+  if (nueva !== formCambiar.repetir.value.trim()) {
     errorCambiar.textContent = "The two passwords don't match.";
     return;
   }

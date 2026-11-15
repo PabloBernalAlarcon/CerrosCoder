@@ -325,6 +325,17 @@ It prints a new temporary password. Their progress is kept, and they choose a ne
 
 **"A user with this email address has already been registered":** that username already exists. For your own teacher account, just run `python estudiantes.py teacher profe` again: it gives the existing account a new password. For a student, use `reset`.
 
+**"Wrong username or password" with a password you just copied:** work through these in order.
+
+1. *Use the most recent password.* Every time you run `teacher` or `reset`, the previous temporary password stops working.
+2. *Check that the site and the script use the same project.* The `SUPABASE_URL` in `js/config.js` must be the same Project URL you gave the script. This is easy to get wrong after creating a new project.
+3. *Check that the account exists, with the right address.* In Supabase, open **Authentication → Users**. You should see `profe@alumnos.example.com` (or your username). The part after `@` must match `EMAIL_DOMAIN` in `js/config.js`.
+4. *Reload the site without cache* (**Ctrl + Shift + R**), so the browser isn't using an old `config.js`.
+5. *Get a fresh password and type it by hand:* `python estudiantes.py reset profe`.
+6. *Let the script check everything for you:* `python estudiantes.py check profe`. It compares `js/config.js` with the project the script uses, looks up the account, and tries to log in exactly like the website does, telling you which part fails.
+
+**"Password login is turned off in Supabase":** in Step 3 the **Email** provider was turned off instead of the sign-up option. In **Authentication → Sign In / Providers**, turn the **Email** provider back on and keep only **Allow new users to sign up** turned off.
+
 **The site says "Couldn't load your profile" or shows nothing after login:** check that `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `js/config.js` are correct, and that `esquema.sql` ran without errors.
 
 **An exercise or lesson page shows an error:** the file name doesn't match its `id` in `curso.json`, or the JSON has a typo (check it on jsonlint.com).

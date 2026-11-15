@@ -4,6 +4,7 @@ Manage student accounts for the Python Notebook platform. Run it on YOUR compute
     python estudiantes.py create students-8a.csv   create accounts from a CSV (name,username,group)
     python estudiantes.py reset 8a-07              give a student a new temporary password
     python estudiantes.py teacher profe            create your teacher account
+    python estudiantes.py check profe              diagnose login problems step by step
 
 (The older Spanish commands crear, reiniciar and docente still work.)
 
@@ -194,6 +195,107 @@ def cmd_teacher(args):
     print(f"Teacher account {username} {action}.   Temporary password: {password}")
 
 
+def read_site_config():
+    """Read SUPABASE_URL, SUPABASE_ANON_KEY and EMAIL_DOMAIN from ../js/config.js."""
+    path = Path(__file__).resolve().parent.parent / "js" / "config.js"
+    if not path.exists():
+        sys.exit(f"Can't find {path}. Run this script from inside the project's scripts folder.")
+    text = path.read_text(encoding="utf-8")
+    values = {}
+    for name in ("SUPABASE_URL", "SUPABASE_ANON_KEY", "EMAIL_DOMAIN"):
+        m = re.search(name + r"""\s*:\s*["']([^"']*)["']""", text)
+        values[name] = m.group(1).strip() if m else ""
+    return path, values
+
+
+def try_login(url, publishable_key, email, password):
+    # Same headers the website's Supabase library sends
+    headers = {"apikey": publishable_key, "Authorization": f"Bearer {publishable_key}",
+               "Content-Type": "application/json"}
+    data = json.dumps({"email": email, "password": password}).encode()
+    req = urllib.request.Request(f"{url}/auth/v1/token?grant_type=password", data=data, method="POST", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=30):
+            return True, "OK"
+    except urllib.error.HTTPError as e:
+        return False, f"{e.code}: {e.read().decode(errors='replace')}"
+    except urllib.error.URLError as e:
+        return False, f"could not connect: {e.reason}"
+
+
+def cmd_check(args):
+    ok = lambda msg: print(f"  ✓ {msg}")
+    bad = lambda msg: print(f"  ✗ {msg}")
+    problems = 0
+
+    print("1. Reading js/config.js (what the website uses)")
+    path, site = read_site_config()
+    print(f"   File: {path}")
+    site_url = site["SUPABASE_URL"]
+    print(f"   SUPABASE_URL:      {site_url or '(empty)'}")
+    print(f"   SUPABASE_ANON_KEY: {site['SUPABASE_ANON_KEY'][:20] + '...' if site['SUPABASE_ANON_KEY'] else '(empty)'}")
+    print(f"   EMAIL_DOMAIN:      {site['EMAIL_DOMAIN'] or '(empty)'}")
+    if not site["SUPABASE_ANON_KEY"].startswith(("sb_publishable_", "eyJ")):
+        bad("SUPABASE_ANON_KEY doesn't look like a publishable key (it should start with sb_publishable_).")
+        problems += 1
+    if site["SUPABASE_ANON_KEY"].startswith("sb_secret_"):
+        bad("DANGER: that is the SECRET key. Replace it with the publishable key and delete/rotate the secret key in Supabase.")
+        problems += 1
+
+    print("\n2. The project the script uses")
+    url, key = ask_credentials()
+    print(f"   Project URL: {url}")
+    if site_url.rstrip("/").lower() == url:
+        ok("config.js and the script point to the same project.")
+    else:
+        bad("config.js points to a DIFFERENT project. Copy this Project URL into js/config.js, "
+            "together with this project's publishable key.")
+        problems += 1
+    if site["EMAIL_DOMAIN"] == EMAIL_DOMAIN:
+        ok(f"Both use the e-mail domain {EMAIL_DOMAIN}.")
+    else:
+        bad(f"EMAIL_DOMAIN differs: config.js has {site['EMAIL_DOMAIN']!r}, the script uses {EMAIL_DOMAIN!r}. "
+            "They must be the same.")
+        problems += 1
+
+    print("\n3. The account")
+    username = args.username.strip().lower()
+    rows = request(url, key, "GET",
+                   f"/rest/v1/profiles?username=eq.{urllib.parse.quote(username)}&select=id,username,role")
+    if not rows:
+        bad(f"There is no profile called {username} in this project. Create it with: "
+            f"python estudiantes.py teacher {username}")
+        return
+    profile = rows[0]
+    user = request(url, key, "GET", f"/auth/v1/admin/users/{profile['id']}")
+    email = user.get("email", "")
+    ok(f"{username} exists. Stored as {email}, role: {profile['role']}")
+    expected_email = f"{username}@{site['EMAIL_DOMAIN']}"
+    if email != expected_email:
+        bad(f"The website will look for {expected_email}, but the account is {email}.")
+        problems += 1
+    if not user.get("email_confirmed_at"):
+        bad("The account's e-mail is not confirmed. Run: python estudiantes.py reset " + username)
+        problems += 1
+
+    print("\n4. Logging in exactly like the website does")
+    password = getpass.getpass(f"   Temporary password for {username} (hidden): ").strip()
+    login_url = site_url.rstrip("/") or url
+    success, detail = try_login(login_url, site["SUPABASE_ANON_KEY"], expected_email, password)
+    if success:
+        ok("Login works with these settings.")
+        if problems == 0:
+            print("\nEverything checks out. If the website still fails, it is probably using an older copy of "
+                  "config.js: reload with Ctrl+Shift+R, and if you use GitHub Pages, upload the current config.js "
+                  "and wait a couple of minutes.")
+    else:
+        bad(f"Login failed. Supabase says: {detail}")
+        if "invalid_credentials" in detail or "Invalid login" in detail:
+            print("   The password doesn't match. Run 'reset' again and type the new password by hand.")
+        if "provider" in detail.lower() or "disabled" in detail.lower():
+            print("   Password login is turned off: in Authentication → Sign In / Providers, turn the Email provider on.")
+
+
 def main():
     p = argparse.ArgumentParser(description="Python Notebook accounts")
     sub = p.add_subparsers(dest="command", required=True)
@@ -206,6 +308,9 @@ def main():
     t = sub.add_parser("teacher", aliases=["docente"], help="create a teacher account")
     t.add_argument("username")
     t.set_defaults(func=cmd_teacher)
+    k = sub.add_parser("check", aliases=["revisar"], help="diagnose login problems for one account")
+    k.add_argument("username")
+    k.set_defaults(func=cmd_check)
     args = p.parse_args()
     args.func(args)
 
