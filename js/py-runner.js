@@ -59,7 +59,7 @@ export class PyRunner {
     return this._enviar({ mode: "run", code, inputs }, LIMITE_EJECUTAR_MS);
   }
 
-  check(code, tests, prohibidos = []) {
-    return this._enviar({ mode: "check", code, tests, prohibidos }, LIMITE_COMPROBAR_MS);
+  check(code, tests, prohibidos = [], definir = []) {
+    return this._enviar({ mode: "check", code, tests, prohibidos, definir }, LIMITE_COMPROBAR_MS);
   }
 }

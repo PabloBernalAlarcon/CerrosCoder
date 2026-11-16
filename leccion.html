@@ -10,6 +10,28 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="css/estilos.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// If the page's code can't start (usually: files on the site from different updates,
+// or an old copy in the browser's cache), show a clear message instead of "Loading…".
+window.addEventListener("error", function (e) {
+  var header = document.querySelector("[data-header]");
+  if (header && header.innerHTML.trim()) return;      // the page already started
+  if (performance.now() > 20000) return;               // only while the page is starting
+  var main = document.querySelector("main");
+  if (!main || main.dataset.fallo) return;
+  main.dataset.fallo = "1";
+  var box = document.createElement("div");
+  box.className = "aviso aviso-error";
+  box.setAttribute("role", "alert");
+  box.innerHTML = "<p><strong>This page couldn't start.</strong></p>" +
+    "<p>Press <strong>Ctrl + Shift + R</strong> to reload it.</p>" +
+    "<p>If it keeps happening, the files on the website don't match. Upload every file from the latest update (including the <code>js</code> folder) and wait two minutes.</p>" +
+    "<p class='texto-suave'><small></small></p>";
+  box.querySelector("small").textContent = "Technical detail: " + (e.message || "unknown error");
+  main.replaceChildren(box);
+  main.hidden = false;
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
@@ -22,7 +44,7 @@
 </main>
 
 <script type="module">
-import { CONFIG, requireLogin, loadCourse, flatten, isUnlocked, loadVisibility, closedMessage, fetchText, param, esc, showFatal, highlightPython } from "./js/app.js";
+import { CONFIG, requireLogin, loadCourse, flatten, isUnlocked, loadVisibility, closedMessage, fetchText, param, esc, showFatal, highlightPython } from "./js/app.js?v=2026-11-16";
 
 const { profile } = await requireLogin();
 const vis = await loadVisibility(profile.grupo);

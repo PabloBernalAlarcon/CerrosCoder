@@ -202,8 +202,26 @@ def _prueba_expresion(espacio, prueba, desc):
     return r
 
 
-def _comprobar(codigo, pruebas, prohibidos):
+def _funciones_definidas(codigo):
+    try:
+        arbol = ast.parse(codigo)
+    except SyntaxError:
+        return None
+    return {n.name for n in ast.walk(arbol) if isinstance(n, ast.FunctionDef)}
+
+
+def _comprobar(codigo, pruebas, prohibidos, definir=()):
     resultados = []
+
+    definidas = _funciones_definidas(codigo)
+    faltan = [f for f in (definir or []) if definidas is not None and f not in definidas]
+    if faltan:
+        resultados.append({
+            "descripcion": "Exercise rules",
+            "tipo": "regla",
+            "ok": False,
+            "nota": "In this exercise you must write a function with def: " + ", ".join(faltan) + ".",
+        })
 
     usados = _nombres_usados(codigo) & set(prohibidos or [])
     if usados:
@@ -242,7 +260,7 @@ def _atender(peticion_json):
     p = json.loads(peticion_json)
     codigo = p.get("code", "")
     if p.get("mode") == "check":
-        res = {"pruebas": _comprobar(codigo, p.get("tests", []), p.get("prohibidos", []))}
+        res = {"pruebas": _comprobar(codigo, p.get("tests", []), p.get("prohibidos", []), p.get("definir", []))}
     else:
         with _aislado(p.get("inputs", []), eco=True) as salida:
             error = _ejecutar(codigo, _espacio())

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Cerros Coder</title>
+<title>Python Notebook</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
@@ -10,13 +10,35 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="css/estilos.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// If the page's code can't start (usually: files on the site from different updates,
+// or an old copy in the browser's cache), show a clear message instead of "Loading…".
+window.addEventListener("error", function (e) {
+  var header = document.querySelector("[data-header]");
+  if (header && header.innerHTML.trim()) return;      // the page already started
+  if (performance.now() > 20000) return;               // only while the page is starting
+  var main = document.querySelector("main");
+  if (!main || main.dataset.fallo) return;
+  main.dataset.fallo = "1";
+  var box = document.createElement("div");
+  box.className = "aviso aviso-error";
+  box.setAttribute("role", "alert");
+  box.innerHTML = "<p><strong>This page couldn't start.</strong></p>" +
+    "<p>Press <strong>Ctrl + Shift + R</strong> to reload it.</p>" +
+    "<p>If it keeps happening, the files on the website don't match. Upload every file from the latest update (including the <code>js</code> folder) and wait two minutes.</p>" +
+    "<p class='texto-suave'><small></small></p>";
+  box.querySelector("small").textContent = "Technical detail: " + (e.message || "unknown error");
+  main.replaceChildren(box);
+  main.hidden = false;
+});
+</script>
 </head>
 <body>
 <main class="acceso">
   <div class="hoja">
     <img class="mascota mascota-grande" data-mascota alt="" hidden>
     <p class="acceso-curso" data-subtitulo></p>
-    <h1 data-nombre-app>Cerros Coder</h1>
+    <h1 data-nombre-app>Python Notebook</h1>
     <p class="acceso-saludo" aria-hidden="true">print("Welcome back!")</p>
 
     <form id="form-entrar" novalidate>
@@ -52,7 +74,7 @@
 </main>
 
 <script type="module">
-import { sb, CONFIG, usernameToEmail, currentUser, getProfile, param, showMascot } from "./js/app.js";
+import { sb, CONFIG, usernameToEmail, currentUser, getProfile, param, showMascot } from "./js/app.js?v=2026-11-16";
 
 document.title = CONFIG.APP_NAME;
 document.querySelector("[data-nombre-app]").textContent = CONFIG.APP_NAME;
