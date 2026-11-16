@@ -69,6 +69,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html { font-size: 106.25%; }
 
@@ -297,6 +298,7 @@ code, pre, kbd { font-family: var(--fuente-codigo); }
 }
 .estado-ok { background: var(--bien); border-color: var(--bien); color: var(--sobre-bien); }
 .estado-progreso { background: var(--resaltador); border-color: var(--resaltador); }
+.estado-libre { border-style: dashed; color: var(--tinta-suave); font-weight: 400; }
 
 /* ---------- Lesson ---------- */
 
@@ -394,6 +396,43 @@ pre {
 .prueba-detalle p { margin: 0 0 0.4rem; }
 .estado-mal { background: var(--mal); border-color: var(--mal); color: var(--superficie); }
 .siguiente { margin-top: 1rem; }
+.nota-libre { background: var(--boligrafo-tenue); border-radius: var(--radio); padding: 0.6rem 0.9rem; font-size: 0.95rem; }
+
+/* Review section on the home page */
+.unidad-repaso {
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  padding: 0.9rem 1.1rem;
+  margin: 0 0 0.5rem;
+}
+.unidad-repaso[open] { padding-bottom: 1.1rem; }
+.unidad-repaso summary { cursor: pointer; list-style: none; display: grid; gap: 0.2rem; }
+.unidad-repaso summary::-webkit-details-marker { display: none; }
+.repaso-titulo { font-size: 1.25rem; font-weight: 700; color: var(--tinta); }
+.repaso-titulo::before { content: "▸ "; color: var(--boligrafo); }
+.unidad-repaso[open] .repaso-titulo::before { content: "▾ "; }
+.repaso-resumen { color: var(--tinta-suave); font-size: 0.95rem; }
+.unidad-repaso[open] summary { margin-bottom: 0.75rem; }
+.unidad-repaso + .unidad { border-top: 0; }
+
+/* "Check your prediction" blocks in lessons */
+.leccion details {
+  margin: 0.75rem 0 1.25rem;
+  border: 2px dashed var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  padding: 0.5rem 0.9rem;
+}
+.leccion details[open] { border-style: solid; border-color: var(--bien); }
+.leccion summary { cursor: pointer; font-weight: 700; color: var(--boligrafo); }
+.leccion details[open] summary { color: var(--bien); margin-bottom: 0.5rem; }
+.leccion details > :last-child { margin-bottom: 0.25rem; }
+.leccion table, .enunciado table { border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.95rem; background: var(--superficie); }
+.leccion th, .leccion td, .enunciado th, .enunciado td { border: 1px solid var(--borde); padding: 0.35rem 0.7rem; text-align: left; vertical-align: top; }
+.leccion th, .enunciado th { background: var(--codigo-fondo); }
+.leccion li:has(> input[type="checkbox"]) { list-style: none; margin-left: -1.4rem; }
+
 
 /* ---------- Teacher panel ---------- */
 
@@ -436,6 +475,7 @@ pre {
 }
 .celda-ok { background: var(--bien); color: var(--sobre-bien); }
 .celda-progreso { background: var(--resaltador); color: var(--sobre-resaltador); }
+.celda-libre { background: var(--boligrafo-tenue); color: var(--boligrafo); }
 .celda-vacia { display: inline-block; width: 1.85rem; height: 1.85rem; border: 1px dashed var(--borde); border-radius: 4px; vertical-align: middle; }
 
 .leyenda { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; padding: 0; margin: 1rem 0 0; font-size: 0.92rem; color: var(--tinta-suave); }
@@ -454,3 +494,32 @@ pre {
 .dialogo::backdrop { background: rgba(12, 17, 32, 0.55); }
 .dialogo-cerrar { float: right; margin: -0.5rem -0.5rem 0 0; }
 .dialogo pre { max-height: 55vh; overflow: auto; }
+
+/* ---------- Teacher notes and the Visibility page ---------- */
+
+.nota-docente { font-size: 0.95rem; color: var(--tinta-suave); margin: -0.5rem 0 1.25rem; }
+
+section.unidad-repaso { display: grid; gap: 0.2rem; }
+section.unidad-repaso .repaso-titulo::before { content: ""; }
+
+.intro-visibilidad { max-width: 44rem; }
+.leyenda-estados { list-style: none; padding: 0; margin: 0 0 1.25rem; display: grid; gap: 0.4rem; font-size: 0.95rem; }
+.leyenda-estados li { display: flex; gap: 0.6rem; align-items: baseline; }
+.muestra { flex: none; display: inline-block; min-width: 4.8rem; text-align: center; font-weight: 700; font-size: 0.85rem; padding: 0.1rem 0.5rem; border-radius: var(--radio); border: 2px solid var(--borde); }
+
+.tabla-visibilidad { border-collapse: separate; border-spacing: 0; font-size: 0.95rem; }
+.tabla-visibilidad th, .tabla-visibilidad td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--borde); background: var(--superficie); text-align: left; }
+.tabla-visibilidad thead th { position: sticky; top: 0; z-index: 2; font-weight: 700; }
+.tabla-visibilidad .col-unidad { position: sticky; left: 0; z-index: 1; font-weight: 400; min-width: 15rem; max-width: 22rem; }
+.tabla-visibilidad thead .col-unidad { z-index: 3; font-weight: 700; }
+.tabla-visibilidad .col-todas { border-left: 2px solid var(--borde); }
+.tabla-visibilidad select { width: auto; min-width: 8.5rem; padding: 0.3rem 0.45rem; font-size: 0.9rem; border-width: 2px; }
+
+/* Colors show what students actually get; a dashed border means "Default" */
+.estado-open, .efectivo-open { background: var(--bien-suave); border-color: var(--bien); color: var(--tinta); }
+.estado-locked, .efectivo-locked { background: var(--resaltador-suave); border-color: var(--resaltador); color: var(--tinta); }
+.estado-hidden, .efectivo-hidden { background: var(--codigo-fondo); border-color: var(--borde); color: var(--tinta-suave); }
+.estado-default { border-style: dashed; }
+.muestra.estado-default { background: var(--superficie); border-color: var(--tinta-suave); color: var(--tinta-suave); }
+select.estado-default { border-style: dashed; }
+.estado-guardado { min-height: 1.5em; }

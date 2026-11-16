@@ -70,7 +70,7 @@ export function renderHeader(profile) {
     <a class="cabecera-marca" href="inicio.html">${esc(CONFIG.APP_NAME)}</a>
     <nav class="cabecera-nav" aria-label="Main">
       <a href="inicio.html">Home</a>
-      ${docente ? `<a href="docente.html">Teacher panel</a>` : ""}
+      ${docente ? `<a href="docente.html">Teacher panel</a><a href="visibilidad.html">Visibility</a>` : ""}
       <a href="index.html?cambiar=1">Change password</a>
       <span class="cabecera-usuario">${esc(profile.username)}</span>
       <button type="button" class="boton boton-suave boton-pequeno" data-salir>Log out</button>
@@ -106,6 +106,9 @@ export function flatten(curso) {
   const exercises = [];
   curso.unidades.forEach((unit, i) => {
     unit.numero = i + 1;
+    // "etiqueta" (label) lets a unit be called "Week 7" instead of "Unit 1"
+    // "repaso" (review) units are optional practice: shown apart, and not counted in progress
+    unit.nombre = unit.repaso ? unit.titulo : `${unit.etiqueta || `Unit ${unit.numero}`}: ${unit.titulo}`;
     (unit.lecciones || []).forEach((l) => lessons.push({ ...l, unit }));
     (unit.ejercicios || []).forEach((e) => exercises.push({ ...e, unit }));
   });
@@ -117,10 +120,55 @@ function parseLocalDate(texto) {
   return new Date(y, m - 1, d);
 }
 
+// ---------- Unit visibility ----------
+// A unit is "open", "locked" (title visible, can't be opened) or "hidden" for students.
+// The teacher sets it per class on the Visibility page (table unit_visibility).
+// Without a setting, the unlock date in curso.json decides: open if there is no date.
+
+export function defaultState(unit) {
+  if (!unit.desbloqueo) return "open";
+  return new Date() >= parseLocalDate(unit.desbloqueo) ? "open" : "locked";
+}
+
+// vis: Map unit_id -> state, for one class (from loadVisibility)
+export function unitState(unit, vis) {
+  return vis?.get(unit.id) || defaultState(unit);
+}
+
 // Teachers always see everything. Pass profile = null to check as a student.
-export function isUnlocked(unit, profile) {
-  if (profile?.role === "teacher" || !unit.desbloqueo) return true;
-  return new Date() >= parseLocalDate(unit.desbloqueo);
+export function isUnlocked(unit, profile, vis) {
+  if (profile?.role === "teacher") return true;
+  return unitState(unit, vis) === "open";
+}
+
+// Settings for one class. If the table doesn't exist yet, dates decide.
+export async function loadVisibility(grupo) {
+  const vis = new Map();
+  if (!grupo) return vis;
+  const { data, error } = await sb.from("unit_visibility").select("unit_id, estado").eq("grupo", grupo);
+  if (error) { console.warn("Visibility settings unavailable:", error.message); return vis; }
+  for (const r of data) vis.set(r.unit_id, r.estado);
+  return vis;
+}
+
+// Settings for every class (teacher only): Map grupo -> Map unit_id -> state
+export async function loadAllVisibility() {
+  const all = new Map();
+  const { data, error } = await sb.from("unit_visibility").select("grupo, unit_id, estado");
+  if (error) return { all, error };
+  for (const r of data) {
+    if (!all.has(r.grupo)) all.set(r.grupo, new Map());
+    all.get(r.grupo).set(r.unit_id, r.estado);
+  }
+  return { all, error: null };
+}
+
+// Message for a student who opens a link to a unit that isn't open
+export function closedMessage(unit, vis, que = "page") {
+  const st = unitState(unit, vis);
+  if (st === "locked" && !vis?.get(unit.id) && unit.desbloqueo) return `This ${que} opens on ${formatDate(unit.desbloqueo)}.`;
+  if (st === "locked") return `This ${que} isn't open yet. Your teacher will open it soon.`;
+  return `This ${que} isn't available.`;
 }
 
 export function formatDate(texto) {
