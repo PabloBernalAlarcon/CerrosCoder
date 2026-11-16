@@ -1,0 +1,31 @@
+{
+  "id": "w19-power",
+  "titulo": "Review: power",
+  "enunciado": "**Level ★★★ · Write a function**\n\nWrite `power(base, exponent)`. It returns `base` multiplied by itself `exponent` times. Use a loop, not `**`.\n\n```python\npower(2, 3)   # 8\npower(5, 0)   # 1\n```",
+  "codigo_inicial": "def power(base, exponent):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "pow"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "2 to the 3",
+      "expresion": "power(2, 3)",
+      "esperado": "8"
+    },
+    {
+      "descripcion": "5 to the 0",
+      "expresion": "power(5, 0)",
+      "esperado": "1"
+    },
+    {
+      "descripcion": "10 to the 4",
+      "expresion": "power(10, 4)",
+      "esperado": "10000"
+    },
+    {
+      "descripcion": "3 to the 1",
+      "expresion": "power(3, 1)",
+      "esperado": "3"
+    }
+  ]
+}

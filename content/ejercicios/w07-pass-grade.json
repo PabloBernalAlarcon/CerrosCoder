@@ -1,0 +1,42 @@
+{
+  "id": "w07-pass-grade",
+  "titulo": "Did I pass?",
+  "enunciado": "**Level ★**\n\nGrades go from 1.0 to 7.0. You pass with **4.5 or more**.\n\nAsk for a grade (it can have decimals, so use `float()`). Print `Pass` or `Not yet`.\n\nExample: the user types `4.5`. The program prints:\n\n```text\nPass\n```",
+  "codigo_inicial": "grade = float(input(\"Your grade: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "5.2",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "A high grade: 6.8",
+      "entradas": [
+        "6.8"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly on the line: 4.5",
+      "entradas": [
+        "4.5"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Just below: 4.4",
+      "entradas": [
+        "4.4"
+      ],
+      "esperado": "Not yet"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "The lowest grade: 1.0",
+      "entradas": [
+        "1.0"
+      ],
+      "esperado": "Not yet"
+    }
+  ]
+}

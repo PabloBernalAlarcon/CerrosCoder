@@ -1,0 +1,42 @@
+{
+  "id": "w09-sum",
+  "titulo": "Add them up",
+  "enunciado": "**Level ★★**\n\nAsk for a whole number `n`. Add up all the numbers from 1 to `n`, and print the total.\n\nExample: the user types `10`. The program prints:\n\n```text\nThe total is 55\n```\n\nBecause 1 + 2 + 3 + … + 10 = 55.\n\nHint: you need two variables: one that counts, and one that keeps the total.",
+  "codigo_inicial": "n = int(input(\"Add up to: \"))\ntotal = 0\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "10",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "The total is 55"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 3",
+      "entradas": [
+        "3"
+      ],
+      "esperado": "The total is 6"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 1",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "The total is 1"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 100",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "The total is 5050"
+    }
+  ]
+}

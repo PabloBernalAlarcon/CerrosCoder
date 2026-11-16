@@ -1,0 +1,34 @@
+{
+  "id": "w08-sign",
+  "titulo": "Positive, negative or zero",
+  "enunciado": "**Level ★**\n\nAsk for a whole number. Print `Positive`, `Negative` or `Zero`.\n\nUse `if`, `elif` and `else`.\n\nExample: the user types `-4`. The program prints:\n\n```text\nNegative\n```",
+  "codigo_inicial": "n = int(input(\"Number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "-4",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "A positive number: 8",
+      "entradas": [
+        "8"
+      ],
+      "esperado": "Positive"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "A negative number: -4",
+      "entradas": [
+        "-4"
+      ],
+      "esperado": "Negative"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Zero",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "Zero"
+    }
+  ]
+}

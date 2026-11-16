@@ -1,0 +1,41 @@
+{
+  "id": "w11-until-correct",
+  "titulo": "Guess until correct",
+  "enunciado": "**Level ★★**\n\nThe secret number is `42`. Keep asking for guesses **until** the player gets it.\n\n- For each wrong guess, print `Too high` or `Too low`.\n- For the correct guess, print `Correct!`.\n\nExample: the guesses are `50`, `25`, `42`. The program prints:\n\n```text\nToo high\nToo low\nCorrect!\n```",
+  "codigo_inicial": "secret = 42\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "50\n25\n42",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "50, 25, 42",
+      "entradas": [
+        "50",
+        "25",
+        "42"
+      ],
+      "esperado": "Too high\nToo low\nCorrect!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Correct on the first guess",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Six guesses",
+      "entradas": [
+        "1",
+        "100",
+        "41",
+        "43",
+        "60",
+        "42"
+      ],
+      "esperado": "Too low\nToo high\nToo low\nToo high\nToo high\nCorrect!"
+    }
+  ]
+}

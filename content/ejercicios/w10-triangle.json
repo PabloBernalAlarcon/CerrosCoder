@@ -1,0 +1,34 @@
+{
+  "id": "w10-triangle",
+  "titulo": "Star triangle",
+  "enunciado": "**Level ★★**\n\n`\"*\" * 3` gives `***`. **Predict** what this does before you use it!\n\nAsk for a height. Print a triangle of stars with that many lines.\n\nExample: the user types `4`. The program prints:\n\n```text\n*\n**\n***\n****\n```",
+  "codigo_inicial": "height = int(input(\"Height: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Height 4",
+      "entradas": [
+        "4"
+      ],
+      "esperado": "*\n**\n***\n****"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Height 1",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "*"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Height 6",
+      "entradas": [
+        "6"
+      ],
+      "esperado": "*\n**\n***\n****\n*****\n******"
+    }
+  ]
+}

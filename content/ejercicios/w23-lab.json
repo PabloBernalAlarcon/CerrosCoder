@@ -1,0 +1,7 @@
+{
+  "id": "w23-lab",
+  "titulo": "Week 23 lab: lists and tuples",
+  "enunciado": "Use this workspace for the investigation in the lesson **Which data should be allowed to change?**\n\nPredict, then try `days[0] = \"Sun\"`. What does the error say? Then try changing a list in the same way.",
+  "codigo_inicial": "days = (\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\")\nprint(days[0])\nprint(len(days))\nfor d in days:\n    print(d)\n",
+  "pruebas": []
+}

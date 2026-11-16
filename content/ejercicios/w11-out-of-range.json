@@ -1,0 +1,58 @@
+{
+  "id": "w11-out-of-range",
+  "titulo": "Out of range",
+  "enunciado": "**Level ★★**\n\nThe secret number is `42`, and guesses must be from 1 to 100.\n\nAsk for one guess:\n\n- Below 1 or above 100: print `Out of range`.\n- Otherwise: print `Too high`, `Too low` or `Correct!`.\n\nThink: which check must come first?",
+  "codigo_inicial": "secret = 42\nguess = int(input(\"Your guess (1-100): \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "150",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "150 is out of range",
+      "entradas": [
+        "150"
+      ],
+      "esperado": "Out of range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0 is out of range",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "Out of range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "-5 is out of range",
+      "entradas": [
+        "-5"
+      ],
+      "esperado": "Out of range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100 is in range: Too high",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "Too high"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1 is in range: Too low",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "Too low"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "42 is correct",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "Correct!"
+    }
+  ]
+}

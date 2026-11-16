@@ -1,0 +1,40 @@
+{
+  "id": "w16-station-total",
+  "titulo": "Station 5: the wrong total",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis program asks for 3 prices and should print their total. With `1000`, `2000` and `3000`, it prints `Total: 3000` instead of `Total: 6000`.\n\nAdd `print()` lines inside the loop to watch `total` change. Then fix the bug.",
+  "codigo_inicial": "total = 0\nfor i in range(3):\n    price = int(input(\"Price: \"))\n    total = price\nprint(\"Total:\", total)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "1000\n2000\n3000",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "1000, 2000, 3000",
+      "entradas": [
+        "1000",
+        "2000",
+        "3000"
+      ],
+      "esperado": "Total: 6000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5, 5, 5",
+      "entradas": [
+        "5",
+        "5",
+        "5"
+      ],
+      "esperado": "Total: 15"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0, 0, 7",
+      "entradas": [
+        "0",
+        "0",
+        "7"
+      ],
+      "esperado": "Total: 7"
+    }
+  ]
+}

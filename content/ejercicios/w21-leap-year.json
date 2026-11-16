@@ -1,0 +1,38 @@
+{
+  "id": "w21-leap-year",
+  "titulo": "Leap year",
+  "enunciado": "**Level ★★★ · Challenge**\n\nA year is a **leap year** if:\n\n- it is divisible by 4,\n- **except** century years (divisible by 100),\n- **unless** it is also divisible by 400.\n\nWrite `is_leap(year)`. It returns `True` or `False`.\n\nTest with 2024 (leap), 2026 (not), 1900 (not) and 2000 (leap).",
+  "codigo_inicial": "def is_leap(year):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "2024",
+      "expresion": "is_leap(2024)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "2026",
+      "expresion": "is_leap(2026)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "1900",
+      "expresion": "is_leap(1900)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "2000",
+      "expresion": "is_leap(2000)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "2100",
+      "expresion": "is_leap(2100)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "1996",
+      "expresion": "is_leap(1996)",
+      "esperado": "True"
+    }
+  ]
+}

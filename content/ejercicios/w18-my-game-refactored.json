@@ -1,0 +1,7 @@
+{
+  "id": "w18-my-game-refactored",
+  "titulo": "My game, refactored",
+  "enunciado": "Copy your Guess the Number game from week 12 into this workspace. Then refactor it into functions, such as `get_guess()` and `check_guess(guess, secret)`.\n\n**Rule:** the game must behave exactly as before. Use your week 12 test table to prove it.\n\nYour code saves automatically, and your teacher can see it.",
+  "codigo_inicial": "import random\n\n\ndef get_guess():\n    pass  # Ask for a guess and return it as a number\n\n\ndef check_guess(guess, secret):\n    pass  # Return True when the guess is correct\n\n\n# Your game starts here\n",
+  "pruebas": []
+}

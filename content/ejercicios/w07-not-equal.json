@@ -1,0 +1,34 @@
+{
+  "id": "w07-not-equal",
+  "titulo": "Using != (not equal)",
+  "enunciado": "**Level ★★**\n\n`!=` means \"is not equal to\". Write this program **using `!=` in the condition**:\n\nAsk for the capital of Colombia. If the answer is **not** `Bogota`, print `Try again`. Otherwise, print `Correct!`.\n\nExample: the user types `Medellin`. The program prints:\n\n```text\nTry again\n```",
+  "codigo_inicial": "city = input(\"What is the capital of Colombia? \")\n\nif city != \"Bogota\":\n    pass  # Replace this line. Then add the else.\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Medellin",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Wrong answer: Medellin",
+      "entradas": [
+        "Medellin"
+      ],
+      "esperado": "Try again"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Right answer: Bogota",
+      "entradas": [
+        "Bogota"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Small letters: bogota",
+      "entradas": [
+        "bogota"
+      ],
+      "esperado": "Try again"
+    }
+  ]
+}

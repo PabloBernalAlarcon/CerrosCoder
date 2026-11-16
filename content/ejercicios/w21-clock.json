@@ -1,0 +1,33 @@
+{
+  "id": "w21-clock",
+  "titulo": "What time will it be?",
+  "enunciado": "**Level ★★**\n\nWrite `future_hour(now, hours)`. `now` is an hour on a 24-hour clock (0 to 23). It returns the hour on the clock after `hours` more hours.\n\n```python\nfuture_hour(10, 50)   # 12\nfuture_hour(22, 5)    # 3\n```",
+  "codigo_inicial": "def future_hour(now, hours):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "10:00 plus 50 hours",
+      "expresion": "future_hour(10, 50)",
+      "esperado": "12"
+    },
+    {
+      "descripcion": "22:00 plus 5 hours",
+      "expresion": "future_hour(22, 5)",
+      "esperado": "3"
+    },
+    {
+      "descripcion": "0:00 plus 24 hours",
+      "expresion": "future_hour(0, 24)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "23:00 plus 1 hour",
+      "expresion": "future_hour(23, 1)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "8:00 plus 100 hours",
+      "expresion": "future_hour(8, 100)",
+      "esperado": "12"
+    }
+  ]
+}

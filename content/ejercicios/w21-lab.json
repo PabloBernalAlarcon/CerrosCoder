@@ -1,0 +1,7 @@
+{
+  "id": "w21-lab",
+  "titulo": "Week 21 lab: remainders",
+  "enunciado": "Use this workspace for the investigation in the lesson **Even, odd and repeating patterns**.\n\n1. What pattern does `n % 3` make? Try `% 4` and `% 2` too.\n2. Write a condition that tests if a number is even. Test it with negative numbers.",
+  "codigo_inicial": "for n in range(12):\n    print(n, n % 3)\n",
+  "pruebas": []
+}

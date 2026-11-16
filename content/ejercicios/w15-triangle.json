@@ -1,0 +1,70 @@
+{
+  "id": "w15-triangle",
+  "titulo": "Triangle checker",
+  "enunciado": "**Level ★★★ · Challenge**\n\nAsk for the three sides of a triangle (whole numbers).\n\nA triangle is only possible if **each** side is smaller than the other two added together. If it is not possible, print `Not a triangle`.\n\nIf it is possible, print its type:\n\n- `Equilateral`: all three sides are equal.\n- `Isosceles`: exactly two sides are equal.\n- `Scalene`: no sides are equal.\n\nExample: `3`, `4`, `5` prints `Scalene`. And `1`, `2`, `10` prints `Not a triangle`.",
+  "codigo_inicial": "a = int(input(\"Side 1: \"))\nb = int(input(\"Side 2: \"))\nc = int(input(\"Side 3: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "3\n4\n5",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "3, 4, 5",
+      "entradas": [
+        "3",
+        "4",
+        "5"
+      ],
+      "esperado": "Scalene"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5, 5, 5",
+      "entradas": [
+        "5",
+        "5",
+        "5"
+      ],
+      "esperado": "Equilateral"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5, 5, 8",
+      "entradas": [
+        "5",
+        "5",
+        "8"
+      ],
+      "esperado": "Isosceles"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "8, 5, 5",
+      "entradas": [
+        "8",
+        "5",
+        "5"
+      ],
+      "esperado": "Isosceles"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1, 2, 10",
+      "entradas": [
+        "1",
+        "2",
+        "10"
+      ],
+      "esperado": "Not a triangle"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1, 2, 3 (flat)",
+      "entradas": [
+        "1",
+        "2",
+        "3"
+      ],
+      "esperado": "Not a triangle"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "w24-tool-find",
+  "titulo": "Toolbox: find in a list",
+  "enunciado": "**Level ★★ · Toolbox**\n\nWrite `find_index(items, target)`. It returns the **position** of `target` in the list, or `-1` if it is not there. Use a loop: don't use `.index()`.\n\n```python\nfind_index([\"ana\", \"luis\", \"sara\"], \"luis\")   # 1\nfind_index([\"ana\", \"luis\", \"sara\"], \"tom\")    # -1\n```",
+  "codigo_inicial": "def find_index(items, target):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "index"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "luis is at 1",
+      "expresion": "find_index([\"ana\", \"luis\", \"sara\"], \"luis\")",
+      "esperado": "1"
+    },
+    {
+      "descripcion": "tom is not there",
+      "expresion": "find_index([\"ana\", \"luis\", \"sara\"], \"tom\")",
+      "esperado": "-1"
+    },
+    {
+      "descripcion": "The first item",
+      "expresion": "find_index([5, 6, 7], 5)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "An empty list",
+      "expresion": "find_index([], 3)",
+      "esperado": "-1"
+    },
+    {
+      "descripcion": "Two matches: the first one",
+      "expresion": "find_index([1, 9, 9], 9)",
+      "esperado": "1"
+    }
+  ]
+}

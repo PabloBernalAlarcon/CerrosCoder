@@ -1,0 +1,7 @@
+{
+  "id": "w17-lab",
+  "titulo": "Week 17 lab: the banner",
+  "enunciado": "Use this workspace for the investigation cards in the lesson **Why give a chunk of code a name?**\n\nPredict before each change. Then run.",
+  "codigo_inicial": "def banner(msg):\n    print(\"*\" * 20)\n    print(msg)\n    print(\"*\" * 20)\n\nprint(\"Start\")\nbanner(\"Welcome\")\nbanner(\"Game over\")\n",
+  "pruebas": []
+}

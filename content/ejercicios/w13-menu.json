@@ -1,0 +1,39 @@
+{
+  "id": "w13-menu",
+  "titulo": "Review: menu",
+  "enunciado": "**Level ★★**\n\nShow a menu again and again until the user chooses `3`:\n\n| Choice | Print |\n|---|---|\n| `1` | `Hello!` |\n| `2` | `Have a nice day!` |\n| `3` | `Bye!` and stop |\n| anything else | `Unknown option` |\n\nExample inputs: `1`, `5`, `2`, `3`. The program prints:\n\n```text\nHello!\nUnknown option\nHave a nice day!\nBye!\n```\n\nYou can show the menu inside `input()`, for example `input(\"1, 2 or 3? \")`.",
+  "codigo_inicial": "choice = input(\"1, 2 or 3? \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "1\n5\n2\n3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "1, 5, 2, 3",
+      "entradas": [
+        "1",
+        "5",
+        "2",
+        "3"
+      ],
+      "esperado": "Hello!\nUnknown option\nHave a nice day!\nBye!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Straight to 3",
+      "entradas": [
+        "3"
+      ],
+      "esperado": "Bye!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "2, 2, 3",
+      "entradas": [
+        "2",
+        "2",
+        "3"
+      ],
+      "esperado": "Have a nice day!\nHave a nice day!\nBye!"
+    }
+  ]
+}

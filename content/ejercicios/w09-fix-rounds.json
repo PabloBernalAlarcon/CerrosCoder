@@ -1,0 +1,20 @@
+{
+  "id": "w09-fix-rounds",
+  "titulo": "Fix it: a missing round",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis game should play **3 rounds**, then print `Game over`. It only plays 2.\n\n1. **Predict** which line is wrong. Make a trace table if it helps.\n2. **Change** one thing to fix it.\n\nThe program must print:\n\n```text\nRound 1\nRound 2\nRound 3\nGame over\n```",
+  "codigo_inicial": "count = 1\nwhile count < 3:\n    print(\"Round\", count)\n    count = count + 1\nprint(\"Game over\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Plays three rounds",
+      "entradas": [],
+      "esperado": "Round 1\nRound 2\nRound 3\nGame over"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Game over appears once, at the end",
+      "entradas": [],
+      "esperado": "Round 1\nRound 2\nRound 3\nGame over"
+    }
+  ]
+}

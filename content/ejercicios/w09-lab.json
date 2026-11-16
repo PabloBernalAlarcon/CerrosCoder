@@ -1,0 +1,7 @@
+{
+  "id": "w09-lab",
+  "titulo": "Week 9 lab: tracing loops",
+  "enunciado": "Use this workspace for the investigation in the lesson **How does a program know when to stop?**\n\nWrite each prediction as a comment before you run.\n\n1. Change `<=` to `<`. What prints now?\n2. Write a loop that counts down from 10 to 1, then prints `Go!`.\n3. Delete `count = count + 1`. Predict first! The platform stops the program after 5 seconds.",
+  "codigo_inicial": "count = 1\nwhile count <= 3:\n    print(\"Round\", count)\n    count = count + 1\nprint(\"Done\")\n",
+  "pruebas": []
+}

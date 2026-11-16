@@ -1,0 +1,49 @@
+{
+  "id": "w20-unbreakable",
+  "titulo": "Unbreakable input",
+  "enunciado": "**Level ★★★**\n\nKeep asking until the user types a whole number **from 1 to 100**. Then print:\n\n```text\nThanks! You chose 50\n```\n\nThe program must **never crash**. Before you code, write at least 5 attack inputs as comments.\n\nExample inputs: `abc`, `0`, `101`, `-5`, `7.5`, `50`. The program prints only:\n\n```text\nThanks! You chose 50\n```",
+  "codigo_inicial": "# My attack inputs:\n#\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "abc\n0\n101\n-5\n7.5\n50",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Many attacks, then 50",
+      "entradas": [
+        "abc",
+        "0",
+        "101",
+        "-5",
+        "7.5",
+        "50"
+      ],
+      "esperado": "Thanks! You chose 50"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Empty, then 1",
+      "entradas": [
+        "",
+        "1"
+      ],
+      "esperado": "Thanks! You chose 1"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100 straight away",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "Thanks! You chose 100"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1000, then 99",
+      "entradas": [
+        "1000",
+        "99"
+      ],
+      "esperado": "Thanks! You chose 99"
+    }
+  ]
+}

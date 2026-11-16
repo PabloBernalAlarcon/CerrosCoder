@@ -1,0 +1,20 @@
+{
+  "id": "w10-threes",
+  "titulo": "Count by threes",
+  "enunciado": "**Level ★**\n\nPrint 3, 6, 9 … up to 30, one per line. Use **one** `range()` with a step.",
+  "codigo_inicial": "for n in range():\n    print(n)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "3 to 30 in steps of 3",
+      "entradas": [],
+      "esperado": "3\n6\n9\n12\n15\n18\n21\n24\n27\n30"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "30 is included",
+      "entradas": [],
+      "esperado": "3\n6\n9\n12\n15\n18\n21\n24\n27\n30"
+    }
+  ]
+}

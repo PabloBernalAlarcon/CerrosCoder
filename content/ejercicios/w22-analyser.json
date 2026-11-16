@@ -1,0 +1,55 @@
+{
+  "id": "w22-analyser",
+  "titulo": "Score analyser",
+  "enunciado": "**Level ★★★**\n\nAsk for scores (whole numbers) until the user types `done`. Then print the count, the highest score and the average:\n\nExample inputs: `70`, `85`, `92`, `60`, `done`. The program prints:\n\n```text\nCount: 4\nHighest: 92\nAverage: 76.75\n```\n\nIf the user types `done` straight away, print only:\n\n```text\nNo scores\n```\n\nFind the highest with a loop, not `max()`. If the user types something that is not a whole number (and not `done`), ignore it.",
+  "codigo_inicial": "scores = []\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "70\n85\n92\n60\ndone",
+  "no_usar": [
+    "max",
+    "sorted",
+    "sort"
+  ],
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "70, 85, 92, 60",
+      "entradas": [
+        "70",
+        "85",
+        "92",
+        "60",
+        "done"
+      ],
+      "esperado": "Count: 4\nHighest: 92\nAverage: 76.75"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "No scores",
+      "entradas": [
+        "done"
+      ],
+      "esperado": "No scores"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "One score",
+      "entradas": [
+        "50",
+        "done"
+      ],
+      "esperado": "Count: 1\nHighest: 50\nAverage: 50.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Ignores abc",
+      "entradas": [
+        "10",
+        "abc",
+        "20",
+        "done"
+      ],
+      "esperado": "Count: 2\nHighest: 20\nAverage: 15.0"
+    }
+  ]
+}

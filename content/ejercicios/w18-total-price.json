@@ -1,0 +1,32 @@
+{
+  "id": "w18-total-price",
+  "titulo": "Shop total",
+  "enunciado": "**Level ★★★ · Challenge**\n\nWrite `total_price(price, quantity)`. It returns the total cost.\n\nIf the customer buys **10 or more** items, they get **10% off** the total.\n\n```python\ntotal_price(2000, 3)    # 6000\ntotal_price(1000, 10)   # 9000.0\n```\n\nThen write a second function, `receipt(price, quantity)`, that **prints** a line like `3 items: 6000`. It must **use** `total_price`.",
+  "codigo_inicial": "def total_price(price, quantity):\n    pass  # Replace this line\n\n\ndef receipt(price, quantity):\n    pass  # Replace this line\n",
+  "definir": [
+    "total_price",
+    "receipt"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "3 items at 2000",
+      "expresion": "total_price(2000, 3)",
+      "esperado": "6000"
+    },
+    {
+      "descripcion": "10 items at 1000",
+      "expresion": "total_price(1000, 10)",
+      "esperado": "9000.0"
+    },
+    {
+      "descripcion": "9 items at 1000 (no discount)",
+      "expresion": "total_price(1000, 9)",
+      "esperado": "9000"
+    },
+    {
+      "descripcion": "20 items at 500",
+      "expresion": "total_price(500, 20)",
+      "esperado": "9000.0"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "w20-ask-again",
+  "titulo": "Ask until it's a number",
+  "enunciado": "**Level ★★**\n\nKeep asking for a whole number until the user types only digits. Then print it **doubled**.\n\nPut any error message inside `input()`. Only print the final line.\n\nExample inputs: `abc`, `` (just Enter), `21`. The program prints:\n\n```text\nDouble: 42\n```",
+  "codigo_inicial": "text = input(\"A whole number: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "abc\n\n21",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "abc, empty, 21",
+      "entradas": [
+        "abc",
+        "",
+        "21"
+      ],
+      "esperado": "Double: 42"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Straight away: 5",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "Double: 10"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "7.5, then 7",
+      "entradas": [
+        "7.5",
+        "7"
+      ],
+      "esperado": "Double: 14"
+    }
+  ]
+}

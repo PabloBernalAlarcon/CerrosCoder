@@ -1,0 +1,7 @@
+{
+  "id": "w22-lab",
+  "titulo": "Week 22 lab: exploring lists",
+  "enunciado": "Use this workspace for the investigation in the lesson **Remembering many things**.\n\nPredict first, then add each line: `scores[1] = 90`, `scores.append(77)`, `85 in scores`, and a loop that adds up the total.",
+  "codigo_inicial": "scores = [70, 85, 92, 60]\nprint(scores[0])\nprint(scores[-1])\nprint(len(scores))\n",
+  "pruebas": []
+}

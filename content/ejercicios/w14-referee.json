@@ -1,0 +1,64 @@
+{
+  "id": "w14-referee",
+  "titulo": "Rock, Paper, Scissors referee",
+  "enunciado": "**Level ★★★ · Challenge**\n\nAsk for player 1's move, then player 2's move. Print who wins:\n\n- `Tie` if the moves are the same.\n- `Player 1 wins` or `Player 2 wins` otherwise.\n\nRules: rock beats scissors, scissors beats paper, paper beats rock.\n\nHint: there are 3 ways for player 1 to win. Can you write them as one condition with `and` and `or`?",
+  "codigo_inicial": "p1 = input(\"Player 1: \")\np2 = input(\"Player 2: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "rock\nscissors",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "rock vs scissors",
+      "entradas": [
+        "rock",
+        "scissors"
+      ],
+      "esperado": "Player 1 wins"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "scissors vs paper",
+      "entradas": [
+        "scissors",
+        "paper"
+      ],
+      "esperado": "Player 1 wins"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "paper vs rock",
+      "entradas": [
+        "paper",
+        "rock"
+      ],
+      "esperado": "Player 1 wins"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "rock vs paper",
+      "entradas": [
+        "rock",
+        "paper"
+      ],
+      "esperado": "Player 2 wins"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "scissors vs rock",
+      "entradas": [
+        "scissors",
+        "rock"
+      ],
+      "esperado": "Player 2 wins"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "paper vs paper",
+      "entradas": [
+        "paper",
+        "paper"
+      ],
+      "esperado": "Tie"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "w20-decimal",
+  "titulo": "Accept 2.5 and 2,5",
+  "enunciado": "**Level ★★★ · Challenge**\n\nWrite `to_decimal(text)`. It turns a text into a decimal number (`float`). It must accept a point **or** a comma. If the text is not a number, return `None`.\n\n```python\nto_decimal(\"2.5\")   # 2.5\nto_decimal(\"2,5\")   # 2.5\nto_decimal(\"abc\")   # None\n```\n\nHint: `\"2,5\".replace(\",\", \".\")` gives `\"2.5\"`.",
+  "codigo_inicial": "def to_decimal(text):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "\"2.5\"",
+      "expresion": "to_decimal(\"2.5\")",
+      "esperado": "2.5"
+    },
+    {
+      "descripcion": "\"2,5\"",
+      "expresion": "to_decimal(\"2,5\")",
+      "esperado": "2.5"
+    },
+    {
+      "descripcion": "\"10\"",
+      "expresion": "to_decimal(\"10\")",
+      "esperado": "10.0"
+    },
+    {
+      "descripcion": "\"-0,75\"",
+      "expresion": "to_decimal(\"-0,75\")",
+      "esperado": "-0.75"
+    },
+    {
+      "descripcion": "\"abc\"",
+      "expresion": "to_decimal(\"abc\")",
+      "esperado": "None"
+    }
+  ]
+}

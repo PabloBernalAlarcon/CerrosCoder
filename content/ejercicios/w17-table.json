@@ -1,0 +1,20 @@
+{
+  "id": "w17-table",
+  "titulo": "Times table function",
+  "enunciado": "**Level ★★**\n\nWrite `table(n)`. It prints the times table of `n` from 1 to 5, like this:\n\n```text\n2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n```\n\nThe program calls `table(2)` and then `table(7)`.",
+  "codigo_inicial": "def table(n):\n    pass  # Replace this line\n\n\ntable(2)\ntable(7)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Tables of 2 and 7",
+      "entradas": [],
+      "esperado": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 10 lines",
+      "entradas": [],
+      "esperado": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "w23-quiz-engine",
+  "titulo": "Quiz engine",
+  "enunciado": "**Level ★★★**\n\nThe questions are in a **list of tuples**. Write a loop that asks every question, prints `Correct!` or `Wrong. The answer is ___.`, and at the end prints the score:\n\n```text\nScore: 2 out of 3\n```\n\n**Rule:** adding a fourth question must only mean adding one line to `questions`. So don't write the number 3 anywhere: use `len(questions)`.",
+  "codigo_inicial": "questions = [\n    (\"Chemical symbol for gold? \", \"AU\"),\n    (\"The planet closest to the Sun? \", \"mercury\"),\n    (\"How many continents are there? \", \"7\"),\n]\n\nscore = 0\n# Ask every question with a loop\n",
+  "usa_input": true,
+  "entradas_ejemplo": "AU\nvenus\n7",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "All correct",
+      "entradas": [
+        "AU",
+        "mercury",
+        "7"
+      ],
+      "esperado": "Correct!\nCorrect!\nCorrect!\nScore: 3 out of 3"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "One wrong",
+      "entradas": [
+        "AU",
+        "venus",
+        "7"
+      ],
+      "esperado": "Correct!\nWrong. The answer is mercury.\nCorrect!\nScore: 2 out of 3"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "All wrong",
+      "entradas": [
+        "au",
+        "mars",
+        "5"
+      ],
+      "esperado": "Wrong. The answer is AU.\nWrong. The answer is mercury.\nWrong. The answer is 7.\nScore: 0 out of 3"
+    }
+  ]
+}

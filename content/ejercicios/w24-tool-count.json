@@ -1,0 +1,26 @@
+{
+  "id": "w24-tool-count",
+  "titulo": "Toolbox: count in a list",
+  "enunciado": "**Level ★★ · Toolbox**\n\nWrite `count_of(items, target)`. It returns **how many times** `target` appears in the list. Use a loop: don't use `.count()`.\n\n```python\ncount_of([\"win\", \"loss\", \"win\", \"draw\"], \"win\")   # 2\n```",
+  "codigo_inicial": "def count_of(items, target):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "count"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "Two wins",
+      "expresion": "count_of([\"win\", \"loss\", \"win\", \"draw\"], \"win\")",
+      "esperado": "2"
+    },
+    {
+      "descripcion": "No losses here",
+      "expresion": "count_of([\"win\", \"draw\"], \"loss\")",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "Numbers",
+      "expresion": "count_of([3, 3, 3], 3)",
+      "esperado": "3"
+    }
+  ]
+}

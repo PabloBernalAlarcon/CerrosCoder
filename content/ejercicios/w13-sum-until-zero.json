@@ -1,0 +1,39 @@
+{
+  "id": "w13-sum-until-zero",
+  "titulo": "Review: add until zero",
+  "enunciado": "**Level ★★**\n\nKeep asking for whole numbers. When the user types `0`, stop and print the total of all the numbers.\n\nExample: the inputs are `5`, `10`, `-3`, `0`. The program prints:\n\n```text\nTotal: 12\n```",
+  "codigo_inicial": "total = 0\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "5\n10\n-3\n0",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "5, 10, -3, 0",
+      "entradas": [
+        "5",
+        "10",
+        "-3",
+        "0"
+      ],
+      "esperado": "Total: 12"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Only 0",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "Total: 0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100, 200, 0",
+      "entradas": [
+        "100",
+        "200",
+        "0"
+      ],
+      "esperado": "Total: 300"
+    }
+  ]
+}

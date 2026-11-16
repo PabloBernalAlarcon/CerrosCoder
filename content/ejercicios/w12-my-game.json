@@ -1,0 +1,7 @@
+{
+  "id": "w12-my-game",
+  "titulo": "My Guess the Number game",
+  "enunciado": "Build **your own** Guess the Number game here, from your pseudocode.\n\nThe game must:\n\n- pick a random secret number from 1 to 100,\n- say `Too high`, `Too low` or `Correct!` after each guess,\n- end when the player wins, or after 10 attempts, and show the number.\n\nYour code saves automatically. This is the code your teacher will grade, so keep working **in this workspace**.\n\nTo test, type several guesses in the **Inputs** box, one per line. While you test, you can set `secret = 42` for a moment.",
+  "codigo_inicial": "import random\n\nsecret = random.randint(1, 100)\n\n# Your game starts here\n",
+  "pruebas": []
+}

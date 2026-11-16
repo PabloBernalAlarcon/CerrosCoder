@@ -1,0 +1,50 @@
+{
+  "id": "w08-tickets",
+  "titulo": "Fix it: cinema tickets",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nA cinema sells three tickets:\n\n| Age | Ticket |\n|---|---|\n| 65 or more | `Senior ticket` |\n| 12 to 64 | `Adult ticket` |\n| under 12 | `Child ticket` |\n\nThis program never sells a senior ticket. **Predict** why. Then fix it.",
+  "codigo_inicial": "age = int(input(\"Age: \"))\nif age >= 12:\n    print(\"Adult ticket\")\nelif age >= 65:\n    print(\"Senior ticket\")\nelse:\n    print(\"Child ticket\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "70",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 70",
+      "entradas": [
+        "70"
+      ],
+      "esperado": "Senior ticket"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 65",
+      "entradas": [
+        "65"
+      ],
+      "esperado": "Senior ticket"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 64",
+      "entradas": [
+        "64"
+      ],
+      "esperado": "Adult ticket"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 12",
+      "entradas": [
+        "12"
+      ],
+      "esperado": "Adult ticket"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 11",
+      "entradas": [
+        "11"
+      ],
+      "esperado": "Child ticket"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "w07-fix-trivia",
+  "titulo": "Fix it: free points",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis trivia program has a bug: the player gets a point even when the answer is **wrong**.\n\n1. **Predict.** Which line causes the bug?\n2. **Run** it with `gold` to see the problem.\n3. **Change** one thing to fix it. Do not change any messages.\n\nWith `AU`, the program must print:\n\n```text\nCorrect!\nYour score: 1\n```\n\nWith `gold`, it must print:\n\n```text\nWrong. The answer is AU.\nYour score: 0\n```",
+  "codigo_inicial": "score = 0\nanswer = input(\"What is the chemical symbol for gold? \")\nif answer == \"AU\":\n    print(\"Correct!\")\nelse:\n    print(\"Wrong. The answer is AU.\")\nscore += 1\nprint(\"Your score:\", score)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "gold",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Right answer: AU",
+      "entradas": [
+        "AU"
+      ],
+      "esperado": "Correct!\nYour score: 1"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Wrong answer: gold",
+      "entradas": [
+        "gold"
+      ],
+      "esperado": "Wrong. The answer is AU.\nYour score: 0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Small letters: au",
+      "entradas": [
+        "au"
+      ],
+      "esperado": "Wrong. The answer is AU.\nYour score: 0"
+    }
+  ]
+}

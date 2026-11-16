@@ -1,0 +1,42 @@
+{
+  "id": "w14-fix-or",
+  "titulo": "Fix it: everything is a good choice",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis program says `Good choice!` for **every** answer, even `banana`.\n\nFix the condition so only `left` and `right` are good choices.",
+  "codigo_inicial": "answer = input(\"Left or right? \")\nif answer == \"left\" or \"right\":\n    print(\"Good choice!\")\nelse:\n    print(\"Please type left or right.\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "banana",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "left",
+      "entradas": [
+        "left"
+      ],
+      "esperado": "Good choice!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "right",
+      "entradas": [
+        "right"
+      ],
+      "esperado": "Good choice!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "banana",
+      "entradas": [
+        "banana"
+      ],
+      "esperado": "Please type left or right."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Nothing (Enter)",
+      "entradas": [
+        ""
+      ],
+      "esperado": "Please type left or right."
+    }
+  ]
+}

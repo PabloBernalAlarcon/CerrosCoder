@@ -1,0 +1,50 @@
+{
+  "id": "w08-adventure",
+  "titulo": "The adventure",
+  "enunciado": "**Level ★★**\n\nAsk `Left or Right?` and print one message:\n\n| The user types | Print |\n|---|---|\n| left | `You found gold!` |\n| right | `You fell in a pit!` |\n| anything else | `You stand still, confused. Try left or right.` |\n\nCapital letters must not matter: `LEFT`, `Left` and `left` all find the gold.\n\nHint: `.lower()` turns text into small letters.",
+  "codigo_inicial": "choice = input(\"Left or Right? \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Left",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "left",
+      "entradas": [
+        "left"
+      ],
+      "esperado": "You found gold!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "right",
+      "entradas": [
+        "right"
+      ],
+      "esperado": "You fell in a pit!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Capital letters: LEFT",
+      "entradas": [
+        "LEFT"
+      ],
+      "esperado": "You found gold!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Mixed letters: Right",
+      "entradas": [
+        "Right"
+      ],
+      "esperado": "You fell in a pit!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Something else: banana",
+      "entradas": [
+        "banana"
+      ],
+      "esperado": "You stand still, confused. Try left or right."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "w12-fix-attempts",
+  "titulo": "Fix it: one attempt too many",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis game should allow **10** attempts. The secret is `42`. But it allows **11**!\n\n1. **Predict** the problem. Trace the value of `tries` if it helps.\n2. **Change** one thing to fix it.\n\nAfter 10 wrong guesses, the program must print `Game over. The number was 42.` and stop asking.",
+  "codigo_inicial": "secret = 42\ntries = 0\nwhile tries <= 10:\n    guess = int(input(\"Your guess: \"))\n    tries = tries + 1\n    if guess == secret:\n        print(\"Correct!\")\n        break\n    elif guess > secret:\n        print(\"Too high\")\n    else:\n        print(\"Too low\")\nif guess != secret:\n    print(\"Game over. The number was 42.\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Ten wrong guesses",
+      "entradas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "esperado": "Too low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nGame over. The number was 42."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Correct on guess 3",
+      "entradas": [
+        "50",
+        "30",
+        "42"
+      ],
+      "esperado": "Too high\nToo low\nCorrect!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Correct on guess 10",
+      "entradas": [
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42"
+      ],
+      "esperado": "Too low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nToo low\nCorrect!"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "w20-is-whole",
+  "titulo": "Is it a whole number?",
+  "enunciado": "**Level ★**\n\nWrite `is_whole_number(text)`. It returns `True` if the text is a positive whole number (only digits), and `False` otherwise.\n\n```python\nis_whole_number(\"42\")    # True\nis_whole_number(\"4a\")    # False\nis_whole_number(\"\")      # False\n```",
+  "codigo_inicial": "def is_whole_number(text):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "\"42\"",
+      "expresion": "is_whole_number(\"42\")",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "\"4a\"",
+      "expresion": "is_whole_number(\"4a\")",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "Empty text",
+      "expresion": "is_whole_number(\"\")",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "\"7.5\"",
+      "expresion": "is_whole_number(\"7.5\")",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "\"007\"",
+      "expresion": "is_whole_number(\"007\")",
+      "esperado": "True"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "w19-stars",
+  "titulo": "Review: stars",
+  "enunciado": "**Level ★★ · Write a function**\n\nWrite `stars(n)`. It **returns** a text with `n` stars, but with a space between them.\n\n```python\nstars(3)   # \"* * *\"\nstars(1)   # \"*\"\nstars(0)   # \"\"\n```\n\nHint: build the text in a loop. Be careful with the spaces!",
+  "codigo_inicial": "def stars(n):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "stars(3)",
+      "expresion": "stars(3)",
+      "esperado": "'* * *'"
+    },
+    {
+      "descripcion": "stars(1)",
+      "expresion": "stars(1)",
+      "esperado": "'*'"
+    },
+    {
+      "descripcion": "stars(0)",
+      "expresion": "stars(0)",
+      "esperado": "''"
+    },
+    {
+      "descripcion": "stars(5)",
+      "expresion": "stars(5)",
+      "esperado": "'* * * * *'"
+    }
+  ]
+}

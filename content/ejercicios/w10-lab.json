@@ -1,0 +1,7 @@
+{
+  "id": "w10-lab",
+  "titulo": "Week 10 lab: range investigator",
+  "enunciado": "Use this workspace to check your range predictions from the lesson **What does range() actually produce?**\n\nChange the numbers inside `range()`. Predict first, then run.\n\nTry: `range(5)`, `range(1, 5)`, `range(0, 10, 2)`, `range(10, 0, -1)`, `range(5, 5)`.\n\nThen find ranges for 3, 6, 9 … 30 and for 5, 4, 3, 2, 1, 0.",
+  "codigo_inicial": "# I predict:\nfor i in range(5):\n    print(i)\n",
+  "pruebas": []
+}

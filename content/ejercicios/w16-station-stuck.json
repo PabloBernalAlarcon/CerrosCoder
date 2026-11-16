@@ -1,0 +1,20 @@
+{
+  "id": "w16-station-stuck",
+  "titulo": "Station 4: the loop that never ends",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis program should print `Lap 1` to `Lap 4`, then `Race over`. It never stops: the platform stops it after 5 seconds.\n\n**Predict** the cause before you run it. Which variable should change in each lap?\n\n```text\nLap 1\nLap 2\nLap 3\nLap 4\nRace over\n```",
+  "codigo_inicial": "lap = 1\nwhile lap <= 4:\n    print(\"Lap\", lap)\n    lap + 1\nprint(\"Race over\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Four laps, then Race over",
+      "entradas": [],
+      "esperado": "Lap 1\nLap 2\nLap 3\nLap 4\nRace over"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Nothing extra",
+      "entradas": [],
+      "esperado": "Lap 1\nLap 2\nLap 3\nLap 4\nRace over"
+    }
+  ]
+}

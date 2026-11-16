@@ -1,0 +1,33 @@
+{
+  "id": "w18-check-guess",
+  "titulo": "check_guess",
+  "enunciado": "**Level ★★**\n\nWrite `check_guess(guess, secret)`. It **returns** one of three texts: `\"Too high\"`, `\"Too low\"` or `\"Correct\"`.\n\n```python\ncheck_guess(50, 42)   # \"Too high\"\ncheck_guess(42, 42)   # \"Correct\"\n```\n\nYou can use this function in your own game!",
+  "codigo_inicial": "def check_guess(guess, secret):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "50 vs 42",
+      "expresion": "check_guess(50, 42)",
+      "esperado": "'Too high'"
+    },
+    {
+      "descripcion": "10 vs 42",
+      "expresion": "check_guess(10, 42)",
+      "esperado": "'Too low'"
+    },
+    {
+      "descripcion": "42 vs 42",
+      "expresion": "check_guess(42, 42)",
+      "esperado": "'Correct'"
+    },
+    {
+      "descripcion": "1 vs 1",
+      "expresion": "check_guess(1, 1)",
+      "esperado": "'Correct'"
+    },
+    {
+      "descripcion": "100 vs 99",
+      "expresion": "check_guess(100, 99)",
+      "esperado": "'Too high'"
+    }
+  ]
+}

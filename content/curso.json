@@ -1,30 +1,809 @@
 {
   "unidades": [
     {
-      "id": "u1",
-      "titulo": "First steps",
-      "desbloqueo": "2026-01-01",
+      "id": "w07",
+      "etiqueta": "Week 7",
+      "titulo": "Conditionals: if and else",
       "lecciones": [
-        { "id": "print", "titulo": "Talking to the computer: print()" },
-        { "id": "variables-input", "titulo": "Variables and questions with input()" }
+        {
+          "id": "w07-if-else",
+          "titulo": "When does a line of code run?"
+        }
       ],
       "ejercicios": [
-        { "id": "greeting", "titulo": "Personal greeting" },
-        { "id": "sum", "titulo": "Adding two numbers" }
+        {
+          "id": "w07-lab",
+          "titulo": "Week 7 lab: the trivia program",
+          "libre": true
+        },
+        {
+          "id": "w07-password",
+          "titulo": "Password check"
+        },
+        {
+          "id": "w07-pass-grade",
+          "titulo": "Did I pass?"
+        },
+        {
+          "id": "w07-team",
+          "titulo": "Old enough for the team?"
+        },
+        {
+          "id": "w07-bigger",
+          "titulo": "The bigger number"
+        },
+        {
+          "id": "w07-fix-trivia",
+          "titulo": "Fix it: free points"
+        },
+        {
+          "id": "w07-not-equal",
+          "titulo": "Using != (not equal)"
+        },
+        {
+          "id": "w07-discount",
+          "titulo": "Shop discount"
+        }
       ]
     },
     {
-      "id": "u2",
-      "titulo": "Functions and decisions",
-      "desbloqueo": "2026-01-01",
+      "id": "w08",
+      "etiqueta": "Week 8",
+      "titulo": "elif and the order of conditions",
       "lecciones": [
-        { "id": "functions", "titulo": "Functions: def and return" },
-        { "id": "decisions", "titulo": "Decisions with if, elif and else" }
+        {
+          "id": "w08-elif",
+          "titulo": "Does the order of my conditions matter?"
+        }
       ],
       "ejercicios": [
-        { "id": "double", "titulo": "Double it" },
-        { "id": "is-passing", "titulo": "Did it pass?" },
-        { "id": "largest-of-three", "titulo": "The largest of three" }
+        {
+          "id": "w08-lab",
+          "titulo": "Week 8 lab: the grade classifier",
+          "libre": true
+        },
+        {
+          "id": "w08-sign",
+          "titulo": "Positive, negative or zero"
+        },
+        {
+          "id": "w08-two-answers",
+          "titulo": "2.5 or 2,5"
+        },
+        {
+          "id": "w08-wear",
+          "titulo": "What should I wear?"
+        },
+        {
+          "id": "w08-fix-classifier",
+          "titulo": "Fix it: the grade classifier"
+        },
+        {
+          "id": "w08-tickets",
+          "titulo": "Fix it: cinema tickets"
+        },
+        {
+          "id": "w08-adventure",
+          "titulo": "The adventure"
+        },
+        {
+          "id": "w08-calculator",
+          "titulo": "Mini calculator"
+        },
+        {
+          "id": "w08-shipping",
+          "titulo": "Shipping cost"
+        }
+      ]
+    },
+    {
+      "id": "w09",
+      "etiqueta": "Week 9",
+      "titulo": "while loops",
+      "lecciones": [
+        {
+          "id": "w09-while",
+          "titulo": "How does a program know when to stop?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w09-lab",
+          "titulo": "Week 9 lab: tracing loops",
+          "libre": true
+        },
+        {
+          "id": "w09-countdown",
+          "titulo": "Countdown"
+        },
+        {
+          "id": "w09-count-to-n",
+          "titulo": "Count to any number"
+        },
+        {
+          "id": "w09-password",
+          "titulo": "Password checker"
+        },
+        {
+          "id": "w09-tries",
+          "titulo": "Count the tries"
+        },
+        {
+          "id": "w09-sum",
+          "titulo": "Add them up"
+        },
+        {
+          "id": "w09-evens",
+          "titulo": "Even numbers"
+        },
+        {
+          "id": "w09-fix-rounds",
+          "titulo": "Fix it: a missing round"
+        },
+        {
+          "id": "w09-savings",
+          "titulo": "Saving up"
+        }
+      ]
+    },
+    {
+      "id": "w10",
+      "etiqueta": "Week 10",
+      "titulo": "for loops and range",
+      "lecciones": [
+        {
+          "id": "w10-for-range",
+          "titulo": "What does range() actually produce?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w10-lab",
+          "titulo": "Week 10 lab: range investigator",
+          "libre": true
+        },
+        {
+          "id": "w10-rounds",
+          "titulo": "Five rounds"
+        },
+        {
+          "id": "w10-threes",
+          "titulo": "Count by threes"
+        },
+        {
+          "id": "w10-times-table",
+          "titulo": "Times table"
+        },
+        {
+          "id": "w10-liftoff",
+          "titulo": "Countdown with range"
+        },
+        {
+          "id": "w10-triangle",
+          "titulo": "Star triangle"
+        },
+        {
+          "id": "w10-fix-range",
+          "titulo": "Fix it: one number short"
+        },
+        {
+          "id": "w10-sum-range",
+          "titulo": "Total of a range"
+        },
+        {
+          "id": "w10-doubling",
+          "titulo": "Doubling"
+        }
+      ]
+    },
+    {
+      "id": "w11",
+      "etiqueta": "Week 11",
+      "titulo": "Guess the Number: design",
+      "lecciones": [
+        {
+          "id": "w11-design",
+          "titulo": "Design a program from its behaviour"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w11-lab",
+          "titulo": "Week 11 lab: random numbers",
+          "libre": true
+        },
+        {
+          "id": "w11-one-guess",
+          "titulo": "One guess"
+        },
+        {
+          "id": "w11-until-correct",
+          "titulo": "Guess until correct"
+        },
+        {
+          "id": "w11-count-guesses",
+          "titulo": "Count the guesses"
+        },
+        {
+          "id": "w11-out-of-range",
+          "titulo": "Out of range"
+        },
+        {
+          "id": "w11-two-players",
+          "titulo": "Two players"
+        },
+        {
+          "id": "w11-three-tries",
+          "titulo": "Only three tries"
+        }
+      ]
+    },
+    {
+      "id": "w12",
+      "etiqueta": "Week 12",
+      "titulo": "Guess the Number: build, break, fix",
+      "lecciones": [
+        {
+          "id": "w12-build",
+          "titulo": "Build, break, fix"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w12-my-game",
+          "titulo": "My Guess the Number game",
+          "libre": true
+        },
+        {
+          "id": "w12-very-close",
+          "titulo": "Very close!"
+        },
+        {
+          "id": "w12-fix-attempts",
+          "titulo": "Fix it: one attempt too many"
+        },
+        {
+          "id": "w12-points",
+          "titulo": "Points for the winner"
+        },
+        {
+          "id": "w12-play-again",
+          "titulo": "Play again?"
+        }
+      ]
+    },
+    {
+      "id": "w13",
+      "etiqueta": "Week 13",
+      "titulo": "Review before the test",
+      "lecciones": [
+        {
+          "id": "w13-review",
+          "titulo": "Getting ready for the test"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w13-grade-label",
+          "titulo": "Review: grade label"
+        },
+        {
+          "id": "w13-fives",
+          "titulo": "Review: multiples of 5"
+        },
+        {
+          "id": "w13-sum-until-zero",
+          "titulo": "Review: add until zero"
+        },
+        {
+          "id": "w13-fix-indent",
+          "titulo": "Review: fix the repeated message"
+        },
+        {
+          "id": "w13-menu",
+          "titulo": "Review: menu"
+        },
+        {
+          "id": "w13-biggest",
+          "titulo": "Review: the biggest number"
+        }
+      ]
+    },
+    {
+      "id": "w14",
+      "etiqueta": "Week 14",
+      "titulo": "and, or, not",
+      "lecciones": [
+        {
+          "id": "w14-and-or-not",
+          "titulo": "and, or, not"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w14-lab",
+          "titulo": "Week 14 lab: truth tables",
+          "libre": true
+        },
+        {
+          "id": "w14-teen",
+          "titulo": "Teenager?"
+        },
+        {
+          "id": "w14-discount",
+          "titulo": "Ticket discount"
+        },
+        {
+          "id": "w14-one-condition",
+          "titulo": "2.5 or 2,5 in one condition"
+        },
+        {
+          "id": "w14-fix-or",
+          "titulo": "Fix it: everything is a good choice"
+        },
+        {
+          "id": "w14-lockout",
+          "titulo": "Lock after 3 tries"
+        },
+        {
+          "id": "w14-valid-move",
+          "titulo": "Valid move?"
+        },
+        {
+          "id": "w14-referee",
+          "titulo": "Rock, Paper, Scissors referee"
+        }
+      ]
+    },
+    {
+      "id": "w15",
+      "etiqueta": "Week 15",
+      "titulo": "Nested conditions or and?",
+      "lecciones": [
+        {
+          "id": "w15-nested",
+          "titulo": "When is nesting clearer, and when is it a trap?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w15-lab",
+          "titulo": "Week 15 lab: two versions",
+          "libre": true
+        },
+        {
+          "id": "w15-in-range",
+          "titulo": "In range?"
+        },
+        {
+          "id": "w15-admin",
+          "titulo": "Admin panel"
+        },
+        {
+          "id": "w15-come-in",
+          "titulo": "One condition"
+        },
+        {
+          "id": "w15-lab-access",
+          "titulo": "Can I use the lab?"
+        },
+        {
+          "id": "w15-movie",
+          "titulo": "Movie rating"
+        },
+        {
+          "id": "w15-triangle",
+          "titulo": "Triangle checker"
+        }
+      ]
+    },
+    {
+      "id": "w16",
+      "etiqueta": "Week 16",
+      "titulo": "Tracing and debugging",
+      "lecciones": [
+        {
+          "id": "w16-debugging",
+          "titulo": "Can you find the bug from the output alone?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w16-station-range",
+          "titulo": "Station 1: the missing number"
+        },
+        {
+          "id": "w16-station-convert",
+          "titulo": "Station 2: next year"
+        },
+        {
+          "id": "w16-station-order",
+          "titulo": "Station 3: speeding tickets"
+        },
+        {
+          "id": "w16-station-stuck",
+          "titulo": "Station 4: the loop that never ends"
+        },
+        {
+          "id": "w16-station-total",
+          "titulo": "Station 5: the wrong total"
+        },
+        {
+          "id": "w16-station-equals",
+          "titulo": "Station 6: a syntax error"
+        },
+        {
+          "id": "w16-station-average",
+          "titulo": "Station 7: the strange average"
+        }
+      ]
+    },
+    {
+      "id": "w17",
+      "etiqueta": "Week 17",
+      "titulo": "Functions I: naming a chunk of code",
+      "lecciones": [
+        {
+          "id": "w17-functions",
+          "titulo": "Why give a chunk of code a name?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w17-lab",
+          "titulo": "Week 17 lab: the banner",
+          "libre": true
+        },
+        {
+          "id": "w17-greet",
+          "titulo": "Greet"
+        },
+        {
+          "id": "w17-banner",
+          "titulo": "Banner"
+        },
+        {
+          "id": "w17-banner-symbol",
+          "titulo": "Banner with any symbol"
+        },
+        {
+          "id": "w17-table",
+          "titulo": "Times table function"
+        },
+        {
+          "id": "w17-countdown",
+          "titulo": "Countdown function"
+        },
+        {
+          "id": "w17-trivia",
+          "titulo": "Trivia with a function"
+        },
+        {
+          "id": "w17-box",
+          "titulo": "Draw a box"
+        }
+      ]
+    },
+    {
+      "id": "w18",
+      "etiqueta": "Week 18",
+      "titulo": "Functions II: return and refactoring",
+      "lecciones": [
+        {
+          "id": "w18-return",
+          "titulo": "Printing or returning?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w18-lab",
+          "titulo": "Week 18 lab: print or return?",
+          "libre": true
+        },
+        {
+          "id": "w18-my-game-refactored",
+          "titulo": "My game, refactored",
+          "libre": true
+        },
+        {
+          "id": "w18-double",
+          "titulo": "Double it"
+        },
+        {
+          "id": "w18-fix-area",
+          "titulo": "Fix it: print instead of return"
+        },
+        {
+          "id": "w18-is-passing",
+          "titulo": "Did it pass?"
+        },
+        {
+          "id": "w18-check-guess",
+          "titulo": "check_guess"
+        },
+        {
+          "id": "w18-ticket-price",
+          "titulo": "Ticket price"
+        },
+        {
+          "id": "w18-largest",
+          "titulo": "The largest of three"
+        },
+        {
+          "id": "w18-total-price",
+          "titulo": "Shop total"
+        }
+      ]
+    },
+    {
+      "id": "w19",
+      "etiqueta": "Week 19",
+      "titulo": "Review before the Unit 2 assessment",
+      "lecciones": [
+        {
+          "id": "w19-review",
+          "titulo": "Getting ready: read, predict, fix"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w19-fix-positive",
+          "titulo": "Review: fix is_positive"
+        },
+        {
+          "id": "w19-fix-count",
+          "titulo": "Review: fix count_up"
+        },
+        {
+          "id": "w19-fix-access",
+          "titulo": "Review: fix can_vote"
+        },
+        {
+          "id": "w19-bus-fare",
+          "titulo": "Review: bus fare"
+        },
+        {
+          "id": "w19-stars",
+          "titulo": "Review: stars"
+        },
+        {
+          "id": "w19-power",
+          "titulo": "Review: power"
+        }
+      ]
+    },
+    {
+      "id": "w20",
+      "etiqueta": "Week 20",
+      "titulo": "Input validation",
+      "lecciones": [
+        {
+          "id": "w20-validation",
+          "titulo": "How can a program tell a number from text?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w20-lab",
+          "titulo": "Week 20 lab: isdigit and try",
+          "libre": true
+        },
+        {
+          "id": "w20-is-whole",
+          "titulo": "Is it a whole number?"
+        },
+        {
+          "id": "w20-ask-again",
+          "titulo": "Ask until it's a number"
+        },
+        {
+          "id": "w20-unbreakable",
+          "titulo": "Unbreakable input"
+        },
+        {
+          "id": "w20-to-int",
+          "titulo": "to_int with try"
+        },
+        {
+          "id": "w20-yes-no",
+          "titulo": "Yes or no"
+        },
+        {
+          "id": "w20-decimal",
+          "titulo": "Accept 2.5 and 2,5"
+        }
+      ]
+    },
+    {
+      "id": "w21",
+      "etiqueta": "Week 21",
+      "titulo": "The modulus operator",
+      "lecciones": [
+        {
+          "id": "w21-modulus",
+          "titulo": "Even, odd and repeating patterns"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w21-lab",
+          "titulo": "Week 21 lab: remainders",
+          "libre": true
+        },
+        {
+          "id": "w21-is-even",
+          "titulo": "Even?"
+        },
+        {
+          "id": "w21-divisible",
+          "titulo": "Divisible?"
+        },
+        {
+          "id": "w21-last-digit",
+          "titulo": "Last digit"
+        },
+        {
+          "id": "w21-minutes",
+          "titulo": "Minutes converter"
+        },
+        {
+          "id": "w21-clock",
+          "titulo": "What time will it be?"
+        },
+        {
+          "id": "w21-ping-pong",
+          "titulo": "Ping-Pong"
+        },
+        {
+          "id": "w21-leap-year",
+          "titulo": "Leap year"
+        },
+        {
+          "id": "w21-digit-sum",
+          "titulo": "Add the digits"
+        }
+      ]
+    },
+    {
+      "id": "w22",
+      "etiqueta": "Week 22",
+      "titulo": "Lists I",
+      "lecciones": [
+        {
+          "id": "w22-lists",
+          "titulo": "Remembering many things"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w22-lab",
+          "titulo": "Week 22 lab: exploring lists",
+          "libre": true
+        },
+        {
+          "id": "w22-first-last",
+          "titulo": "First and last"
+        },
+        {
+          "id": "w22-total",
+          "titulo": "Total of a list"
+        },
+        {
+          "id": "w22-highest",
+          "titulo": "The highest score"
+        },
+        {
+          "id": "w22-count-passing",
+          "titulo": "How many passed?"
+        },
+        {
+          "id": "w22-squares",
+          "titulo": "Build a list"
+        },
+        {
+          "id": "w22-analyser",
+          "titulo": "Score analyser"
+        }
+      ]
+    },
+    {
+      "id": "w23",
+      "etiqueta": "Week 23",
+      "titulo": "Lists II and tuples",
+      "lecciones": [
+        {
+          "id": "w23-tuples",
+          "titulo": "Which data should be allowed to change?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w23-lab",
+          "titulo": "Week 23 lab: lists and tuples",
+          "libre": true
+        },
+        {
+          "id": "w23-day-name",
+          "titulo": "Day name"
+        },
+        {
+          "id": "w23-grey",
+          "titulo": "Is it grey?"
+        },
+        {
+          "id": "w23-passing-only",
+          "titulo": "Only the passing grades"
+        },
+        {
+          "id": "w23-reverse",
+          "titulo": "Reverse a list"
+        },
+        {
+          "id": "w23-cart",
+          "titulo": "Shopping cart"
+        },
+        {
+          "id": "w23-quiz-engine",
+          "titulo": "Quiz engine"
+        },
+        {
+          "id": "w23-best-student",
+          "titulo": "The best student"
+        }
+      ]
+    },
+    {
+      "id": "w24",
+      "etiqueta": "Weeks 24–29",
+      "titulo": "Your project",
+      "lecciones": [
+        {
+          "id": "w24-project-1",
+          "titulo": "Week 24 · Choose a problem worth solving"
+        },
+        {
+          "id": "w25-project-2",
+          "titulo": "Week 25 · Design before code"
+        },
+        {
+          "id": "w26-project-3",
+          "titulo": "Week 26 · Build the smallest version that works"
+        },
+        {
+          "id": "w27-project-4",
+          "titulo": "Week 27 · Test, break, fix"
+        },
+        {
+          "id": "w28-project-5",
+          "titulo": "Week 28 · Polish and document"
+        },
+        {
+          "id": "w29-showcase",
+          "titulo": "Week 29 · Showcase and final reflection"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "w24-my-project",
+          "titulo": "My project",
+          "libre": true
+        },
+        {
+          "id": "w24-tool-ask-number",
+          "titulo": "Toolbox: a safe number input"
+        },
+        {
+          "id": "w24-tool-find",
+          "titulo": "Toolbox: find in a list"
+        },
+        {
+          "id": "w24-tool-count",
+          "titulo": "Toolbox: count in a list"
+        },
+        {
+          "id": "w24-tool-menu",
+          "titulo": "Toolbox: a menu loop"
+        }
       ]
     }
   ]

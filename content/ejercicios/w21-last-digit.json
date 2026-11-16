@@ -1,0 +1,23 @@
+{
+  "id": "w21-last-digit",
+  "titulo": "Last digit",
+  "enunciado": "**Level ★**\n\nWrite `last_digit(n)`. It returns the last digit of a positive whole number.\n\n```python\nlast_digit(2026)   # 6\nlast_digit(70)     # 0\n```\n\nHint: what is the remainder when you divide by 10?",
+  "codigo_inicial": "def last_digit(n):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "2026",
+      "expresion": "last_digit(2026)",
+      "esperado": "6"
+    },
+    {
+      "descripcion": "70",
+      "expresion": "last_digit(70)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "9",
+      "expresion": "last_digit(9)",
+      "esperado": "9"
+    }
+  ]
+}

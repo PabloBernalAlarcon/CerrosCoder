@@ -1,0 +1,42 @@
+{
+  "id": "w07-team",
+  "titulo": "Old enough for the team?",
+  "enunciado": "**Level ★★**\n\nThe school team accepts players who are **15 or older**.\n\nAsk for the player's age. If they can join, print `Welcome to the team!`. If not, say how many years they must wait.\n\nExample: the user types `12`. The program prints:\n\n```text\nNot yet. Come back in 3 years.\n```\n\nHint: `print(\"Not yet. Come back in\", years, \"years.\")` puts a space between each part.",
+  "codigo_inicial": "age = int(input(\"How old are you? \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "12",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 16",
+      "entradas": [
+        "16"
+      ],
+      "esperado": "Welcome to the team!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 15",
+      "entradas": [
+        "15"
+      ],
+      "esperado": "Welcome to the team!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 12",
+      "entradas": [
+        "12"
+      ],
+      "esperado": "Not yet. Come back in 3 years."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "Not yet. Come back in 5 years."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "w16-station-average",
+  "titulo": "Station 7: the strange average",
+  "enunciado": "**Level ★★★ · Bug hunt**\n\nThis program asks for 4 test scores and prints the average. With `80`, `90`, `70`, `60` the average should be `75.0`, but the program prints `100.0`.\n\nPredict the cause. Then confirm it with a trace table: what is the value of `i` after the loop?",
+  "codigo_inicial": "total = 0\nfor i in range(4):\n    score = int(input(\"Score: \"))\n    total = total + score\naverage = total / i\nprint(\"Average:\", average)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "80\n90\n70\n60",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "80, 90, 70, 60",
+      "entradas": [
+        "80",
+        "90",
+        "70",
+        "60"
+      ],
+      "esperado": "Average: 75.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100, 100, 100, 100",
+      "entradas": [
+        "100",
+        "100",
+        "100",
+        "100"
+      ],
+      "esperado": "Average: 100.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10, 20, 30, 40",
+      "entradas": [
+        "10",
+        "20",
+        "30",
+        "40"
+      ],
+      "esperado": "Average: 25.0"
+    }
+  ]
+}

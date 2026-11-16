@@ -1,0 +1,34 @@
+{
+  "id": "w07-discount",
+  "titulo": "Shop discount",
+  "enunciado": "**Level ★★★ · Challenge**\n\nA shop gives **10% off** when the price is **100 or more**.\n\nAsk for the price (use `float()`). Print what the customer pays.\n\nExample: the user types `200`. The program prints:\n\n```text\nYou pay: 180.0\n```\n\nExample: the user types `80`. The program prints:\n\n```text\nYou pay: 80.0\n```\n\nHint: 10% of the price is `price / 10`.",
+  "codigo_inicial": "price = float(input(\"Price: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "200",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Price 200 (discount)",
+      "entradas": [
+        "200"
+      ],
+      "esperado": "You pay: 180.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Price 100 (exactly on the line)",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "You pay: 90.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Price 80 (no discount)",
+      "entradas": [
+        "80"
+      ],
+      "esperado": "You pay: 80.0"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "w17-box",
+  "titulo": "Draw a box",
+  "enunciado": "**Level ★★★ · Challenge**\n\nWrite `box(width, height)`. It draws a box of `#` with that width and height. The inside is empty.\n\n`box(5, 3)` prints:\n\n```text\n#####\n#   #\n#####\n```\n\nThe program asks for the width and the height. Both are at least 2.\n\nHint: the top and bottom lines are different from the middle lines.",
+  "codigo_inicial": "def box(width, height):\n    pass  # Replace this line\n\n\nw = int(input(\"Width: \"))\nh = int(input(\"Height: \"))\nbox(w, h)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "5\n3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "5 by 3",
+      "entradas": [
+        "5",
+        "3"
+      ],
+      "esperado": "#####\n#   #\n#####"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "4 by 4",
+      "entradas": [
+        "4",
+        "4"
+      ],
+      "esperado": "####\n#  #\n#  #\n####"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "2 by 2",
+      "entradas": [
+        "2",
+        "2"
+      ],
+      "esperado": "##\n##"
+    }
+  ]
+}

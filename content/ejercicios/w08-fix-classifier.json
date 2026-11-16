@@ -1,0 +1,66 @@
+{
+  "id": "w08-fix-classifier",
+  "titulo": "Fix it: the grade classifier",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis classifier says `Pass` for a score of 95. It should say `Excellent`.\n\n| Score | Label |\n|---|---|\n| 90 or more | `Excellent` |\n| 70 to 89 | `Good` |\n| 50 to 69 | `Pass` |\n| below 50 | `Not yet` |\n\n**Change** the order of the conditions so every score gets the right label.",
+  "codigo_inicial": "score = int(input(\"Score: \"))\nif score >= 50:\n    print(\"Pass\")\nelif score >= 70:\n    print(\"Good\")\nelif score >= 90:\n    print(\"Excellent\")\nelse:\n    print(\"Not yet\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "95",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "95 is Excellent",
+      "entradas": [
+        "95"
+      ],
+      "esperado": "Excellent"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "90 is Excellent",
+      "entradas": [
+        "90"
+      ],
+      "esperado": "Excellent"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "89 is Good",
+      "entradas": [
+        "89"
+      ],
+      "esperado": "Good"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "70 is Good",
+      "entradas": [
+        "70"
+      ],
+      "esperado": "Good"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "69 is Pass",
+      "entradas": [
+        "69"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "50 is Pass",
+      "entradas": [
+        "50"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "49 is Not yet",
+      "entradas": [
+        "49"
+      ],
+      "esperado": "Not yet"
+    }
+  ]
+}

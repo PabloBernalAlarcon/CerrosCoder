@@ -1,0 +1,50 @@
+{
+  "id": "w15-in-range",
+  "titulo": "In range?",
+  "enunciado": "**Level ★**\n\nAsk for a whole number.\n\n- From 1 to 10 (both included): print `In range`.\n- Below 1: print `Too small`.\n- Above 10: print `Too big`.",
+  "codigo_inicial": "n = int(input(\"Number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "7",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "7",
+      "entradas": [
+        "7"
+      ],
+      "esperado": "In range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "In range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "In range"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "Too small"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "11",
+      "entradas": [
+        "11"
+      ],
+      "esperado": "Too big"
+    }
+  ]
+}

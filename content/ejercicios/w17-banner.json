@@ -1,0 +1,20 @@
+{
+  "id": "w17-banner",
+  "titulo": "Banner",
+  "enunciado": "**Level ★**\n\nWrite the function `banner(msg)`: a line of 20 stars, the message, and another line of 20 stars.\n\nThe calls are already at the bottom. The program must print:\n\n```text\n********************\nWelcome\n********************\n********************\nGame over\n********************\n```",
+  "codigo_inicial": "def banner(msg):\n    pass  # Replace this line\n\n\nbanner(\"Welcome\")\nbanner(\"Game over\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Two banners",
+      "entradas": [],
+      "esperado": "********************\nWelcome\n********************\n********************\nGame over\n********************"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 20 stars per line",
+      "entradas": [],
+      "esperado": "********************\nWelcome\n********************\n********************\nGame over\n********************"
+    }
+  ]
+}

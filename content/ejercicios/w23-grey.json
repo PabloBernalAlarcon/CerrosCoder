@@ -1,0 +1,28 @@
+{
+  "id": "w23-grey",
+  "titulo": "Is it grey?",
+  "enunciado": "**Level ★**\n\nA colour is a tuple `(red, green, blue)`. It is **grey** (or black or white) when all three numbers are equal.\n\nWrite `is_grey(color)`. It returns `True` or `False`.\n\n```python\nis_grey((128, 128, 128))   # True\nis_grey((255, 0, 0))       # False\n```",
+  "codigo_inicial": "def is_grey(color):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "(128, 128, 128)",
+      "expresion": "is_grey((128, 128, 128))",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "(255, 0, 0)",
+      "expresion": "is_grey((255, 0, 0))",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "Black (0, 0, 0)",
+      "expresion": "is_grey((0, 0, 0))",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "(10, 10, 11)",
+      "expresion": "is_grey((10, 10, 11))",
+      "esperado": "False"
+    }
+  ]
+}

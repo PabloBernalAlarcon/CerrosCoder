@@ -1,0 +1,41 @@
+{
+  "id": "w11-count-guesses",
+  "titulo": "Count the guesses",
+  "enunciado": "**Level ★★**\n\nSame game, secret number `42`. Now also count the guesses. At the end, print:\n\n```text\nCorrect! You got it in 3 guesses.\n```\n\nExample: the guesses are `50`, `25`, `42`. The program prints:\n\n```text\nToo high\nToo low\nCorrect! You got it in 3 guesses.\n```",
+  "codigo_inicial": "secret = 42\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "50\n25\n42",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three guesses",
+      "entradas": [
+        "50",
+        "25",
+        "42"
+      ],
+      "esperado": "Too high\nToo low\nCorrect! You got it in 3 guesses."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Two guesses",
+      "entradas": [
+        "99",
+        "42"
+      ],
+      "esperado": "Too high\nCorrect! You got it in 2 guesses."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Five guesses",
+      "entradas": [
+        "50",
+        "25",
+        "37",
+        "43",
+        "42"
+      ],
+      "esperado": "Too high\nToo low\nToo low\nToo high\nCorrect! You got it in 5 guesses."
+    }
+  ]
+}

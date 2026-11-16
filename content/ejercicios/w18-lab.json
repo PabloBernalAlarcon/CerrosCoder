@@ -1,0 +1,7 @@
+{
+  "id": "w18-lab",
+  "titulo": "Week 18 lab: print or return?",
+  "enunciado": "Use this workspace for the investigation in the lesson **Printing or returning?**\n\nPredict each line before you add it:\n\n1. `print(double_return(5) + 1)`\n2. `print(double_print(5) + 1)`\n3. `total = double_return(3) + double_return(4)`, then `print(total)`",
+  "codigo_inicial": "def double_print(x):\n    print(x * 2)\n\ndef double_return(x):\n    return x * 2\n\nresult = double_print(5)\nprint(result)\n",
+  "pruebas": []
+}

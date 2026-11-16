@@ -1,0 +1,37 @@
+{
+  "id": "w09-savings",
+  "titulo": "Saving up",
+  "enunciado": "**Level ★★★ · Challenge**\n\nYou want to buy something. Ask for its **price**, then how much you can **save each week**. Both are whole numbers.\n\nUse a loop to find how many weeks you need to save enough. Print:\n\n```text\nYou need 5 weeks.\n```\n\nExample: the price is `100000` and you save `20000` each week. After 5 weeks you have 100000, so you need 5 weeks.\n\nWhat if you save `30000` each week? After 3 weeks you have 90000: not enough. After 4 weeks you have 120000. So you need 4 weeks.",
+  "codigo_inicial": "price = int(input(\"Price: \"))\nweekly = int(input(\"Saved each week: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "100000\n20000",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "100000 saving 20000",
+      "entradas": [
+        "100000",
+        "20000"
+      ],
+      "esperado": "You need 5 weeks."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100000 saving 30000",
+      "entradas": [
+        "100000",
+        "30000"
+      ],
+      "esperado": "You need 4 weeks."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "60000 saving 50000",
+      "entradas": [
+        "60000",
+        "50000"
+      ],
+      "esperado": "You need 2 weeks."
+    }
+  ]
+}

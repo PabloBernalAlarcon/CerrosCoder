@@ -1,0 +1,29 @@
+{
+  "id": "w23-reverse",
+  "titulo": "Reverse a list",
+  "enunciado": "**Level ★★**\n\nWrite `backwards(items)`. It returns a new list with the items in the opposite order. Use a loop: don't use `reverse()`, `reversed()` or `sort`.\n\n```python\nbackwards([1, 2, 3])   # [3, 2, 1]\n```\n\nHint: a `range()` can go backwards.",
+  "codigo_inicial": "def backwards(items):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "reversed",
+    "reverse",
+    "sort",
+    "sorted"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "[1, 2, 3]",
+      "expresion": "backwards([1, 2, 3])",
+      "esperado": "[3, 2, 1]"
+    },
+    {
+      "descripcion": "[\"a\", \"b\"]",
+      "expresion": "backwards([\"a\", \"b\"])",
+      "esperado": "['b', 'a']"
+    },
+    {
+      "descripcion": "An empty list",
+      "expresion": "backwards([])",
+      "esperado": "[]"
+    }
+  ]
+}

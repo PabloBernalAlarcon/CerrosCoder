@@ -1,0 +1,33 @@
+{
+  "id": "w23-best-student",
+  "titulo": "The best student",
+  "enunciado": "**Level ★★★ · Challenge**\n\nWrite `best_student(results)`. `results` is a list of tuples: `(name, score)`. Return the **name** of the student with the highest score. If two students tie, return the first one.\n\n```python\nbest_student([(\"Ana\", 80), (\"Luis\", 95), (\"Sara\", 90)])   # \"Luis\"\n```",
+  "codigo_inicial": "def best_student(results):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "max",
+    "sorted",
+    "sort"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "Luis has 95",
+      "expresion": "best_student([(\"Ana\", 80), (\"Luis\", 95), (\"Sara\", 90)])",
+      "esperado": "'Luis'"
+    },
+    {
+      "descripcion": "The best is first",
+      "expresion": "best_student([(\"Ana\", 99), (\"Luis\", 95)])",
+      "esperado": "'Ana'"
+    },
+    {
+      "descripcion": "A tie: the first one wins",
+      "expresion": "best_student([(\"Ana\", 70), (\"Luis\", 90), (\"Sara\", 90)])",
+      "esperado": "'Luis'"
+    },
+    {
+      "descripcion": "Only one student",
+      "expresion": "best_student([(\"Tomás\", 50)])",
+      "esperado": "'Tomás'"
+    }
+  ]
+}

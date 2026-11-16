@@ -1,0 +1,38 @@
+{
+  "id": "w19-bus-fare",
+  "titulo": "Review: bus fare",
+  "enunciado": "**Level ★★ · Write a function**\n\nWrite `bus_fare(age, is_student)`:\n\n- Children under 6 travel free: return `0`.\n- Students (any age from 6) pay `1500`.\n- Everyone else pays `2950`.\n\n```python\nbus_fare(4, False)    # 0\nbus_fare(15, True)    # 1500\nbus_fare(30, False)   # 2950\n```",
+  "codigo_inicial": "def bus_fare(age, is_student):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "Age 4",
+      "expresion": "bus_fare(4, False)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "Age 5, student",
+      "expresion": "bus_fare(5, True)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "Age 6, student",
+      "expresion": "bus_fare(6, True)",
+      "esperado": "1500"
+    },
+    {
+      "descripcion": "Age 15, student",
+      "expresion": "bus_fare(15, True)",
+      "esperado": "1500"
+    },
+    {
+      "descripcion": "Age 30",
+      "expresion": "bus_fare(30, False)",
+      "esperado": "2950"
+    },
+    {
+      "descripcion": "Age 6, not a student",
+      "expresion": "bus_fare(6, False)",
+      "esperado": "2950"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "w17-greet",
+  "titulo": "Greet",
+  "enunciado": "**Level ★**\n\nWrite the function `greet(name)`. It prints `Hello, ` followed by the name and `!`.\n\nThe program already calls it. With the input `Ana`, it must print:\n\n```text\nHello, Ana!\nHello, Profe!\n```\n\nHint: `print(\"Hello, \" + name + \"!\")` joins texts with no extra spaces.",
+  "codigo_inicial": "def greet(name):\n    pass  # Replace this line\n\n\nstudent = input(\"Your name: \")\ngreet(student)\ngreet(\"Profe\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Ana",
+      "entradas": [
+        "Ana"
+      ],
+      "esperado": "Hello, Ana!\nHello, Profe!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Juan David",
+      "entradas": [
+        "Juan David"
+      ],
+      "esperado": "Hello, Juan David!\nHello, Profe!"
+    }
+  ]
+}

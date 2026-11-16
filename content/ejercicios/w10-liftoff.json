@@ -1,0 +1,34 @@
+{
+  "id": "w10-liftoff",
+  "titulo": "Countdown with range",
+  "enunciado": "**Level ★★**\n\nAsk where the countdown starts. Count down to 1 with a `for` loop, then print `Liftoff!`.\n\nExample: the user types `5`. The program prints:\n\n```text\n5\n4\n3\n2\n1\nLiftoff!\n```\n\nHint: a range can go backwards with a step of `-1`.",
+  "codigo_inicial": "start = int(input(\"Start at: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "5",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "From 5",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "5\n4\n3\n2\n1\nLiftoff!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "From 3",
+      "entradas": [
+        "3"
+      ],
+      "esperado": "3\n2\n1\nLiftoff!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "From 1",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "1\nLiftoff!"
+    }
+  ]
+}

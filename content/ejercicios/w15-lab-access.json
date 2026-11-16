@@ -1,0 +1,80 @@
+{
+  "id": "w15-lab-access",
+  "titulo": "Can I use the lab?",
+  "enunciado": "**Level ★★★**\n\nAsk three questions:\n\n1. `Student ID? (yes/no)`\n2. `Hour (0-23):`, a whole number. For example, 15 means 3 pm.\n3. `Teacher present? (yes/no)`\n\nPrint **one** message. Check in this order:\n\n| Problem | Print |\n|---|---|\n| no student ID | `You need your student ID.` |\n| 4 pm (hour 16) or later | `The lab closes at 4 pm.` |\n| no teacher | `A teacher must be present.` |\n| no problems | `Welcome to the lab!` |\n\nStart with a comment: `# I chose nesting / and because ___`",
+  "codigo_inicial": "# I chose ___ because ___\n\nhas_id = input(\"Student ID? (yes/no) \")\nhour = int(input(\"Hour (0-23): \"))\nteacher = input(\"Teacher present? (yes/no) \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "yes\n10\nyes",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "ID yes, hour 10, teacher yes",
+      "entradas": [
+        "yes",
+        "10",
+        "yes"
+      ],
+      "esperado": "Welcome to the lab!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID no, hour 10, teacher yes",
+      "entradas": [
+        "no",
+        "10",
+        "yes"
+      ],
+      "esperado": "You need your student ID."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID yes, hour 16, teacher yes",
+      "entradas": [
+        "yes",
+        "16",
+        "yes"
+      ],
+      "esperado": "The lab closes at 4 pm."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID yes, hour 15, teacher yes",
+      "entradas": [
+        "yes",
+        "15",
+        "yes"
+      ],
+      "esperado": "Welcome to the lab!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID yes, hour 10, teacher no",
+      "entradas": [
+        "yes",
+        "10",
+        "no"
+      ],
+      "esperado": "A teacher must be present."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID no, hour 18, teacher no",
+      "entradas": [
+        "no",
+        "18",
+        "no"
+      ],
+      "esperado": "You need your student ID."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ID yes, hour 17, teacher no",
+      "entradas": [
+        "yes",
+        "17",
+        "no"
+      ],
+      "esperado": "The lab closes at 4 pm."
+    }
+  ]
+}

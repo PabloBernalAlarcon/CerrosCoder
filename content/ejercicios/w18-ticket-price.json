@@ -1,0 +1,38 @@
+{
+  "id": "w18-ticket-price",
+  "titulo": "Ticket price",
+  "enunciado": "**Level ★★**\n\nA cinema has these prices:\n\n| Age | Price |\n|---|---|\n| under 12 | 8000 |\n| 12 to 64 | 15000 |\n| 65 or more | 9000 |\n\nWrite `ticket_price(age)`. It **returns** the price as a whole number.\n\n```python\nticket_price(30)   # 15000\n```",
+  "codigo_inicial": "def ticket_price(age):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "Age 8",
+      "expresion": "ticket_price(8)",
+      "esperado": "8000"
+    },
+    {
+      "descripcion": "Age 11",
+      "expresion": "ticket_price(11)",
+      "esperado": "8000"
+    },
+    {
+      "descripcion": "Age 12",
+      "expresion": "ticket_price(12)",
+      "esperado": "15000"
+    },
+    {
+      "descripcion": "Age 64",
+      "expresion": "ticket_price(64)",
+      "esperado": "15000"
+    },
+    {
+      "descripcion": "Age 65",
+      "expresion": "ticket_price(65)",
+      "esperado": "9000"
+    },
+    {
+      "descripcion": "A family: 2 adults and a child",
+      "expresion": "ticket_price(40) + ticket_price(38) + ticket_price(7)",
+      "esperado": "38000"
+    }
+  ]
+}

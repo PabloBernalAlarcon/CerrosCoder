@@ -1,0 +1,33 @@
+{
+  "id": "w21-is-even",
+  "titulo": "Even?",
+  "enunciado": "**Level ★**\n\nWrite `is_even(n)`. It returns `True` for even numbers and `False` for odd numbers.\n\n```python\nis_even(4)    # True\nis_even(7)    # False\n```",
+  "codigo_inicial": "def is_even(n):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "4",
+      "expresion": "is_even(4)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "7",
+      "expresion": "is_even(7)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "0",
+      "expresion": "is_even(0)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "-4 (negative)",
+      "expresion": "is_even(-4)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "-3 (negative)",
+      "expresion": "is_even(-3)",
+      "esperado": "False"
+    }
+  ]
+}

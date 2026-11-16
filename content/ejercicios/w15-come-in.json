@@ -1,0 +1,50 @@
+{
+  "id": "w15-come-in",
+  "titulo": "One condition",
+  "enunciado": "**Level ★★**\n\nThis program works, but it is hard to read:\n\n```python\nif age >= 13:\n    if ticket == \"yes\":\n        if banned == \"no\":\n            print(\"Come in!\")\n        else:\n            print(\"Sorry, you can't come in.\")\n    else:\n        print(\"Sorry, you can't come in.\")\nelse:\n    print(\"Sorry, you can't come in.\")\n```\n\nWrite a version that does **exactly the same thing**, using **one** `if` with one condition, and one `else`.",
+  "codigo_inicial": "age = int(input(\"Age: \"))\nticket = input(\"Ticket? (yes/no) \")\nbanned = input(\"Banned? (yes/no) \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "15\nyes\nno",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "15, ticket, not banned",
+      "entradas": [
+        "15",
+        "yes",
+        "no"
+      ],
+      "esperado": "Come in!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "12, ticket, not banned",
+      "entradas": [
+        "12",
+        "yes",
+        "no"
+      ],
+      "esperado": "Sorry, you can't come in."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "15, no ticket",
+      "entradas": [
+        "15",
+        "no",
+        "no"
+      ],
+      "esperado": "Sorry, you can't come in."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "15, ticket, banned",
+      "entradas": [
+        "15",
+        "yes",
+        "yes"
+      ],
+      "esperado": "Sorry, you can't come in."
+    }
+  ]
+}

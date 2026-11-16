@@ -1,0 +1,61 @@
+{
+  "id": "w15-movie",
+  "titulo": "Movie rating",
+  "enunciado": "**Level ★★**\n\nA movie is rated 15+. You can watch it if you are **15 or older**, or if you are **12 to 14 and with an adult**. Under 12 can never watch it.\n\nAsk for the age. Then **only if needed**, ask `With an adult? (yes/no)`. Print `Enjoy the movie!` or `Sorry, not this movie.`\n\nHint: only ask the second question when the age is 12, 13 or 14. Nesting helps here!",
+  "codigo_inicial": "age = int(input(\"Age: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "13\nyes",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 16 (no second question)",
+      "entradas": [
+        "16"
+      ],
+      "esperado": "Enjoy the movie!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 15 (no second question)",
+      "entradas": [
+        "15"
+      ],
+      "esperado": "Enjoy the movie!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 13 with an adult",
+      "entradas": [
+        "13",
+        "yes"
+      ],
+      "esperado": "Enjoy the movie!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 13 alone",
+      "entradas": [
+        "13",
+        "no"
+      ],
+      "esperado": "Sorry, not this movie."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 12 with an adult",
+      "entradas": [
+        "12",
+        "yes"
+      ],
+      "esperado": "Enjoy the movie!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 10 (no second question)",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "Sorry, not this movie."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "w18-double",
+  "titulo": "Double it",
+  "enunciado": "**Level ★**\n\nWrite `double(x)`. It **returns** two times `x`.\n\n```python\ndouble(4)     # 8\ndouble(2.5)   # 5.0\n```\n\nThe tests use what your function **returns**, not what it prints.",
+  "codigo_inicial": "def double(x):\n    pass  # Replace this line\n\n\nprint(double(4))\n",
+  "pruebas": [
+    {
+      "descripcion": "double(4)",
+      "expresion": "double(4)",
+      "esperado": "8"
+    },
+    {
+      "descripcion": "double(0)",
+      "expresion": "double(0)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "A negative number",
+      "expresion": "double(-3)",
+      "esperado": "-6"
+    },
+    {
+      "descripcion": "A decimal number",
+      "expresion": "double(2.5)",
+      "esperado": "5.0"
+    }
+  ]
+}

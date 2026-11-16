@@ -1,0 +1,23 @@
+{
+  "id": "w23-passing-only",
+  "titulo": "Only the passing grades",
+  "enunciado": "**Level ★★**\n\nWrite `passing_only(grades)`. It returns a **new** list with only the grades of 4.5 or more, in the same order.\n\n```python\npassing_only([5.0, 3.2, 4.5, 6.8])   # [5.0, 4.5, 6.8]\n```",
+  "codigo_inicial": "def passing_only(grades):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "[5.0, 3.2, 4.5, 6.8]",
+      "expresion": "passing_only([5.0, 3.2, 4.5, 6.8])",
+      "esperado": "[5.0, 4.5, 6.8]"
+    },
+    {
+      "descripcion": "Nobody passed",
+      "expresion": "passing_only([1.0, 2.0])",
+      "esperado": "[]"
+    },
+    {
+      "descripcion": "An empty list",
+      "expresion": "passing_only([])",
+      "esperado": "[]"
+    }
+  ]
+}

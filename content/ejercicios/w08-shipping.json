@@ -1,0 +1,58 @@
+{
+  "id": "w08-shipping",
+  "titulo": "Shipping cost",
+  "enunciado": "**Level ★★★ · Challenge**\n\nA courier charges by weight (in kg, can have decimals):\n\n| Weight | Print |\n|---|---|\n| 1 kg or less | `Cost: 5000` |\n| more than 1, up to 5 kg | `Cost: 9000` |\n| more than 5, up to 30 kg | `Cost: 15000` |\n| more than 30 kg | `Too heavy to ship` |\n\nBefore you code, write the boundary weights you will test as comments.",
+  "codigo_inicial": "weight = float(input(\"Weight in kg: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "1",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "0.5 kg",
+      "entradas": [
+        "0.5"
+      ],
+      "esperado": "Cost: 5000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 1 kg",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "Cost: 5000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1.2 kg",
+      "entradas": [
+        "1.2"
+      ],
+      "esperado": "Cost: 9000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 5 kg",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "Cost: 9000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exactly 30 kg",
+      "entradas": [
+        "30"
+      ],
+      "esperado": "Cost: 15000"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "30.5 kg",
+      "entradas": [
+        "30.5"
+      ],
+      "esperado": "Too heavy to ship"
+    }
+  ]
+}

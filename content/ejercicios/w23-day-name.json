@@ -1,0 +1,23 @@
+{
+  "id": "w23-day-name",
+  "titulo": "Day name",
+  "enunciado": "**Level ★**\n\nWrite `day_name(n)`. It returns the name of day number `n`, where 1 is Monday and 7 is Sunday. Use a **tuple** of the seven names.\n\n```python\nday_name(1)   # \"Monday\"\nday_name(7)   # \"Sunday\"\n```\n\nCareful: tuple indexes start at 0, but day numbers start at 1.",
+  "codigo_inicial": "DAYS = (\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\")\n\n\ndef day_name(n):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "Day 1",
+      "expresion": "day_name(1)",
+      "esperado": "'Monday'"
+    },
+    {
+      "descripcion": "Day 7",
+      "expresion": "day_name(7)",
+      "esperado": "'Sunday'"
+    },
+    {
+      "descripcion": "Day 3",
+      "expresion": "day_name(3)",
+      "esperado": "'Wednesday'"
+    }
+  ]
+}

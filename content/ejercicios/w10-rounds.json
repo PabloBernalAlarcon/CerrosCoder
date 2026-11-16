@@ -1,0 +1,20 @@
+{
+  "id": "w10-rounds",
+  "titulo": "Five rounds",
+  "enunciado": "**Level ★**\n\nUse a `for` loop and `range()` to print:\n\n```text\nRound 1\nRound 2\nRound 3\nRound 4\nRound 5\n```",
+  "codigo_inicial": "for i in range():\n    print(\"Round\", i)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Prints 5 rounds",
+      "entradas": [],
+      "esperado": "Round 1\nRound 2\nRound 3\nRound 4\nRound 5"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Starts at Round 1, not Round 0",
+      "entradas": [],
+      "esperado": "Round 1\nRound 2\nRound 3\nRound 4\nRound 5"
+    }
+  ]
+}

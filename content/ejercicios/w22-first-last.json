@@ -1,0 +1,23 @@
+{
+  "id": "w22-first-last",
+  "titulo": "First and last",
+  "enunciado": "**Level ★**\n\nWrite `first_and_last(items)`. It returns a new list with only the first and the last item.\n\n```python\nfirst_and_last([70, 85, 92, 60])   # [70, 60]\nfirst_and_last([\"a\", \"b\"])         # [\"a\", \"b\"]\n```",
+  "codigo_inicial": "def first_and_last(items):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "[70, 85, 92, 60]",
+      "expresion": "first_and_last([70, 85, 92, 60])",
+      "esperado": "[70, 60]"
+    },
+    {
+      "descripcion": "[\"a\", \"b\"]",
+      "expresion": "first_and_last([\"a\", \"b\"])",
+      "esperado": "['a', 'b']"
+    },
+    {
+      "descripcion": "One item: [5]",
+      "expresion": "first_and_last([5])",
+      "esperado": "[5, 5]"
+    }
+  ]
+}

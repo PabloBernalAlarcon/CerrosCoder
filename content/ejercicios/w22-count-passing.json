@@ -1,0 +1,23 @@
+{
+  "id": "w22-count-passing",
+  "titulo": "How many passed?",
+  "enunciado": "**Level ★★**\n\nWrite `count_passing(grades)`. Grades go from 1.0 to 7.0, and 4.5 or more passes. Return **how many** grades in the list pass.\n\n```python\ncount_passing([5.0, 3.2, 4.5, 6.8])   # 3\n```",
+  "codigo_inicial": "def count_passing(grades):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "[5.0, 3.2, 4.5, 6.8]",
+      "expresion": "count_passing([5.0, 3.2, 4.5, 6.8])",
+      "esperado": "3"
+    },
+    {
+      "descripcion": "Nobody passed",
+      "expresion": "count_passing([1.0, 4.4])",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "An empty list",
+      "expresion": "count_passing([])",
+      "esperado": "0"
+    }
+  ]
+}

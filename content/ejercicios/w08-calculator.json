@@ -1,0 +1,70 @@
+{
+  "id": "w08-calculator",
+  "titulo": "Mini calculator",
+  "enunciado": "**Level ★★★ · Challenge**\n\nAsk for a whole number, then an operator (`+`, `-`, `*` or `/`), then another whole number. Print the result.\n\nExample: the user types `7`, `*` and `6`. The program prints:\n\n```text\n42\n```\n\nTwo special cases:\n\n- Dividing by zero prints `Can't divide by zero`.\n- Any other operator prints `Unknown operator`.\n\nHint: inside the `/` branch, you can put another `if`.",
+  "codigo_inicial": "a = int(input(\"First number: \"))\nop = input(\"Operator (+ - * /): \")\nb = int(input(\"Second number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "7\n*\n6",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "7 + 5",
+      "entradas": [
+        "7",
+        "+",
+        "5"
+      ],
+      "esperado": "12"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "7 - 10",
+      "entradas": [
+        "7",
+        "-",
+        "10"
+      ],
+      "esperado": "-3"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "7 * 6",
+      "entradas": [
+        "7",
+        "*",
+        "6"
+      ],
+      "esperado": "42"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10 / 4",
+      "entradas": [
+        "10",
+        "/",
+        "4"
+      ],
+      "esperado": "2.5"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Divide by zero",
+      "entradas": [
+        "5",
+        "/",
+        "0"
+      ],
+      "esperado": "Can't divide by zero"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Unknown operator",
+      "entradas": [
+        "5",
+        "%",
+        "2"
+      ],
+      "esperado": "Unknown operator"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "w21-minutes",
+  "titulo": "Minutes converter",
+  "enunciado": "**Level ★★**\n\nAsk for a number of minutes. Print it as hours and minutes.\n\nExample: the user types `135`. The program prints:\n\n```text\n135 minutes is 2 h 15 min\n```\n\nUse `//` and `%`.",
+  "codigo_inicial": "total = int(input(\"Minutes: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "135",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "135 minutes",
+      "entradas": [
+        "135"
+      ],
+      "esperado": "135 minutes is 2 h 15 min"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "60 minutes",
+      "entradas": [
+        "60"
+      ],
+      "esperado": "60 minutes is 1 h 0 min"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "45 minutes",
+      "entradas": [
+        "45"
+      ],
+      "esperado": "45 minutes is 0 h 45 min"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1000 minutes",
+      "entradas": [
+        "1000"
+      ],
+      "esperado": "1000 minutes is 16 h 40 min"
+    }
+  ]
+}

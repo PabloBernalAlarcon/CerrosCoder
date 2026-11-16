@@ -1,0 +1,9 @@
+{
+  "id": "w07-lab",
+  "titulo": "Week 7 lab: the trivia program",
+  "enunciado": "Use this workspace for the investigation cards in the lesson **When does a line of code run?**\n\n1. Which lines run only sometimes? Add `print(\"here\")` markers to prove it.\n2. Move `score += 1` to the left. Predict, then test with `AU` and `gold`.\n3. Add `print(answer == \"AU\")` just before the `if`.\n4. Change `==` to `!=`. What else must change?\n\nThen try the problem: add the question *\"What is 10 divided by 4?\"* and accept both `2.5` and `2,5`.\n\nType the user's answers in the **Inputs** box, one per line.",
+  "codigo_inicial": "score = 0\nanswer = input(\"What is the chemical symbol for gold? \")\nif answer == \"AU\":\n    print(\"Correct!\")\n    score += 1\nelse:\n    print(\"Wrong. The answer is AU.\")\nprint(\"Your score:\", score)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "AU",
+  "pruebas": []
+}

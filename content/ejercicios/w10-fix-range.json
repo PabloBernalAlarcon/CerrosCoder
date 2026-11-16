@@ -1,0 +1,20 @@
+{
+  "id": "w10-fix-range",
+  "titulo": "Fix it: one number short",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis program should add up 1 + 2 + … + 10 and print `Total: 55`. It prints `Total: 45`.\n\n**Predict** which number is missing. Then fix the bug.",
+  "codigo_inicial": "total = 0\nfor i in range(1, 10):\n    total = total + i\nprint(\"Total:\", total)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Adds 1 to 10",
+      "entradas": [],
+      "esperado": "Total: 55"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Prints only the total",
+      "entradas": [],
+      "esperado": "Total: 55"
+    }
+  ]
+}

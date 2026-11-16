@@ -1,0 +1,34 @@
+{
+  "id": "w09-evens",
+  "titulo": "Even numbers",
+  "enunciado": "**Level ★★**\n\nAsk for a whole number. Print all the **even** numbers from 2 up to that number.\n\nExample: the user types `10`. The program prints:\n\n```text\n2\n4\n6\n8\n10\n```\n\nHint: what if `count` goes up by 2 each time?",
+  "codigo_inicial": "limit = int(input(\"Up to: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "10",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "2\n4\n6\n8\n10"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 7",
+      "entradas": [
+        "7"
+      ],
+      "esperado": "2\n4\n6"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Up to 2",
+      "entradas": [
+        "2"
+      ],
+      "esperado": "2"
+    }
+  ]
+}

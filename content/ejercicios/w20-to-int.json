@@ -1,0 +1,33 @@
+{
+  "id": "w20-to-int",
+  "titulo": "to_int with try",
+  "enunciado": "**Level ★★**\n\nWrite `to_int(text)`. Use `try`/`except`:\n\n- If `int(text)` works, return the number.\n- If it fails, return `None`.\n\n```python\nto_int(\"42\")    # 42\nto_int(\"-3\")    # -3\nto_int(\"abc\")   # None\n```",
+  "codigo_inicial": "def to_int(text):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "\"42\"",
+      "expresion": "to_int(\"42\")",
+      "esperado": "42"
+    },
+    {
+      "descripcion": "\"-3\"",
+      "expresion": "to_int(\"-3\")",
+      "esperado": "-3"
+    },
+    {
+      "descripcion": "\"abc\"",
+      "expresion": "to_int(\"abc\")",
+      "esperado": "None"
+    },
+    {
+      "descripcion": "Empty text",
+      "expresion": "to_int(\"\")",
+      "esperado": "None"
+    },
+    {
+      "descripcion": "\"7.5\"",
+      "expresion": "to_int(\"7.5\")",
+      "esperado": "None"
+    }
+  ]
+}

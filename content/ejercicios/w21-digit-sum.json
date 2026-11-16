@@ -1,0 +1,31 @@
+{
+  "id": "w21-digit-sum",
+  "titulo": "Add the digits",
+  "enunciado": "**Level ★★★ · Challenge**\n\nWrite `digit_sum(n)`. It returns the sum of the digits of a positive whole number.\n\n```python\ndigit_sum(2026)   # 10, because 2 + 0 + 2 + 6 = 10\n```\n\nDo it with numbers only (no text): `n % 10` gives the last digit, and `n // 10` removes it.",
+  "codigo_inicial": "def digit_sum(n):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "str"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "2026",
+      "expresion": "digit_sum(2026)",
+      "esperado": "10"
+    },
+    {
+      "descripcion": "9",
+      "expresion": "digit_sum(9)",
+      "esperado": "9"
+    },
+    {
+      "descripcion": "1000",
+      "expresion": "digit_sum(1000)",
+      "esperado": "1"
+    },
+    {
+      "descripcion": "98765",
+      "expresion": "digit_sum(98765)",
+      "esperado": "35"
+    }
+  ]
+}

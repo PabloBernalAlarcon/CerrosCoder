@@ -1,0 +1,58 @@
+{
+  "id": "w12-very-close",
+  "titulo": "Very close!",
+  "enunciado": "**Level ★★ · For fast finishers**\n\nMake the hints more helpful. The secret number is `42`. Ask for **one** guess:\n\n| Guess | Print |\n|---|---|\n| exactly right | `Correct!` |\n| 5 or less away (above or below) | `Very close!` |\n| more than 5 above | `Too high` |\n| more than 5 below | `Too low` |\n\nSo `45` prints `Very close!`, and `37` prints `Very close!` too. But `36` prints `Too low`.\n\nHint: first calculate the distance between the guess and the secret.",
+  "codigo_inicial": "secret = 42\nguess = int(input(\"Your guess: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "45",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "42 is correct",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "45 is very close",
+      "entradas": [
+        "45"
+      ],
+      "esperado": "Very close!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "37 is very close",
+      "entradas": [
+        "37"
+      ],
+      "esperado": "Very close!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "47 is very close",
+      "entradas": [
+        "47"
+      ],
+      "esperado": "Very close!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "48 is too high",
+      "entradas": [
+        "48"
+      ],
+      "esperado": "Too high"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "36 is too low",
+      "entradas": [
+        "36"
+      ],
+      "esperado": "Too low"
+    }
+  ]
+}

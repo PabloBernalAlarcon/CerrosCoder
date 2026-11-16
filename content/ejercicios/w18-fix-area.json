@@ -1,0 +1,23 @@
+{
+  "id": "w18-fix-area",
+  "titulo": "Fix it: print instead of return",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis function shows the area of a rectangle, but the program can't **use** the result: `total` becomes `None`, and the last line crashes.\n\nChange the function so it **returns** the area.\n\n```python\narea(3, 4)    # 12\n```",
+  "codigo_inicial": "def area(width, height):\n    print(width * height)\n\n\ntotal = area(3, 4) + area(2, 5)\nprint(\"Total area:\", total)\n",
+  "pruebas": [
+    {
+      "descripcion": "area(3, 4)",
+      "expresion": "area(3, 4)",
+      "esperado": "12"
+    },
+    {
+      "descripcion": "area(2, 5)",
+      "expresion": "area(2, 5)",
+      "esperado": "10"
+    },
+    {
+      "descripcion": "area(1, 1)",
+      "expresion": "area(1, 1)",
+      "esperado": "1"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "w11-two-players",
+  "titulo": "Two players",
+  "enunciado": "**Level ★★**\n\nPlayer 1 types the secret number (the first input). Then player 2 guesses until they get it, with `Too high` / `Too low` hints. At the end, print `Player 2 wins!`.\n\nExample: the inputs are `7`, `5`, `9`, `7`. The program prints:\n\n```text\nToo low\nToo high\nPlayer 2 wins!\n```",
+  "codigo_inicial": "secret = int(input(\"Player 1, type the secret number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "7\n5\n9\n7",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Secret 7",
+      "entradas": [
+        "7",
+        "5",
+        "9",
+        "7"
+      ],
+      "esperado": "Too low\nToo high\nPlayer 2 wins!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Secret 64, first try",
+      "entradas": [
+        "64",
+        "64"
+      ],
+      "esperado": "Player 2 wins!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Secret 1",
+      "entradas": [
+        "1",
+        "50",
+        "2",
+        "1"
+      ],
+      "esperado": "Too high\nToo high\nPlayer 2 wins!"
+    }
+  ]
+}

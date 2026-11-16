@@ -1,0 +1,38 @@
+{
+  "id": "w23-cart",
+  "titulo": "Shopping cart",
+  "enunciado": "**Level ★★**\n\nAsk for items until the user types `done`. Then print every item with a number, and the total count:\n\nExample inputs: `milk`, `bread`, `eggs`, `done`. The program prints:\n\n```text\n1. milk\n2. bread\n3. eggs\nItems: 3\n```\n\nIf the cart is empty, print only `Items: 0`.",
+  "codigo_inicial": "cart = []\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "milk\nbread\neggs\ndone",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "milk, bread, eggs",
+      "entradas": [
+        "milk",
+        "bread",
+        "eggs",
+        "done"
+      ],
+      "esperado": "1. milk\n2. bread\n3. eggs\nItems: 3"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Empty cart",
+      "entradas": [
+        "done"
+      ],
+      "esperado": "Items: 0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "One item",
+      "entradas": [
+        "rice",
+        "done"
+      ],
+      "esperado": "1. rice\nItems: 1"
+    }
+  ]
+}

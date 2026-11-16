@@ -1,0 +1,46 @@
+{
+  "id": "w15-admin",
+  "titulo": "Admin panel",
+  "enunciado": "**Level ★★**\n\nAsk two questions. The answers are `yes` or `no`:\n\n1. `Logged in? (yes/no)`\n2. `Admin? (yes/no)`\n\nPrint exactly one message:\n\n| Logged in | Admin | Print |\n|---|---|---|\n| yes | yes | `Admin panel` |\n| yes | no | `Not an admin` |\n| no | (anything) | `Please log in` |",
+  "codigo_inicial": "logged_in = input(\"Logged in? (yes/no) \")\nadmin = input(\"Admin? (yes/no) \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "yes\nno",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "yes, yes",
+      "entradas": [
+        "yes",
+        "yes"
+      ],
+      "esperado": "Admin panel"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "yes, no",
+      "entradas": [
+        "yes",
+        "no"
+      ],
+      "esperado": "Not an admin"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "no, yes",
+      "entradas": [
+        "no",
+        "yes"
+      ],
+      "esperado": "Please log in"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "no, no",
+      "entradas": [
+        "no",
+        "no"
+      ],
+      "esperado": "Please log in"
+    }
+  ]
+}

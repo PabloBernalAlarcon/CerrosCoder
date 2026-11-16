@@ -1,0 +1,50 @@
+{
+  "id": "w14-teen",
+  "titulo": "Teenager?",
+  "enunciado": "**Level ★**\n\nAsk for an age. If it is from 13 to 19 (both included), print `Teenager`. Otherwise print `Not a teenager`.\n\nUse **one** `if` with `and`.",
+  "codigo_inicial": "age = int(input(\"Age: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "15",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "15",
+      "entradas": [
+        "15"
+      ],
+      "esperado": "Teenager"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "13",
+      "entradas": [
+        "13"
+      ],
+      "esperado": "Teenager"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "19",
+      "entradas": [
+        "19"
+      ],
+      "esperado": "Teenager"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "12",
+      "entradas": [
+        "12"
+      ],
+      "esperado": "Not a teenager"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "20",
+      "entradas": [
+        "20"
+      ],
+      "esperado": "Not a teenager"
+    }
+  ]
+}

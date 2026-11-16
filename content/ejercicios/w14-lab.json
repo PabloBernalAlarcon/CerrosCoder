@@ -1,0 +1,7 @@
+{
+  "id": "w14-lab",
+  "titulo": "Week 14 lab: truth tables",
+  "enunciado": "Use this workspace for the investigation in the lesson **and, or, not**.\n\n1. Change the values of `a` and `b` to test all four combinations. Fill your truth tables.\n2. Then test the \"banana\" bug: replace the code with the predict card from the lesson, and type `banana` in the **Inputs** box.",
+  "codigo_inicial": "a = True\nb = False\nprint(\"a and b:\", a and b)\nprint(\"a or b:\", a or b)\nprint(\"not a:\", not a)\n",
+  "pruebas": []
+}

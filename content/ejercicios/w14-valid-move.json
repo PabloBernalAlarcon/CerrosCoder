@@ -1,0 +1,50 @@
+{
+  "id": "w14-valid-move",
+  "titulo": "Valid move?",
+  "enunciado": "**Level ★★**\n\nIn Rock, Paper, Scissors, the only valid moves are `rock`, `paper` and `scissors`.\n\nAsk for a move. Print `Valid move` or `Invalid move`. Capital letters must not matter (`ROCK` is valid).\n\nChallenge yourself: write it using `not`.",
+  "codigo_inicial": "move = input(\"Your move: \").lower()\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "ROCK",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "rock",
+      "entradas": [
+        "rock"
+      ],
+      "esperado": "Valid move"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "PAPER",
+      "entradas": [
+        "PAPER"
+      ],
+      "esperado": "Valid move"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Scissors",
+      "entradas": [
+        "Scissors"
+      ],
+      "esperado": "Valid move"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "lizard",
+      "entradas": [
+        "lizard"
+      ],
+      "esperado": "Invalid move"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Nothing (Enter)",
+      "entradas": [
+        ""
+      ],
+      "esperado": "Invalid move"
+    }
+  ]
+}

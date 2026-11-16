@@ -1,0 +1,50 @@
+{
+  "id": "w14-discount",
+  "titulo": "Ticket discount",
+  "enunciado": "**Level ★**\n\nChildren **under 12** and adults **65 and over** get a discount.\n\nAsk for an age. Print `Discount` or `Full price`. Use **one** `if` with `or`.\n\nTest the boundaries: 11, 12, 64, 65.",
+  "codigo_inicial": "age = int(input(\"Age: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "11",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 8",
+      "entradas": [
+        "8"
+      ],
+      "esperado": "Discount"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 11",
+      "entradas": [
+        "11"
+      ],
+      "esperado": "Discount"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 12",
+      "entradas": [
+        "12"
+      ],
+      "esperado": "Full price"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 64",
+      "entradas": [
+        "64"
+      ],
+      "esperado": "Full price"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 65",
+      "entradas": [
+        "65"
+      ],
+      "esperado": "Discount"
+    }
+  ]
+}

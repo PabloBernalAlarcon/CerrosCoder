@@ -1,0 +1,7 @@
+{
+  "id": "w24-my-project",
+  "titulo": "My project",
+  "enunciado": "This is the workspace for **your project**. Build it here from week 26 onward.\n\nYour code saves automatically, and your teachers can see it. Remember: your project must use `input`, a condition, a loop, a list, and at least one function you write.\n\nTo test, type your inputs in the **Inputs** box, one per line.",
+  "codigo_inicial": "# PROJECT CARD (complete it in week 28)\n# What it does:\n# How to use it:\n# What I tested:\n# What I'd do next:\n# What I learned about how I learn:\n\n\n# My functions\n\n\n# My main program\n",
+  "pruebas": []
+}

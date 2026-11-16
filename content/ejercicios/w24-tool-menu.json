@@ -1,0 +1,41 @@
+{
+  "id": "w24-tool-menu",
+  "titulo": "Toolbox: a menu loop",
+  "enunciado": "**Level ★★★ · Toolbox**\n\nMany projects have a menu. Build a small list manager:\n\n| Choice | What it does |\n|---|---|\n| `1` | Ask for a name and add it to the list. Print `Added ___`. |\n| `2` | Print every name in the list, one per line (or `The list is empty`). |\n| `3` | Print `Bye!` and stop. |\n| anything else | Print `Unknown option`. |\n\nExample inputs: `1`, `Ana`, `1`, `Luis`, `2`, `3`. The program prints:\n\n```text\nAdded Ana\nAdded Luis\nAna\nLuis\nBye!\n```",
+  "codigo_inicial": "names = []\nchoice = input(\"1 = add, 2 = show, 3 = quit: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "1\nAna\n1\nLuis\n2\n3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Add two, show, quit",
+      "entradas": [
+        "1",
+        "Ana",
+        "1",
+        "Luis",
+        "2",
+        "3"
+      ],
+      "esperado": "Added Ana\nAdded Luis\nAna\nLuis\nBye!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Show an empty list",
+      "entradas": [
+        "2",
+        "3"
+      ],
+      "esperado": "The list is empty\nBye!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Unknown option",
+      "entradas": [
+        "9",
+        "3"
+      ],
+      "esperado": "Unknown option\nBye!"
+    }
+  ]
+}

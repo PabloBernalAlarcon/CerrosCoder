@@ -1,0 +1,33 @@
+{
+  "id": "w19-fix-access",
+  "titulo": "Review: fix can_vote",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nIn Colombia you can vote if you are **18 or older** and you have an ID card (`has_id` is `True` or `False`).\n\n`can_vote(age, has_id)` gives the wrong answer for some inputs. Test the four combinations, find the bug, and fix it.",
+  "codigo_inicial": "def can_vote(age, has_id):\n    if age >= 18 or has_id:\n        return True\n    else:\n        return False\n",
+  "pruebas": [
+    {
+      "descripcion": "20 with ID",
+      "expresion": "can_vote(20, True)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "18 with ID",
+      "expresion": "can_vote(18, True)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "20 without ID",
+      "expresion": "can_vote(20, False)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "16 with ID",
+      "expresion": "can_vote(16, True)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "16 without ID",
+      "expresion": "can_vote(16, False)",
+      "esperado": "False"
+    }
+  ]
+}

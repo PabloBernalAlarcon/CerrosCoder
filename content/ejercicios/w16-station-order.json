@@ -1,0 +1,50 @@
+{
+  "id": "w16-station-order",
+  "titulo": "Station 3: speeding tickets",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThe speed limit is 60 km/h.\n\n| Speed | Print |\n|---|---|\n| more than 100 | `Big fine` |\n| more than 60, up to 100 | `Small fine` |\n| 60 or less | `OK` |\n\nNobody ever gets a big fine. Find the bug and fix it.",
+  "codigo_inicial": "speed = int(input(\"Speed: \"))\nif speed > 60:\n    print(\"Small fine\")\nelif speed > 100:\n    print(\"Big fine\")\nelse:\n    print(\"OK\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "120",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "120 km/h",
+      "entradas": [
+        "120"
+      ],
+      "esperado": "Big fine"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "101 km/h",
+      "entradas": [
+        "101"
+      ],
+      "esperado": "Big fine"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100 km/h",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "Small fine"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "61 km/h",
+      "entradas": [
+        "61"
+      ],
+      "esperado": "Small fine"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "60 km/h",
+      "entradas": [
+        "60"
+      ],
+      "esperado": "OK"
+    }
+  ]
+}

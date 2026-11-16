@@ -1,0 +1,43 @@
+{
+  "id": "w17-trivia",
+  "titulo": "Trivia with a function",
+  "enunciado": "**Level ★★**\n\nThis trivia program repeats the same lines for every question. Refactor it: write `ask_question(question, answer)`, and use it for all three questions.\n\nThe program must behave **exactly** as before. Run it before and after your change, with the same inputs.",
+  "codigo_inicial": "reply = input(\"Chemical symbol for gold? \")\nif reply == \"AU\":\n    print(\"Correct!\")\nelse:\n    print(\"Wrong. The answer is AU.\")\n\nreply = input(\"The planet closest to the Sun? \")\nif reply == \"mercury\":\n    print(\"Correct!\")\nelse:\n    print(\"Wrong. The answer is mercury.\")\n\nreply = input(\"How many continents are there? \")\nif reply == \"7\":\n    print(\"Correct!\")\nelse:\n    print(\"Wrong. The answer is 7.\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "AU\nmercury\n7",
+  "definir": [
+    "ask_question"
+  ],
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "All correct",
+      "entradas": [
+        "AU",
+        "mercury",
+        "7"
+      ],
+      "esperado": "Correct!\nCorrect!\nCorrect!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "All wrong",
+      "entradas": [
+        "gold",
+        "venus",
+        "5"
+      ],
+      "esperado": "Wrong. The answer is AU.\nWrong. The answer is mercury.\nWrong. The answer is 7."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Mixed",
+      "entradas": [
+        "au",
+        "mercury",
+        "6"
+      ],
+      "esperado": "Wrong. The answer is AU.\nCorrect!\nWrong. The answer is 7."
+    }
+  ]
+}

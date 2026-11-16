@@ -1,0 +1,33 @@
+{
+  "id": "w22-highest",
+  "titulo": "The highest score",
+  "enunciado": "**Level ★★**\n\nWrite `highest(scores)`. It returns the highest score in a list. Use a loop, not `max()`.\n\n```python\nhighest([70, 85, 92, 60])   # 92\n```\n\nThe list always has at least one score.",
+  "codigo_inicial": "def highest(scores):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "max",
+    "sorted",
+    "sort"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "[70, 85, 92, 60]",
+      "expresion": "highest([70, 85, 92, 60])",
+      "esperado": "92"
+    },
+    {
+      "descripcion": "The highest is first",
+      "expresion": "highest([99, 1, 50])",
+      "esperado": "99"
+    },
+    {
+      "descripcion": "Only one score",
+      "expresion": "highest([42])",
+      "esperado": "42"
+    },
+    {
+      "descripcion": "All negative",
+      "expresion": "highest([-8, -3, -5])",
+      "esperado": "-3"
+    }
+  ]
+}

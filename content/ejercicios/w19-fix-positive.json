@@ -1,0 +1,23 @@
+{
+  "id": "w19-fix-positive",
+  "titulo": "Review: fix is_positive",
+  "enunciado": "**Level ★ · Bug hunt**\n\n`is_positive(n)` should return `True` only for numbers **bigger than 0**. Zero is not positive.\n\nOne test fails. Which boundary is wrong? Fix it.",
+  "codigo_inicial": "def is_positive(n):\n    return n >= 0\n",
+  "pruebas": [
+    {
+      "descripcion": "5 is positive",
+      "expresion": "is_positive(5)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "0 is not positive",
+      "expresion": "is_positive(0)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "-3 is not positive",
+      "expresion": "is_positive(-3)",
+      "esperado": "False"
+    }
+  ]
+}

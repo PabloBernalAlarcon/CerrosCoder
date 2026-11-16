@@ -1,0 +1,26 @@
+{
+  "id": "w17-countdown",
+  "titulo": "Countdown function",
+  "enunciado": "**Level ★★**\n\nWrite `countdown(start)`. It counts down from `start` to 1, then prints `Go!`.\n\nThe program asks for the start number and calls your function **twice**: once with that number and once with `2`.\n\nExample: the user types `3`. The program prints:\n\n```text\n3\n2\n1\nGo!\n2\n1\nGo!\n```",
+  "codigo_inicial": "def countdown(start):\n    pass  # Replace this line\n\n\nn = int(input(\"Start at: \"))\ncountdown(n)\ncountdown(2)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "From 3",
+      "entradas": [
+        "3"
+      ],
+      "esperado": "3\n2\n1\nGo!\n2\n1\nGo!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "From 5",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "5\n4\n3\n2\n1\nGo!\n2\n1\nGo!"
+    }
+  ]
+}

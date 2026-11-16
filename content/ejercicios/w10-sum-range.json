@@ -1,0 +1,37 @@
+{
+  "id": "w10-sum-range",
+  "titulo": "Total of a range",
+  "enunciado": "**Level ★★**\n\nAsk for a start number and an end number. Add up every whole number from start to end (**including** the end). Print the total.\n\nExample: the user types `3` and `6`. The program prints:\n\n```text\nTotal: 18\n```\n\nBecause 3 + 4 + 5 + 6 = 18.",
+  "codigo_inicial": "start = int(input(\"Start: \"))\nend = int(input(\"End: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "3\n6",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "3 to 6",
+      "entradas": [
+        "3",
+        "6"
+      ],
+      "esperado": "Total: 18"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1 to 100",
+      "entradas": [
+        "1",
+        "100"
+      ],
+      "esperado": "Total: 5050"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5 to 5",
+      "entradas": [
+        "5",
+        "5"
+      ],
+      "esperado": "Total: 5"
+    }
+  ]
+}

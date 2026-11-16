@@ -1,0 +1,48 @@
+{
+  "id": "w12-points",
+  "titulo": "Points for the winner",
+  "enunciado": "**Level ★★ · For fast finishers**\n\nThe secret is `42`. Keep asking until the player gets it (no hints this time). The player starts with **100 points** and loses **10 points** for each wrong guess. At the end, print the points:\n\nExample: the guesses are `10`, `20`, `42`. The program prints:\n\n```text\nCorrect! Points: 80\n```\n\nThe points never go below 0.",
+  "codigo_inicial": "secret = 42\npoints = 100\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "10\n20\n42",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Two wrong guesses",
+      "entradas": [
+        "10",
+        "20",
+        "42"
+      ],
+      "esperado": "Correct! Points: 80"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Correct first time",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "Correct! Points: 100"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Twelve wrong guesses: points stop at 0",
+      "entradas": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "42"
+      ],
+      "esperado": "Correct! Points: 0"
+    }
+  ]
+}

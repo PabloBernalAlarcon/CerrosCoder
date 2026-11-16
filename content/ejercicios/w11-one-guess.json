@@ -1,0 +1,42 @@
+{
+  "id": "w11-one-guess",
+  "titulo": "One guess",
+  "enunciado": "**Level ★**\n\nThe secret number is `42`. Ask for **one** guess, and print `Too high`, `Too low` or `Correct!`.\n\nExample: the user types `50`. The program prints:\n\n```text\nToo high\n```",
+  "codigo_inicial": "secret = 42\nguess = int(input(\"Your guess: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "50",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Guess 50",
+      "entradas": [
+        "50"
+      ],
+      "esperado": "Too high"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Guess 10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "Too low"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Guess 42",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Guess 43 (just above)",
+      "entradas": [
+        "43"
+      ],
+      "esperado": "Too high"
+    }
+  ]
+}

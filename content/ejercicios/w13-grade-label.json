@@ -1,0 +1,50 @@
+{
+  "id": "w13-grade-label",
+  "titulo": "Review: grade label",
+  "enunciado": "**Level ★**\n\nAsk for a grade from 1.0 to 7.0. Print:\n\n| Grade | Print |\n|---|---|\n| 6.0 or more | `Excellent` |\n| 4.5 to 5.9 | `Pass` |\n| below 4.5 | `Not yet` |",
+  "codigo_inicial": "grade = float(input(\"Grade: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "5.5",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "6.5",
+      "entradas": [
+        "6.5"
+      ],
+      "esperado": "Excellent"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "6.0",
+      "entradas": [
+        "6.0"
+      ],
+      "esperado": "Excellent"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5.9",
+      "entradas": [
+        "5.9"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "4.5",
+      "entradas": [
+        "4.5"
+      ],
+      "esperado": "Pass"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "4.4",
+      "entradas": [
+        "4.4"
+      ],
+      "esperado": "Not yet"
+    }
+  ]
+}

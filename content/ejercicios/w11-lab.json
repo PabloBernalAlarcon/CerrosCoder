@@ -1,0 +1,7 @@
+{
+  "id": "w11-lab",
+  "titulo": "Week 11 lab: random numbers",
+  "enunciado": "Use this workspace to explore `random`.\n\n1. **Predict** which numbers `random.randint(1, 3)` can give. Then run the program several times.\n2. Change it to `random.randint(1, 100)`. Run it again.\n3. Can you make a loop that prints 10 random numbers?",
+  "codigo_inicial": "import random\n\nnumber = random.randint(1, 3)\nprint(number)\n",
+  "pruebas": []
+}

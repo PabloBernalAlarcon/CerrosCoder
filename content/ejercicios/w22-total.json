@@ -1,0 +1,26 @@
+{
+  "id": "w22-total",
+  "titulo": "Total of a list",
+  "enunciado": "**Level ★**\n\nWrite `total(numbers)`. It returns the sum of all the numbers in the list. Use a `for` loop (not `sum()`).\n\n```python\ntotal([70, 85, 92, 60])   # 307\ntotal([])                 # 0\n```",
+  "codigo_inicial": "def total(numbers):\n    pass  # Replace this line\n",
+  "no_usar": [
+    "sum"
+  ],
+  "pruebas": [
+    {
+      "descripcion": "[70, 85, 92, 60]",
+      "expresion": "total([70, 85, 92, 60])",
+      "esperado": "307"
+    },
+    {
+      "descripcion": "An empty list",
+      "expresion": "total([])",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "[-5, 5, 10]",
+      "expresion": "total([-5, 5, 10])",
+      "esperado": "10"
+    }
+  ]
+}

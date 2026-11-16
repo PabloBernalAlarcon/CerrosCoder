@@ -1,0 +1,47 @@
+{
+  "id": "w11-three-tries",
+  "titulo": "Only three tries",
+  "enunciado": "**Level ★★★ · Challenge**\n\nThe secret number is `42`. The player has **3 tries**.\n\n- Wrong guess: print `Too high` or `Too low`.\n- Correct guess: print `You win!` and stop asking.\n- After 3 wrong guesses: print `Game over. The number was 42.`\n\nExample: the guesses are `50`, `40`, `45`. The program prints:\n\n```text\nToo high\nToo low\nToo high\nGame over. The number was 42.\n```\n\nExample: the guesses are `50`, `42`. The program prints:\n\n```text\nToo high\nYou win!\n```\n\nHint: count the tries. You can use `break` to stop a loop early.",
+  "codigo_inicial": "secret = 42\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "50\n40\n45",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three wrong guesses",
+      "entradas": [
+        "50",
+        "40",
+        "45"
+      ],
+      "esperado": "Too high\nToo low\nToo high\nGame over. The number was 42."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Win on the second try",
+      "entradas": [
+        "50",
+        "42"
+      ],
+      "esperado": "Too high\nYou win!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Win on the third try",
+      "entradas": [
+        "1",
+        "99",
+        "42"
+      ],
+      "esperado": "Too low\nToo high\nYou win!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Win on the first try",
+      "entradas": [
+        "42"
+      ],
+      "esperado": "You win!"
+    }
+  ]
+}

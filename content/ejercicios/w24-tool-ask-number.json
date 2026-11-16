@@ -1,0 +1,42 @@
+{
+  "id": "w24-tool-ask-number",
+  "titulo": "Toolbox: a safe number input",
+  "enunciado": "**Level ★★ · Toolbox**\n\nMany projects need a number from the user. Write `ask_number(question, low, high)`:\n\n- It asks the question with `input(question)`.\n- It keeps asking until the answer is a whole number from `low` to `high`.\n- It **returns** the number.\n\nThe program below uses your function. Example inputs: `abc`, `0`, `7`. The program prints:\n\n```text\nYou chose 7\n```\n\nYou can copy this function into your own project!",
+  "codigo_inicial": "def ask_number(question, low, high):\n    pass  # Replace this line\n\n\nn = ask_number(\"A number from 1 to 10: \", 1, 10)\nprint(\"You chose\", n)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "abc\n0\n7",
+  "definir": [
+    "ask_number"
+  ],
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "abc, 0, then 7",
+      "entradas": [
+        "abc",
+        "0",
+        "7"
+      ],
+      "esperado": "You chose 7"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10 straight away",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "You chose 10"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "11, -1, empty, then 1",
+      "entradas": [
+        "11",
+        "-1",
+        "",
+        "1"
+      ],
+      "esperado": "You chose 1"
+    }
+  ]
+}

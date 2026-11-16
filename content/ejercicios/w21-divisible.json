@@ -1,0 +1,28 @@
+{
+  "id": "w21-divisible",
+  "titulo": "Divisible?",
+  "enunciado": "**Level ★**\n\nWrite `is_divisible(a, b)`. It returns `True` if `a` can be divided by `b` with no remainder.\n\n```python\nis_divisible(12, 4)   # True\nis_divisible(10, 3)   # False\n```",
+  "codigo_inicial": "def is_divisible(a, b):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "12 by 4",
+      "expresion": "is_divisible(12, 4)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "10 by 3",
+      "expresion": "is_divisible(10, 3)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "7 by 7",
+      "expresion": "is_divisible(7, 7)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "0 by 5",
+      "expresion": "is_divisible(0, 5)",
+      "esperado": "True"
+    }
+  ]
+}

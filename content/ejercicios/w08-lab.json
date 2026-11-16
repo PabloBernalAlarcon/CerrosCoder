@@ -1,0 +1,9 @@
+{
+  "id": "w08-lab",
+  "titulo": "Week 8 lab: the grade classifier",
+  "enunciado": "Use this workspace for the investigation in the lesson **Does the order of my conditions matter?**\n\nWrite each prediction as a comment before you run, like this: `# I predict: Pass`\n\n1. **Trace it:** add `print(\"checking ...\")` lines to see which conditions Python checks.\n2. **if, if, if:** change every `elif` to `if`. Test 95 and 75.\n3. **Fix the order.** Then write a second correct version.\n4. **Convince me:** list 6–8 test scores, each with a reason, as comments.\n\nType the score in the **Inputs** box.",
+  "codigo_inicial": "score = int(input(\"Score: \"))\nif score >= 50:\n    print(\"Pass\")\nelif score >= 70:\n    print(\"Good\")\nelif score >= 90:\n    print(\"Excellent\")\nelse:\n    print(\"Not yet\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "95",
+  "pruebas": []
+}

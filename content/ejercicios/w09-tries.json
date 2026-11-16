@@ -1,0 +1,41 @@
+{
+  "id": "w09-tries",
+  "titulo": "Count the tries",
+  "enunciado": "**Level ★★**\n\nImprove the password checker: count how many tries the user needed.\n\nWith the inputs `hello`, `PYTHON`, `python`, the program prints:\n\n```text\nWelcome! You needed 3 tries.\n```\n\nHint: start with `tries = 1`, because the first `input()` is already one try.",
+  "codigo_inicial": "secret = \"python\"\npassword = input(\"Password: \")\nwhile password != secret:\n    password = input(\"Wrong. Try again: \")\nprint(\"Welcome!\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "hello\nPYTHON\npython",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three tries",
+      "entradas": [
+        "hello",
+        "PYTHON",
+        "python"
+      ],
+      "esperado": "Welcome! You needed 3 tries."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Two tries",
+      "entradas": [
+        "Python",
+        "python"
+      ],
+      "esperado": "Welcome! You needed 2 tries."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Five tries",
+      "entradas": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "python"
+      ],
+      "esperado": "Welcome! You needed 5 tries."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "w13-biggest",
+  "titulo": "Review: the biggest number",
+  "enunciado": "**Level ★★★ · Challenge**\n\nFirst ask **how many** numbers the user will type. Then ask for each number. Print the biggest one.\n\nExample inputs: `4`, then `12`, `57`, `3`, `20`. The program prints:\n\n```text\nThe biggest is 57\n```\n\nDo not use `max()`. Hint: keep a variable with the biggest number **so far**.",
+  "codigo_inicial": "how_many = int(input(\"How many numbers? \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4\n12\n57\n3\n20",
+  "no_usar": [
+    "max",
+    "sorted",
+    "sort"
+  ],
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "12, 57, 3, 20",
+      "entradas": [
+        "4",
+        "12",
+        "57",
+        "3",
+        "20"
+      ],
+      "esperado": "The biggest is 57"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "The biggest is first",
+      "entradas": [
+        "3",
+        "99",
+        "1",
+        "2"
+      ],
+      "esperado": "The biggest is 99"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "All negative",
+      "entradas": [
+        "3",
+        "-8",
+        "-2",
+        "-5"
+      ],
+      "esperado": "The biggest is -2"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Only one number",
+      "entradas": [
+        "1",
+        "7"
+      ],
+      "esperado": "The biggest is 7"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "w08-wear",
+  "titulo": "What should I wear?",
+  "enunciado": "**Level ★★**\n\nAsk for the temperature (a whole number). Print one word:\n\n| Temperature | Print |\n|---|---|\n| below 10 | `Cold` |\n| 10 to 19 | `Mild` |\n| 20 to 27 | `Warm` |\n| 28 or more | `Hot` |\n\nThink about the order of your conditions! Test the boundaries: 9 and 10, 19 and 20, 27 and 28.",
+  "codigo_inicial": "temperature = int(input(\"Temperature: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "19",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "9 is Cold",
+      "entradas": [
+        "9"
+      ],
+      "esperado": "Cold"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10 is Mild",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "Mild"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "19 is Mild",
+      "entradas": [
+        "19"
+      ],
+      "esperado": "Mild"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "20 is Warm",
+      "entradas": [
+        "20"
+      ],
+      "esperado": "Warm"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "27 is Warm",
+      "entradas": [
+        "27"
+      ],
+      "esperado": "Warm"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "28 is Hot",
+      "entradas": [
+        "28"
+      ],
+      "esperado": "Hot"
+    }
+  ]
+}

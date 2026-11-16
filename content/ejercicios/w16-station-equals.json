@@ -1,0 +1,26 @@
+{
+  "id": "w16-station-equals",
+  "titulo": "Station 6: a syntax error",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program doesn't even start. Read the error message: which line does it point to?\n\nFix it. The program asks a question and prints `Correct!` if the answer is `4`, or `Wrong` otherwise.",
+  "codigo_inicial": "answer = int(input(\"What is 2 + 2? \"))\nif answer = 4:\n    print(\"Correct!\")\nelse:\n    print(\"Wrong\")\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "4",
+      "entradas": [
+        "4"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "Wrong"
+    }
+  ]
+}

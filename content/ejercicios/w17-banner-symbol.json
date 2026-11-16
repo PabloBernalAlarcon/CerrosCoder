@@ -1,0 +1,20 @@
+{
+  "id": "w17-banner-symbol",
+  "titulo": "Banner with any symbol",
+  "enunciado": "**Level ★★**\n\nImprove the banner: `banner(msg, symbol)` uses any symbol, and the line is **as long as the message**.\n\nHint: `len(\"Hello\")` is 5.\n\nThe program must print:\n\n```python\n=====\nHello\n=====\n---------\nGame over\n---------\n```",
+  "codigo_inicial": "def banner(msg, symbol):\n    pass  # Replace this line\n\n\nbanner(\"Hello\", \"=\")\nbanner(\"Game over\", \"-\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Hello with =, Game over with -",
+      "entradas": [],
+      "esperado": "=====\nHello\n=====\n---------\nGame over\n---------"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Lines match the message length",
+      "entradas": [],
+      "esperado": "=====\nHello\n=====\n---------\nGame over\n---------"
+    }
+  ]
+}

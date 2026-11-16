@@ -1,0 +1,37 @@
+{
+  "id": "w20-yes-no",
+  "titulo": "Yes or no",
+  "enunciado": "**Level ★★**\n\nAsk `Do you want to continue? (yes/no)` until the answer is `yes` or `no`. Capital letters don't matter. Then print `You said yes` or `You said no`.\n\nExample inputs: `maybe`, `YES`. The program prints:\n\n```text\nYou said yes\n```",
+  "codigo_inicial": "answer = input(\"Do you want to continue? (yes/no) \").lower()\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "maybe\nYES",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "maybe, YES",
+      "entradas": [
+        "maybe",
+        "YES"
+      ],
+      "esperado": "You said yes"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "no",
+      "entradas": [
+        "no"
+      ],
+      "esperado": "You said no"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "y, n, No",
+      "entradas": [
+        "y",
+        "n",
+        "No"
+      ],
+      "esperado": "You said no"
+    }
+  ]
+}

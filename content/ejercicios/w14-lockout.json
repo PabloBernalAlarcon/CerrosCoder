@@ -1,0 +1,47 @@
+{
+  "id": "w14-lockout",
+  "titulo": "Lock after 3 tries",
+  "enunciado": "**Level ★★**\n\nThe password is `python`. The user has **3 tries**.\n\n- If they get it right, print `Welcome!`.\n- After 3 wrong tries, print `Locked!` and stop asking.\n\nExample inputs: `a`, `b`, `c`. The program prints:\n\n```text\nLocked!\n```\n\nExample inputs: `a`, `python`. The program prints:\n\n```text\nWelcome!\n```",
+  "codigo_inicial": "secret = \"python\"\ntries = 1\npassword = input(\"Password: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "a\nb\nc",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three wrong tries",
+      "entradas": [
+        "a",
+        "b",
+        "c"
+      ],
+      "esperado": "Locked!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Right on the second try",
+      "entradas": [
+        "a",
+        "python"
+      ],
+      "esperado": "Welcome!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Right on the third try",
+      "entradas": [
+        "a",
+        "b",
+        "python"
+      ],
+      "esperado": "Welcome!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Right on the first try",
+      "entradas": [
+        "python"
+      ],
+      "esperado": "Welcome!"
+    }
+  ]
+}

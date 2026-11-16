@@ -1,0 +1,28 @@
+{
+  "id": "w18-is-passing",
+  "titulo": "Did it pass?",
+  "enunciado": "**Level ★**\n\nGrades go from 1.0 to 7.0, and you pass with **4.5 or more**.\n\nWrite `is_passing(grade)`. It returns `True` or `False`.\n\n```python\nis_passing(5.2)   # True\nis_passing(4.5)   # True\nis_passing(3.9)   # False\n```\n\nHint: a comparison like `grade >= 4.5` is already `True` or `False`.",
+  "codigo_inicial": "def is_passing(grade):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "A high grade: 6.8",
+      "expresion": "is_passing(6.8)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Exactly on the line: 4.5",
+      "expresion": "is_passing(4.5)",
+      "esperado": "True"
+    },
+    {
+      "descripcion": "Almost: 4.4",
+      "expresion": "is_passing(4.4)",
+      "esperado": "False"
+    },
+    {
+      "descripcion": "The lowest grade: 1.0",
+      "expresion": "is_passing(1.0)",
+      "esperado": "False"
+    }
+  ]
+}

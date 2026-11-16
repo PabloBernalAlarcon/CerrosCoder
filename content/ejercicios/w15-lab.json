@@ -1,0 +1,7 @@
+{
+  "id": "w15-lab",
+  "titulo": "Week 15 lab: two versions",
+  "enunciado": "Use this workspace for the investigation in the lesson **When is nesting clearer, and when is it a trap?**\n\nChange `logged_in` and `is_admin` to test all four combinations. Then try rewriting the three-level `if` from the lesson.",
+  "codigo_inicial": "logged_in = True\nis_admin = False\n\nprint(\"Version A:\")\nif logged_in:\n    if is_admin:\n        print(\"Admin panel\")\n    else:\n        print(\"Not an admin\")\nelse:\n    print(\"Please log in\")\n\nprint(\"Version B:\")\nif logged_in and is_admin:\n    print(\"Admin panel\")\nelse:\n    print(\"Access denied\")\n",
+  "pruebas": []
+}

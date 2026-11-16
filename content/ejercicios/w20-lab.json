@@ -1,0 +1,7 @@
+{
+  "id": "w20-lab",
+  "titulo": "Week 20 lab: isdigit and try",
+  "enunciado": "Use this workspace for the investigation in the lesson **How can a program tell a number from text?**\n\n1. Change the text in the list to fill your `isdigit()` table.\n2. Then try the `try`/`except` version below it with the same inputs. Where do they disagree?",
+  "codigo_inicial": "for text in [\"42\", \"abc\", \"-3\", \"\", \"7.5\", \" 42\"]:\n    print(repr(text), text.isdigit())\n\nprint(\"---\")\n\nfor text in [\"42\", \"abc\", \"-3\", \"\", \"7.5\", \" 42\"]:\n    try:\n        n = int(text)\n        print(repr(text), \"int() works:\", n)\n    except ValueError:\n        print(repr(text), \"int() fails\")\n",
+  "pruebas": []
+}

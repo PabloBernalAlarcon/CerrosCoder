@@ -1,0 +1,46 @@
+{
+  "id": "w07-bigger",
+  "titulo": "The bigger number",
+  "enunciado": "**Level ★★**\n\nAsk for two whole numbers. Print the bigger one, like this:\n\n```text\nThe bigger number is 9\n```\n\nIf the two numbers are the same, print that number.",
+  "codigo_inicial": "a = int(input(\"First number: \"))\nb = int(input(\"Second number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4\n9",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "4 and 9",
+      "entradas": [
+        "4",
+        "9"
+      ],
+      "esperado": "The bigger number is 9"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "9 and 4",
+      "entradas": [
+        "9",
+        "4"
+      ],
+      "esperado": "The bigger number is 9"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Negative numbers: -3 and -8",
+      "entradas": [
+        "-3",
+        "-8"
+      ],
+      "esperado": "The bigger number is -3"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "The same number: 5 and 5",
+      "entradas": [
+        "5",
+        "5"
+      ],
+      "esperado": "The bigger number is 5"
+    }
+  ]
+}

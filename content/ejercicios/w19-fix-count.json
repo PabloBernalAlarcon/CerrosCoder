@@ -1,0 +1,28 @@
+{
+  "id": "w19-fix-count",
+  "titulo": "Review: fix count_up",
+  "enunciado": "**Level ★★ · Bug hunt**\n\n`count_up(n)` should **return** how many numbers from 1 to `n` are bigger than 5. For example, `count_up(8)` should return 3 (6, 7 and 8). The function returns the wrong number.\n\nMake a trace table for `count_up(8)` before you change anything.",
+  "codigo_inicial": "def count_up(n):\n    count = 0\n    for i in range(1, n):\n        if i > 5:\n            count = count + 1\n    return count\n",
+  "pruebas": [
+    {
+      "descripcion": "count_up(8)",
+      "expresion": "count_up(8)",
+      "esperado": "3"
+    },
+    {
+      "descripcion": "count_up(5)",
+      "expresion": "count_up(5)",
+      "esperado": "0"
+    },
+    {
+      "descripcion": "count_up(6)",
+      "expresion": "count_up(6)",
+      "esperado": "1"
+    },
+    {
+      "descripcion": "count_up(10)",
+      "expresion": "count_up(10)",
+      "esperado": "5"
+    }
+  ]
+}

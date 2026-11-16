@@ -1,0 +1,23 @@
+{
+  "id": "w22-squares",
+  "titulo": "Build a list",
+  "enunciado": "**Level ★★**\n\nWrite `squares(n)`. It returns a list with the squares of the numbers from 1 to `n`.\n\n```python\nsquares(4)   # [1, 4, 9, 16]\n```\n\nHint: start with an empty list `[]` and use `append`.",
+  "codigo_inicial": "def squares(n):\n    pass  # Replace this line\n",
+  "pruebas": [
+    {
+      "descripcion": "squares(4)",
+      "expresion": "squares(4)",
+      "esperado": "[1, 4, 9, 16]"
+    },
+    {
+      "descripcion": "squares(1)",
+      "expresion": "squares(1)",
+      "esperado": "[1]"
+    },
+    {
+      "descripcion": "squares(0)",
+      "expresion": "squares(0)",
+      "esperado": "[]"
+    }
+  ]
+}

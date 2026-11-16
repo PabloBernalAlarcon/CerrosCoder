@@ -1,0 +1,34 @@
+{
+  "id": "w09-count-to-n",
+  "titulo": "Count to any number",
+  "enunciado": "**Level ★**\n\nAsk for a whole number. Print every number from 1 up to that number, one per line.\n\nExample: the user types `4`. The program prints:\n\n```text\n1\n2\n3\n4\n```\n\nWhat should happen if the user types `0`? Test it!",
+  "codigo_inicial": "n = int(input(\"Count to: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Count to 4",
+      "entradas": [
+        "4"
+      ],
+      "esperado": "1\n2\n3\n4"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Count to 1",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "1"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Count to 0 prints nothing",
+      "entradas": [
+        "0"
+      ],
+      "esperado": ""
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "w14-one-condition",
+  "titulo": "2.5 or 2,5 in one condition",
+  "enunciado": "**Level ★**\n\nRemember the question *\"What is 10 divided by 4?\"* Accept `2.5` and `2,5` with **one** condition. Print `Correct!` or `Wrong`.",
+  "codigo_inicial": "answer = input(\"What is 10 divided by 4? \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "2,5",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "2.5",
+      "entradas": [
+        "2.5"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "2,5",
+      "entradas": [
+        "2,5"
+      ],
+      "esperado": "Correct!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "2",
+      "entradas": [
+        "2"
+      ],
+      "esperado": "Wrong"
+    }
+  ]
+}

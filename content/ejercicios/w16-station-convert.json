@@ -1,0 +1,26 @@
+{
+  "id": "w16-station-convert",
+  "titulo": "Station 2: next year",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program should say how old you will be next year. It crashes.\n\nRead the **last line** of the error message. Predict the cause, then fix it.\n\nExample: the user types `14`. The program must print:\n\n```text\nNext year you will be 15\n```",
+  "codigo_inicial": "age = input(\"How old are you? \")\nnext_year = age + 1\nprint(\"Next year you will be\", next_year)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "14",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 14",
+      "entradas": [
+        "14"
+      ],
+      "esperado": "Next year you will be 15"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 9",
+      "entradas": [
+        "9"
+      ],
+      "esperado": "Next year you will be 10"
+    }
+  ]
+}

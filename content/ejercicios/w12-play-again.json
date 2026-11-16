@@ -1,0 +1,46 @@
+{
+  "id": "w12-play-again",
+  "titulo": "Play again?",
+  "enunciado": "**Level ★★★ · Challenge**\n\nThe secret is always `7` (to make testing easy). Play a round: guess until correct, then print `Correct!` (no other hints).\n\nThen ask `Play again? (yes/no)`. If the answer is `yes`, play another round. If not, print `Thanks for playing!`.\n\nExample inputs: `3`, `7`, `yes`, `7`, `no`. The program prints:\n\n```python\nCorrect!\nCorrect!\nThanks for playing!\n```\n\nHint: one loop inside another loop.",
+  "codigo_inicial": "secret = 7\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "3\n7\nyes\n7\nno",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Two rounds",
+      "entradas": [
+        "3",
+        "7",
+        "yes",
+        "7",
+        "no"
+      ],
+      "esperado": "Correct!\nCorrect!\nThanks for playing!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "One round",
+      "entradas": [
+        "7",
+        "no"
+      ],
+      "esperado": "Correct!\nThanks for playing!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Three rounds",
+      "entradas": [
+        "7",
+        "yes",
+        "1",
+        "2",
+        "7",
+        "yes",
+        "7",
+        "no"
+      ],
+      "esperado": "Correct!\nCorrect!\nCorrect!\nThanks for playing!"
+    }
+  ]
+}
