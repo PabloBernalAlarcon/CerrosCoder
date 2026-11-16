@@ -15,6 +15,7 @@ Everything students see is in English. A few internal names (page file names, an
 ## What's in the folder
 
 ```
+README.md             this guide (README.es.md: the same guide in Spanish)
 index.html            login and password change
 inicio.html           student home: "pick up where you left off", progress, units
 leccion.html          lesson page (shows a Markdown file)
@@ -22,6 +23,7 @@ ejercicio.html        exercise page: editor, Run, Check, autosave
 docente.html          teacher panel: progress grid, code viewer, CSV export
 visibilidad.html      teacher only: choose which units each class can see
 css/estilos.css       all the styles (light and dark mode)
+images/mascot.png     the mascot shown on the login and home pages
 js/config.js          ← the only code file you need to edit
 js/app.js             shared helpers (login check, course loading, etc.)
 js/py-runner.js       runs Python with a time limit
@@ -77,10 +79,10 @@ You need three values from Supabase. Open **Project Settings** (the gear icon at
 | Value | Where to find it | What it looks like | Where it goes |
 |---|---|---|---|
 | **Project URL** | **Data API** (under *Integrations*), or the **Connect** button at the top of the project page | `https://abcdefghijklmnop.supabase.co` | `config.js` and the script |
-
-If the Project URL you copy ends in `/rest/v1/`, delete that part: you only want `https://<letters>.supabase.co`.
 | **Publishable key** | **API Keys** → *Publishable key* → the **default** row → copy | `sb_publishable_...` | `config.js` only |
 | **Secret key** | **API Keys** → *Secret keys* → the **default** row → reveal and copy | `sb_secret_...` | The script only |
+
+If the Project URL you copy ends in `/rest/v1/`, delete that part: you only want `https://<letters>.supabase.co`.
 
 Use these new keys, not the "legacy" ones: Supabase plans to retire the legacy keys in 2027.
 
@@ -112,7 +114,7 @@ python estudiantes.py teacher profe
 
 (`profe` is the username. You can choose another one, using lowercase letters, numbers and hyphens.)
 
-The script asks for the **Project URL** and the **secret key**. When you paste the key, nothing appears on screen; that's normal. Press Enter, and the script prints a **temporary password**. Write it down.
+The script asks for the **Project URL** and the **secret key**. When you paste the key, nothing appears on screen; that's normal. If **Ctrl + V** doesn't work there, paste with a **right-click**. Press Enter, and the script prints a **temporary password**. Write it down.
 
 To avoid pasting the URL and key every time, you can set them once per terminal window:
 
@@ -334,7 +336,7 @@ It prints a new temporary password. Their progress is kept, and they choose a ne
 
 **Adding a student later:** put just that student in a new CSV and run `create` again.
 
-**The teacher panel:** each row is a student and each column an exercise. Use the **Unit** menu to see one week at a time: it opens on the most recent unit that students can see.
+**The teacher panel:** each row is a student and each column an exercise. Use the **Unit** menu to see one week at a time: it opens on the latest week that is open for at least one class.
 
 - **Green ✓** means solved.
 - **Yellow** means started; the number is how many times they pressed **Check**. A high number usually means they're stuck.
@@ -357,7 +359,7 @@ Two things to know: the teacher panel's "Solved" column counts only units open f
 
 **Before class:** a two-minute look at the panel shows which exercise most of the class struggled with. That's a good place to start the session.
 
-**A new school year:** delete last year's accounts in Supabase (**Authentication → Users**; their progress is deleted with them), update the unlock dates in `curso.json`, and create the new accounts with the script.
+**A new school year:** delete last year's accounts in Supabase (**Authentication → Users**; their progress is deleted with them), create the new accounts with the script, and set up **Visibility** for the new classes (or update the unlock dates in `curso.json`, if you use them).
 
 ---
 
@@ -404,7 +406,11 @@ Two things to know: the teacher panel's "Solved" column counts only units open f
 
 **An exercise or lesson page shows an error:** the file name doesn't match its `id` in `curso.json`, or the JSON has a typo (check it on jsonlint.com).
 
-**Changes don't show up on the website:** GitHub Pages can take a couple of minutes. Then reload with **Ctrl + Shift + R**.
+**Changes don't show up on the website:** after you upload files, GitHub Pages needs a minute or two to publish them (watch the **Actions** tab for a green check), and browsers may keep an old copy for up to **10 minutes**. Wait, then reload with **Ctrl + Shift + R**, or check in a private window. To see what the site is really serving, open a file with `?v=check` at the end, for example `…github.io/your-repo/js/app.js?v=check`.
+
+**A page says "This page couldn't start", or stays on "Loading…":** the page's code couldn't run. Usually some files on the website are from different updates, or a file is in the wrong folder (for example `app.js` at the top level instead of inside `js/`). Upload every file from the latest update, keeping the `js` and `css` folders, and wait as described above. The message includes a technical detail; the browser console (**F12 → Console**) shows the exact error.
+
+**It works on GitHub but not on `localhost` (or the other way round):** `python -m http.server` serves the folder it was started in. If you have more than one copy of the project on your computer, stop the server (**Ctrl + C**), go to the right folder, and start it again.
 
 ---
 
