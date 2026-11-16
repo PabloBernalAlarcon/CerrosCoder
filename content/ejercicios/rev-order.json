@@ -1,0 +1,20 @@
+{
+  "id": "rev-order",
+  "titulo": "1 · Fix it: the recipe",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis recipe for an arepa is in the wrong order. Change the order of the lines so the program shows:\n\n```text\n1. Mix the flour, water and salt.\n2. Make a ball and flatten it.\n3. Cook it on the pan.\n4. Add cheese and enjoy!\n```\n\nDon't retype the text: move the lines.",
+  "codigo_inicial": "print(\"3. Cook it on the pan.\")\nprint(\"1. Mix the flour, water and salt.\")\nprint(\"4. Add cheese and enjoy!\")\nprint(\"2. Make a ball and flatten it.\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The steps are in order",
+      "entradas": [],
+      "esperado": "1. Mix the flour, water and salt.\n2. Make a ball and flatten it.\n3. Cook it on the pan.\n4. Add cheese and enjoy!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Nothing missing, nothing extra",
+      "entradas": [],
+      "esperado": "1. Mix the flour, water and salt.\n2. Make a ball and flatten it.\n3. Cook it on the pan.\n4. Add cheese and enjoy!"
+    }
+  ]
+}

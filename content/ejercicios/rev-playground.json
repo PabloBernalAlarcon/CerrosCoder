@@ -1,0 +1,7 @@
+{
+  "id": "rev-playground",
+  "titulo": "Fundamentals playground",
+  "enunciado": "A free workspace for the review lessons. Copy any example from a lesson here, **predict** what it does, then run it.\n\nIf your code uses `input()`, write the answers in the **Inputs** box, one per line.",
+  "codigo_inicial": "# Predict first, then run!\nprint(\"Hello!\")\n",
+  "pruebas": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rev-average-fix",
+  "titulo": "3 · Fix it: the average",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program should show the average of three grades: 6.0, 5.0 and 7.0. The average is `6.0`, but the program shows `13.333333333333334`.\n\n**Predict** the problem before you change anything. Then fix it.",
+  "codigo_inicial": "print(6.0 + 5.0 + 7.0 / 3)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The average is 6.0",
+      "entradas": [],
+      "esperado": "6.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Only the average is shown",
+      "entradas": [],
+      "esperado": "6.0"
+    }
+  ]
+}

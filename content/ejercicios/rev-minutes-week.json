@@ -1,0 +1,20 @@
+{
+  "id": "rev-minutes-week",
+  "titulo": "3 · Minutes in a week",
+  "enunciado": "**Level ★★**\n\nHow many minutes are there in a week? And how many seconds? Let Python calculate both (7 days, 24 hours a day, 60 minutes an hour, 60 seconds a minute).\n\n```text\nMinutes in a week: 10080\nSeconds in a week: 604800\n```\n\nUse commas in your `print` to join the text and the calculation.",
+  "codigo_inicial": "print(\"Minutes in a week:\", )\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Minutes and seconds",
+      "entradas": [],
+      "esperado": "Minutes in a week: 10080\nSeconds in a week: 604800"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact labels",
+      "entradas": [],
+      "esperado": "Minutes in a week: 10080\nSeconds in a week: 604800"
+    }
+  ]
+}

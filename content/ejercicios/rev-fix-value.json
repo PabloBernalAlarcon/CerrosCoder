@@ -1,0 +1,34 @@
+{
+  "id": "rev-fix-value",
+  "titulo": "9 · Fix it: ValueError",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nThis program works with `5`, but crashes when the user types `4.5`. Read the error, and fix the program so both work.\n\nExample: the user types `4.5`. The program shows:\n\n```text\nDouble: 9.0\n```",
+  "codigo_inicial": "number = int(input(\"A number: \"))\nprint(\"Double:\", number * 2)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "4.5",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "4.5",
+      "entradas": [
+        "4.5"
+      ],
+      "esperado": "Double: 9.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "5",
+      "entradas": [
+        "5"
+      ],
+      "esperado": "Double: 10.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0.25",
+      "entradas": [
+        "0.25"
+      ],
+      "esperado": "Double: 0.5"
+    }
+  ]
+}

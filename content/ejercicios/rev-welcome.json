@@ -1,0 +1,28 @@
+{
+  "id": "rev-welcome",
+  "titulo": "7 · Welcome message",
+  "enunciado": "**Level ★**\n\nAsk for the user's name, then their city. Show a welcome message using an **f-string**.\n\nExample: the user types `Ana` and `Bogota`. The program shows:\n\n```text\nHi Ana! Welcome to Bogota.\n```\n\nNotice: no space before the `!` or the `.`.",
+  "codigo_inicial": "name = input(\"Name: \")\ncity = input(\"City: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana\nBogota",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Ana from Bogota",
+      "entradas": [
+        "Ana",
+        "Bogota"
+      ],
+      "esperado": "Hi Ana! Welcome to Bogota."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Luis from Cali",
+      "entradas": [
+        "Luis",
+        "Cali"
+      ],
+      "esperado": "Hi Luis! Welcome to Cali."
+    }
+  ]
+}

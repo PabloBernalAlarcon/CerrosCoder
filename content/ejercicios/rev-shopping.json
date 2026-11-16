@@ -1,0 +1,20 @@
+{
+  "id": "rev-shopping",
+  "titulo": "4 · Shopping list",
+  "enunciado": "**Level ★**\n\nA notebook costs 4500 pesos and a pen costs 1200 pesos. The prices are already in variables.\n\nCalculate the cost of **2 notebooks and 3 pens**, store it in a variable called `total`, and show:\n\n```text\nTotal: 12600\n```\n\nUse the variables: if a price changes, only one line should need to change.",
+  "codigo_inicial": "notebook = 4500\npen = 1200\n\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The total",
+      "entradas": [],
+      "esperado": "Total: 12600"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact message",
+      "entradas": [],
+      "esperado": "Total: 12600"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rev-fix-prints",
+  "titulo": "2 · Fix it: three broken prints",
+  "enunciado": "**Level ★ · Bug hunt**\n\nEach line has **one** mistake. Fix them one at a time: run after each fix, and read the error message.\n\nThe program must show:\n\n```text\nGood morning!\nIt's Monday.\nLet's code.\n```",
+  "codigo_inicial": "Print(\"Good morning!\")\nprint('It's Monday.')\nprint(\"Let's code.\"\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three lines",
+      "entradas": [],
+      "esperado": "Good morning!\nIt's Monday.\nLet's code."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact text",
+      "entradas": [],
+      "esperado": "Good morning!\nIt's Monday.\nLet's code."
+    }
+  ]
+}

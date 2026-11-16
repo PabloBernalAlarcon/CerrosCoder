@@ -1,0 +1,34 @@
+{
+  "id": "rev-study",
+  "titulo": "7 · Study time",
+  "enunciado": "**Level ★★**\n\nAsk how many hours the user studies each day (a whole number). Show how many hours that is in a week, and in a school year of 40 weeks.\n\nExample: the user types `2`. The program shows:\n\n```text\nIn a week you study 14 hours.\nIn a school year you study 560 hours.\n```",
+  "codigo_inicial": "hours = int(input(\"Hours of study per day: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "2",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "2 hours a day",
+      "entradas": [
+        "2"
+      ],
+      "esperado": "In a week you study 14 hours.\nIn a school year you study 560 hours."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1 hour a day",
+      "entradas": [
+        "1"
+      ],
+      "esperado": "In a week you study 7 hours.\nIn a school year you study 280 hours."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0 hours a day",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "In a week you study 0 hours.\nIn a school year you study 0 hours."
+    }
+  ]
+}

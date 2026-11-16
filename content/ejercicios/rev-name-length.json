@@ -1,0 +1,34 @@
+{
+  "id": "rev-name-length",
+  "titulo": "6 · How long is your name?",
+  "enunciado": "**Level ★★**\n\nAsk for the user's name. Show how many characters it has.\n\nExample: the user types `Ana`. The program shows:\n\n```text\nYour name has 3 characters\n```\n\n**Predict:** what will it show for `Juan David`? Test it.",
+  "codigo_inicial": "name = input(\"What is your name? \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Ana",
+      "entradas": [
+        "Ana"
+      ],
+      "esperado": "Your name has 3 characters"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Juan David (with a space)",
+      "entradas": [
+        "Juan David"
+      ],
+      "esperado": "Your name has 10 characters"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Valentina",
+      "entradas": [
+        "Valentina"
+      ],
+      "esperado": "Your name has 9 characters"
+    }
+  ]
+}

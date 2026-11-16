@@ -1,0 +1,20 @@
+{
+  "id": "rev-type-fix",
+  "titulo": "5 · Fix it: text that looks like a number",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program crashes. Read the **last line** of the error. Then fix the program so it shows:\n\n```text\nNext year: 15\n```\n\nChange only the first line.",
+  "codigo_inicial": "age = \"14\"\nprint(\"Next year:\", age + 1)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Shows next year's age",
+      "entradas": [],
+      "esperado": "Next year: 15"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact output",
+      "entradas": [],
+      "esperado": "Next year: 15"
+    }
+  ]
+}

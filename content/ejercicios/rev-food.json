@@ -1,0 +1,34 @@
+{
+  "id": "rev-food",
+  "titulo": "6 · Favourite food",
+  "enunciado": "**Level ★**\n\nAsk for the user's favourite food. Then show `I like ___ too!` with their answer.\n\nExample: the user types `pizza`. The program shows:\n\n```text\nI like pizza too!\n```\n\nRemember: write the user's answer in the **Inputs** box before you run.",
+  "codigo_inicial": "food = input(\"What is your favourite food? \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "pizza",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "pizza",
+      "entradas": [
+        "pizza"
+      ],
+      "esperado": "I like pizza too!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "ajiaco",
+      "entradas": [
+        "ajiaco"
+      ],
+      "esperado": "I like ajiaco too!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Two words: bandeja paisa",
+      "entradas": [
+        "bandeja paisa"
+      ],
+      "esperado": "I like bandeja paisa too!"
+    }
+  ]
+}

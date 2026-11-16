@@ -1,0 +1,20 @@
+{
+  "id": "rev-hello",
+  "titulo": "1 · Hello, world",
+  "enunciado": "**Level ★**\n\nWrite a program that shows these two lines, exactly:\n\n```text\nHello, world!\nI am learning Python.\n```\n\nCheck the capital letters, the comma, the `!` and the final `.`.",
+  "codigo_inicial": "# Write your two print lines here\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Shows both lines",
+      "entradas": [],
+      "esperado": "Hello, world!\nI am learning Python."
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact punctuation and capitals",
+      "entradas": [],
+      "esperado": "Hello, world!\nI am learning Python."
+    }
+  ]
+}

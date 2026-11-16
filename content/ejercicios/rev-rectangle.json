@@ -1,0 +1,37 @@
+{
+  "id": "rev-rectangle",
+  "titulo": "6 · Rectangle",
+  "enunciado": "**Level ★★**\n\nAsk for the width and the height of a rectangle. They can have decimals. Show the area and the perimeter.\n\nExample: the user types `3` and `4`. The program shows:\n\n```text\nArea: 12.0\nPerimeter: 14.0\n```\n\nThe perimeter is the distance all the way around: 2 times the width plus 2 times the height.",
+  "codigo_inicial": "width =\nheight =\n",
+  "usa_input": true,
+  "entradas_ejemplo": "3\n4",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "3 by 4",
+      "entradas": [
+        "3",
+        "4"
+      ],
+      "esperado": "Area: 12.0\nPerimeter: 14.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "2.5 by 2",
+      "entradas": [
+        "2.5",
+        "2"
+      ],
+      "esperado": "Area: 5.0\nPerimeter: 9.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10 by 0.5",
+      "entradas": [
+        "10",
+        "0.5"
+      ],
+      "esperado": "Area: 5.0\nPerimeter: 21.0"
+    }
+  ]
+}

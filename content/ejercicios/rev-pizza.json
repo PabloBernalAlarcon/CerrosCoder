@@ -1,0 +1,37 @@
+{
+  "id": "rev-pizza",
+  "titulo": "10 · Challenge: pizza party",
+  "enunciado": "**Level ★★★ · Challenge**\n\nYou are planning a party. Ask for the number of **guests** and how many **slices** each guest eats (both whole numbers). Each pizza has **8 slices**, and each pizza costs **32000 pesos**.\n\nExample: the user types `10` and `3`. The program shows:\n\n```text\nSlices needed: 30\nPizzas needed: 3.75\nCost per guest: 12000.0\n```\n\nThe cost per guest is the cost of the pizzas (3.75 pizzas here) divided by the number of guests.",
+  "codigo_inicial": "guests = int(input(\"Guests: \"))\nslices_each = int(input(\"Slices per guest: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "10\n3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "10 guests, 3 slices",
+      "entradas": [
+        "10",
+        "3"
+      ],
+      "esperado": "Slices needed: 30\nPizzas needed: 3.75\nCost per guest: 12000.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "8 guests, 2 slices",
+      "entradas": [
+        "8",
+        "2"
+      ],
+      "esperado": "Slices needed: 16\nPizzas needed: 2.0\nCost per guest: 8000.0"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "4 guests, 4 slices",
+      "entradas": [
+        "4",
+        "4"
+      ],
+      "esperado": "Slices needed: 16\nPizzas needed: 2.0\nCost per guest: 16000.0"
+    }
+  ]
+}

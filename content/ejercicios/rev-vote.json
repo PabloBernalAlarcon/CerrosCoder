@@ -1,0 +1,34 @@
+{
+  "id": "rev-vote",
+  "titulo": "8 · Old enough to vote?",
+  "enunciado": "**Level ★**\n\nIn Colombia, you can vote at **18 or older**. Ask for an age, and show `True` or `False` with a comparison (no `if` needed!).\n\nExample: the user types `18`. The program shows:\n\n```text\nCan vote: True\n```\n\nTest the boundary: 17 and 18.",
+  "codigo_inicial": "age = int(input(\"Age: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "18",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 18",
+      "entradas": [
+        "18"
+      ],
+      "esperado": "Can vote: True"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 17",
+      "entradas": [
+        "17"
+      ],
+      "esperado": "Can vote: False"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 40",
+      "entradas": [
+        "40"
+      ],
+      "esperado": "Can vote: True"
+    }
+  ]
+}

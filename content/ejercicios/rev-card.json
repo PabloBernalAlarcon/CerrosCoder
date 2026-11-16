@@ -1,0 +1,20 @@
+{
+  "id": "rev-card",
+  "titulo": "2 · Name card",
+  "enunciado": "**Level ★★**\n\nShow this card exactly. Notice the **empty line** in the middle, and the spaces.\n\n```text\n*****************\n  CERROS CODER\n*****************\n\nPython  ·  Grade 9\n```\n\nHint: `print()` with nothing inside shows an empty line.",
+  "codigo_inicial": "",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The card is exact",
+      "entradas": [],
+      "esperado": "*****************\n  CERROS CODER\n*****************\n\nPython  ·  Grade 9"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "The empty line is there",
+      "entradas": [],
+      "esperado": "*****************\n  CERROS CODER\n*****************\n\nPython  ·  Grade 9"
+    }
+  ]
+}

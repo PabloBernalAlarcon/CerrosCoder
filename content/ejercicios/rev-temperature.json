@@ -1,0 +1,42 @@
+{
+  "id": "rev-temperature",
+  "titulo": "10 · Challenge: temperature converter",
+  "enunciado": "**Level ★★★ · Challenge**\n\nAsk for a temperature in degrees Celsius (it can have decimals). Convert it to Fahrenheit with this formula:\n\n*Fahrenheit = Celsius × 9 / 5 + 32*\n\nThen show whether it is **freezing** (0 °C or less):\n\nExample: the user types `25`. The program shows:\n\n```text\n25.0 C is 77.0 F\nFreezing: False\n```",
+  "codigo_inicial": "celsius = float(input(\"Degrees Celsius: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "25",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "25 degrees",
+      "entradas": [
+        "25"
+      ],
+      "esperado": "25.0 C is 77.0 F\nFreezing: False"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0 degrees",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "0.0 C is 32.0 F\nFreezing: True"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "-10 degrees",
+      "entradas": [
+        "-10"
+      ],
+      "esperado": "-10.0 C is 14.0 F\nFreezing: True"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "100 degrees",
+      "entradas": [
+        "100"
+      ],
+      "esperado": "100.0 C is 212.0 F\nFreezing: False"
+    }
+  ]
+}

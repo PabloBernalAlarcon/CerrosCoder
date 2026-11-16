@@ -1,0 +1,20 @@
+{
+  "id": "rev-fix-indent",
+  "titulo": "9 · Fix it: IndentationError",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program doesn't start. Read the error: which line is the problem? Fix it so the program shows:\n\n```text\nReady\nSteady\nGo!\n```",
+  "codigo_inicial": "print(\"Ready\")\n  print(\"Steady\")\nprint(\"Go!\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Three lines",
+      "entradas": [],
+      "esperado": "Ready\nSteady\nGo!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact output",
+      "entradas": [],
+      "esperado": "Ready\nSteady\nGo!"
+    }
+  ]
+}

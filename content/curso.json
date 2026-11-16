@@ -1,8 +1,198 @@
 {
   "unidades": [
     {
+      "id": "review",
+      "titulo": "Review the fundamentals",
+      "lecciones": [
+        {
+          "id": "rev-01-programs",
+          "titulo": "1 · What is a program?"
+        },
+        {
+          "id": "rev-02-print",
+          "titulo": "2 · Showing things with print()"
+        },
+        {
+          "id": "rev-03-numbers",
+          "titulo": "3 · Numbers and maths"
+        },
+        {
+          "id": "rev-04-variables",
+          "titulo": "4 · Variables: boxes with names"
+        },
+        {
+          "id": "rev-05-types",
+          "titulo": "5 · Types of data"
+        },
+        {
+          "id": "rev-06-input",
+          "titulo": "6 · Asking questions with input()"
+        },
+        {
+          "id": "rev-07-messages",
+          "titulo": "7 · Building messages"
+        },
+        {
+          "id": "rev-08-true-false",
+          "titulo": "8 · Questions with True or False"
+        },
+        {
+          "id": "rev-09-errors",
+          "titulo": "9 · Reading error messages"
+        },
+        {
+          "id": "rev-10-ready",
+          "titulo": "10 · Ready for week 7?"
+        }
+      ],
+      "ejercicios": [
+        {
+          "id": "rev-playground",
+          "titulo": "Fundamentals playground",
+          "libre": true
+        },
+        {
+          "id": "rev-hello",
+          "titulo": "1 · Hello, world"
+        },
+        {
+          "id": "rev-order",
+          "titulo": "1 · Fix it: the recipe"
+        },
+        {
+          "id": "rev-comments",
+          "titulo": "1 · Switch off a line"
+        },
+        {
+          "id": "rev-fix-prints",
+          "titulo": "2 · Fix it: three broken prints"
+        },
+        {
+          "id": "rev-commas",
+          "titulo": "2 · One print, many values"
+        },
+        {
+          "id": "rev-card",
+          "titulo": "2 · Name card"
+        },
+        {
+          "id": "rev-maths",
+          "titulo": "3 · Let Python do the maths"
+        },
+        {
+          "id": "rev-average-fix",
+          "titulo": "3 · Fix it: the average"
+        },
+        {
+          "id": "rev-minutes-week",
+          "titulo": "3 · Minutes in a week"
+        },
+        {
+          "id": "rev-shopping",
+          "titulo": "4 · Shopping list"
+        },
+        {
+          "id": "rev-score-fix",
+          "titulo": "4 · Fix it: the score"
+        },
+        {
+          "id": "rev-trace",
+          "titulo": "4 · Trace it"
+        },
+        {
+          "id": "rev-swap",
+          "titulo": "4 · Swap two boxes"
+        },
+        {
+          "id": "rev-glue-or-add",
+          "titulo": "5 · Glue or add?"
+        },
+        {
+          "id": "rev-type-fix",
+          "titulo": "5 · Fix it: text that looks like a number"
+        },
+        {
+          "id": "rev-convert",
+          "titulo": "5 · Conversion table"
+        },
+        {
+          "id": "rev-food",
+          "titulo": "6 · Favourite food"
+        },
+        {
+          "id": "rev-next-year",
+          "titulo": "6 · Next year"
+        },
+        {
+          "id": "rev-rectangle",
+          "titulo": "6 · Rectangle"
+        },
+        {
+          "id": "rev-name-length",
+          "titulo": "6 · How long is your name?"
+        },
+        {
+          "id": "rev-welcome",
+          "titulo": "7 · Welcome message"
+        },
+        {
+          "id": "rev-join-fix",
+          "titulo": "7 · Fix it: Total"
+        },
+        {
+          "id": "rev-receipt",
+          "titulo": "7 · Receipt"
+        },
+        {
+          "id": "rev-study",
+          "titulo": "7 · Study time"
+        },
+        {
+          "id": "rev-vote",
+          "titulo": "8 · Old enough to vote?"
+        },
+        {
+          "id": "rev-passwords",
+          "titulo": "8 · Do the passwords match?"
+        },
+        {
+          "id": "rev-compare-fix",
+          "titulo": "8 · Fix it: always False"
+        },
+        {
+          "id": "rev-number-facts",
+          "titulo": "8 · Number facts"
+        },
+        {
+          "id": "rev-fix-name",
+          "titulo": "9 · Fix it: NameError"
+        },
+        {
+          "id": "rev-fix-indent",
+          "titulo": "9 · Fix it: IndentationError"
+        },
+        {
+          "id": "rev-fix-value",
+          "titulo": "9 · Fix it: ValueError"
+        },
+        {
+          "id": "rev-fix-many",
+          "titulo": "9 · Fix it: four errors"
+        },
+        {
+          "id": "rev-pizza",
+          "titulo": "10 · Challenge: pizza party"
+        },
+        {
+          "id": "rev-temperature",
+          "titulo": "10 · Challenge: temperature converter"
+        }
+      ],
+      "repaso": true,
+      "descripcion": "Everything you need before week 7: print, numbers, variables, input, text and True/False."
+    },
+    {
       "id": "w07",
-      "etiqueta": "Week 7",
       "titulo": "Conditionals: if and else",
       "lecciones": [
         {
@@ -44,11 +234,11 @@
           "id": "w07-discount",
           "titulo": "Shop discount"
         }
-      ]
+      ],
+      "etiqueta": "Week 7"
     },
     {
       "id": "w08",
-      "etiqueta": "Week 8",
       "titulo": "elif and the order of conditions",
       "lecciones": [
         {
@@ -94,11 +284,11 @@
           "id": "w08-shipping",
           "titulo": "Shipping cost"
         }
-      ]
+      ],
+      "etiqueta": "Week 8"
     },
     {
       "id": "w09",
-      "etiqueta": "Week 9",
       "titulo": "while loops",
       "lecciones": [
         {
@@ -144,11 +334,11 @@
           "id": "w09-savings",
           "titulo": "Saving up"
         }
-      ]
+      ],
+      "etiqueta": "Week 9"
     },
     {
       "id": "w10",
-      "etiqueta": "Week 10",
       "titulo": "for loops and range",
       "lecciones": [
         {
@@ -194,11 +384,11 @@
           "id": "w10-doubling",
           "titulo": "Doubling"
         }
-      ]
+      ],
+      "etiqueta": "Week 10"
     },
     {
       "id": "w11",
-      "etiqueta": "Week 11",
       "titulo": "Guess the Number: design",
       "lecciones": [
         {
@@ -236,11 +426,11 @@
           "id": "w11-three-tries",
           "titulo": "Only three tries"
         }
-      ]
+      ],
+      "etiqueta": "Week 11"
     },
     {
       "id": "w12",
-      "etiqueta": "Week 12",
       "titulo": "Guess the Number: build, break, fix",
       "lecciones": [
         {
@@ -270,11 +460,11 @@
           "id": "w12-play-again",
           "titulo": "Play again?"
         }
-      ]
+      ],
+      "etiqueta": "Week 12"
     },
     {
       "id": "w13",
-      "etiqueta": "Week 13",
       "titulo": "Review before the test",
       "lecciones": [
         {
@@ -307,11 +497,11 @@
           "id": "w13-biggest",
           "titulo": "Review: the biggest number"
         }
-      ]
+      ],
+      "etiqueta": "Week 13"
     },
     {
       "id": "w14",
-      "etiqueta": "Week 14",
       "titulo": "and, or, not",
       "lecciones": [
         {
@@ -353,11 +543,11 @@
           "id": "w14-referee",
           "titulo": "Rock, Paper, Scissors referee"
         }
-      ]
+      ],
+      "etiqueta": "Week 14"
     },
     {
       "id": "w15",
-      "etiqueta": "Week 15",
       "titulo": "Nested conditions or and?",
       "lecciones": [
         {
@@ -395,11 +585,11 @@
           "id": "w15-triangle",
           "titulo": "Triangle checker"
         }
-      ]
+      ],
+      "etiqueta": "Week 15"
     },
     {
       "id": "w16",
-      "etiqueta": "Week 16",
       "titulo": "Tracing and debugging",
       "lecciones": [
         {
@@ -436,11 +626,11 @@
           "id": "w16-station-average",
           "titulo": "Station 7: the strange average"
         }
-      ]
+      ],
+      "etiqueta": "Week 16"
     },
     {
       "id": "w17",
-      "etiqueta": "Week 17",
       "titulo": "Functions I: naming a chunk of code",
       "lecciones": [
         {
@@ -482,11 +672,11 @@
           "id": "w17-box",
           "titulo": "Draw a box"
         }
-      ]
+      ],
+      "etiqueta": "Week 17"
     },
     {
       "id": "w18",
-      "etiqueta": "Week 18",
       "titulo": "Functions II: return and refactoring",
       "lecciones": [
         {
@@ -533,11 +723,11 @@
           "id": "w18-total-price",
           "titulo": "Shop total"
         }
-      ]
+      ],
+      "etiqueta": "Week 18"
     },
     {
       "id": "w19",
-      "etiqueta": "Week 19",
       "titulo": "Review before the Unit 2 assessment",
       "lecciones": [
         {
@@ -570,11 +760,11 @@
           "id": "w19-power",
           "titulo": "Review: power"
         }
-      ]
+      ],
+      "etiqueta": "Week 19"
     },
     {
       "id": "w20",
-      "etiqueta": "Week 20",
       "titulo": "Input validation",
       "lecciones": [
         {
@@ -612,11 +802,11 @@
           "id": "w20-decimal",
           "titulo": "Accept 2.5 and 2,5"
         }
-      ]
+      ],
+      "etiqueta": "Week 20"
     },
     {
       "id": "w21",
-      "etiqueta": "Week 21",
       "titulo": "The modulus operator",
       "lecciones": [
         {
@@ -662,11 +852,11 @@
           "id": "w21-digit-sum",
           "titulo": "Add the digits"
         }
-      ]
+      ],
+      "etiqueta": "Week 21"
     },
     {
       "id": "w22",
-      "etiqueta": "Week 22",
       "titulo": "Lists I",
       "lecciones": [
         {
@@ -704,11 +894,11 @@
           "id": "w22-analyser",
           "titulo": "Score analyser"
         }
-      ]
+      ],
+      "etiqueta": "Week 22"
     },
     {
       "id": "w23",
-      "etiqueta": "Week 23",
       "titulo": "Lists II and tuples",
       "lecciones": [
         {
@@ -750,11 +940,11 @@
           "id": "w23-best-student",
           "titulo": "The best student"
         }
-      ]
+      ],
+      "etiqueta": "Week 23"
     },
     {
       "id": "w24",
-      "etiqueta": "Weeks 24–29",
       "titulo": "Your project",
       "lecciones": [
         {
@@ -804,7 +994,8 @@
           "id": "w24-tool-menu",
           "titulo": "Toolbox: a menu loop"
         }
-      ]
+      ],
+      "etiqueta": "Weeks 24–29"
     }
   ]
 }

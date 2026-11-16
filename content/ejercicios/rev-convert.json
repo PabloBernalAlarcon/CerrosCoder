@@ -1,0 +1,20 @@
+{
+  "id": "rev-convert",
+  "titulo": "5 · Conversion table",
+  "enunciado": "**Level ★★**\n\n**Predict** what each conversion gives. Then complete the program so it shows these lines. Every value on the right must come from a conversion or a `len()` in your code, not typed by hand.\n\n```text\nint(\"42\") -> 42\nfloat(\"2.5\") -> 2.5\nint(7.9) -> 7\nfloat(3) -> 3.0\nlen(\"Hi there\") -> 8\n```\n\nThe first line is done for you.",
+  "codigo_inicial": "print('int(\"42\") ->', int(\"42\"))\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "All five conversions",
+      "entradas": [],
+      "esperado": "int(\"42\") -> 42\nfloat(\"2.5\") -> 2.5\nint(7.9) -> 7\nfloat(3) -> 3.0\nlen(\"Hi there\") -> 8"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact format",
+      "entradas": [],
+      "esperado": "int(\"42\") -> 42\nfloat(\"2.5\") -> 2.5\nint(7.9) -> 7\nfloat(3) -> 3.0\nlen(\"Hi there\") -> 8"
+    }
+  ]
+}

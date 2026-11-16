@@ -1,0 +1,20 @@
+{
+  "id": "rev-fix-name",
+  "titulo": "9 · Fix it: NameError",
+  "enunciado": "**Level ★ · Bug hunt**\n\nRead the error message. Which name does Python not know? Fix it so the program shows:\n\n```text\nGoals this season: 12\n```",
+  "codigo_inicial": "goals = 12\nprint(\"Goals this season:\", Goals)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Shows the goals",
+      "entradas": [],
+      "esperado": "Goals this season: 12"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact output",
+      "entradas": [],
+      "esperado": "Goals this season: 12"
+    }
+  ]
+}

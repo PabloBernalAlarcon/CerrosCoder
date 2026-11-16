@@ -1,0 +1,28 @@
+{
+  "id": "rev-fix-many",
+  "titulo": "9 · Fix it: four errors",
+  "enunciado": "**Level ★★★ · Bug hunt**\n\nThis program has **four** mistakes. Three of them give an error message. One of them gives no error at all, just a **strange result**: watch the output carefully!\n\nFix them one at a time, and run again after each fix.\n\nWith the inputs `Ana` and `1200`, the program must show:\n\n```text\nAna pays 2400 for 2 empanadas\n```",
+  "codigo_inicial": "name = input(\"Name: \")\nprice = input(\"Price of one empanada: \")\ntotal = price + price\nprint(nme + \" pays \" + total + \" for 2 empanadas\"\n",
+  "usa_input": true,
+  "entradas_ejemplo": "Ana\n1200",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Ana, 1200",
+      "entradas": [
+        "Ana",
+        "1200"
+      ],
+      "esperado": "Ana pays 2400 for 2 empanadas"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Luis, 2500",
+      "entradas": [
+        "Luis",
+        "2500"
+      ],
+      "esperado": "Luis pays 5000 for 2 empanadas"
+    }
+  ]
+}

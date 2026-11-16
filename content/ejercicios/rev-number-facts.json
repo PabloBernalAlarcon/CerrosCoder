@@ -1,0 +1,42 @@
+{
+  "id": "rev-number-facts",
+  "titulo": "8 · Number facts",
+  "enunciado": "**Level ★★**\n\nAsk for a whole number. Show three facts about it, with comparisons:\n\nExample: the user types `10`. The program shows:\n\n```text\nBigger than 10: False\nEqual to 10: True\nNot negative: True\n```\n\nHint: inside an f-string, you can write a comparison between the braces: `{n > 10}`.",
+  "codigo_inicial": "n = int(input(\"A whole number: \"))\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "10",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "10",
+      "entradas": [
+        "10"
+      ],
+      "esperado": "Bigger than 10: False\nEqual to 10: True\nNot negative: True"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "25",
+      "entradas": [
+        "25"
+      ],
+      "esperado": "Bigger than 10: True\nEqual to 10: False\nNot negative: True"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "-3",
+      "entradas": [
+        "-3"
+      ],
+      "esperado": "Bigger than 10: False\nEqual to 10: False\nNot negative: False"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "0",
+      "entradas": [
+        "0"
+      ],
+      "esperado": "Bigger than 10: False\nEqual to 10: False\nNot negative: True"
+    }
+  ]
+}

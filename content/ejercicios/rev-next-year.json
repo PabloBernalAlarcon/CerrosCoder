@@ -1,0 +1,26 @@
+{
+  "id": "rev-next-year",
+  "titulo": "6 · Next year",
+  "enunciado": "**Level ★**\n\nAsk for the user's age. Show how old they will be next year.\n\nExample: the user types `14`. The program shows:\n\n```text\nNext year you will be 15\n```\n\nRemember: `input()` always gives text.",
+  "codigo_inicial": "age = input(\"How old are you? \")\nprint(\"Next year you will be\", age + 1)\n",
+  "usa_input": true,
+  "entradas_ejemplo": "14",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Age 14",
+      "entradas": [
+        "14"
+      ],
+      "esperado": "Next year you will be 15"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Age 9",
+      "entradas": [
+        "9"
+      ],
+      "esperado": "Next year you will be 10"
+    }
+  ]
+}

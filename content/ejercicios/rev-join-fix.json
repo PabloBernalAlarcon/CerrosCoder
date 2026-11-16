@@ -1,0 +1,20 @@
+{
+  "id": "rev-join-fix",
+  "titulo": "7 · Fix it: Total",
+  "enunciado": "**Level ★ · Bug hunt**\n\nThis program crashes. Fix the last line so it shows:\n\n```text\nTotal: 3600 pesos\n```\n\nThere are at least two good ways to fix it. Can you find both?",
+  "codigo_inicial": "price = 1200\nquantity = 3\ntotal = price * quantity\nprint(\"Total: \" + total + \" pesos\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Shows the total",
+      "entradas": [],
+      "esperado": "Total: 3600 pesos"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact spaces",
+      "entradas": [],
+      "esperado": "Total: 3600 pesos"
+    }
+  ]
+}

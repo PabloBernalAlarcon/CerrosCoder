@@ -1,0 +1,20 @@
+{
+  "id": "rev-comments",
+  "titulo": "1 · Switch off a line",
+  "enunciado": "**Level ★**\n\nThis program shows four lines, but one of them is a secret. **Without deleting any line**, turn the secret line into a comment, so the program shows only:\n\n```text\nWelcome to the game\nLevel 1\nGood luck!\n```",
+  "codigo_inicial": "print(\"Welcome to the game\")\nprint(\"Level 1\")\nprint(\"The secret code is 4321\")\nprint(\"Good luck!\")\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The secret is hidden",
+      "entradas": [],
+      "esperado": "Welcome to the game\nLevel 1\nGood luck!"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "The other lines still show",
+      "entradas": [],
+      "esperado": "Welcome to the game\nLevel 1\nGood luck!"
+    }
+  ]
+}

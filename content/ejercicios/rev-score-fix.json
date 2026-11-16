@@ -1,0 +1,20 @@
+{
+  "id": "rev-score-fix",
+  "titulo": "4 · Fix it: the score",
+  "enunciado": "**Level ★★ · Bug hunt**\n\nA player starts with 0 points, wins 10 points, and then wins 5 more points. The program should show:\n\n```text\nScore: 15\n```\n\nBut it shows `Score: 5`. **Trace** the value of `score` line by line. Then fix the program so it **adds** the points.",
+  "codigo_inicial": "score = 0\nscore = 10\nscore = 5\nprint(\"Score:\", score)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The final score",
+      "entradas": [],
+      "esperado": "Score: 15"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact message",
+      "entradas": [],
+      "esperado": "Score: 15"
+    }
+  ]
+}

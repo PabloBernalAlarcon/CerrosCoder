@@ -1,0 +1,20 @@
+{
+  "id": "rev-trace",
+  "titulo": "4 · Trace it",
+  "enunciado": "**Level ★★**\n\n**Without running it**, trace this program in your log, with a table:\n\n```python\na = 3\nb = a + 2\na = b * 2\nb = b - a\nc = a + b\n```\n\nThen add **one** line at the end that shows the three values, like this (but with the right numbers):\n\n```text\na = ? b = ? c = ?\n```\n\nUse `print(\"a =\", a, \"b =\", b, \"c =\", c)`. Did your trace match?",
+  "codigo_inicial": "a = 3\nb = a + 2\na = b * 2\nb = b - a\nc = a + b\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The values match the trace",
+      "entradas": [],
+      "esperado": "a = 10 b = -5 c = 5"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact format",
+      "entradas": [],
+      "esperado": "a = 10 b = -5 c = 5"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rev-glue-or-add",
+  "titulo": "5 · Glue or add?",
+  "enunciado": "**Level ★**\n\n```python\na = \"12\"\nb = \"30\"\n```\n\n`a` and `b` are **text**. Add two lines that show:\n\n```text\n1230\n42\n```\n\nThe first line **joins** the texts. The second line **adds** them as numbers. Don't change the first two lines.",
+  "codigo_inicial": "a = \"12\"\nb = \"30\"\n\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Joined, then added",
+      "entradas": [],
+      "esperado": "1230\n42"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact output",
+      "entradas": [],
+      "esperado": "1230\n42"
+    }
+  ]
+}

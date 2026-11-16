@@ -1,0 +1,20 @@
+{
+  "id": "rev-commas",
+  "titulo": "2 · One print, many values",
+  "enunciado": "**Level ★**\n\nUse **one** `print` with commas to show:\n\n```text\nI have 3 classes and 1 test today\n```\n\nWrite the numbers 3 and 1 **without** quotes, as numbers. The commas will add the spaces.",
+  "codigo_inicial": "print()\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The sentence is exact",
+      "entradas": [],
+      "esperado": "I have 3 classes and 1 test today"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "One line only",
+      "entradas": [],
+      "esperado": "I have 3 classes and 1 test today"
+    }
+  ]
+}

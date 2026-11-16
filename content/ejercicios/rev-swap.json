@@ -1,0 +1,20 @@
+{
+  "id": "rev-swap",
+  "titulo": "4 · Swap two boxes",
+  "enunciado": "**Level ★★★ · Challenge**\n\n```python\nleft = \"red\"\nright = \"blue\"\n```\n\nSwap the values, so that `left` holds `\"blue\"` and `right` holds `\"red\"`. The last line shows:\n\n```text\nblue red\n```\n\n**Rules:** don't change the first two lines or the last line, and don't write `\"red\"` or `\"blue\"` again.\n\nHint: what happens to the old value when you put a new value in a box? You may need a third box.",
+  "codigo_inicial": "left = \"red\"\nright = \"blue\"\n\n# Swap the values here\n\nprint(left, right)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "The values are swapped",
+      "entradas": [],
+      "esperado": "blue red"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Exact output",
+      "entradas": [],
+      "esperado": "blue red"
+    }
+  ]
+}

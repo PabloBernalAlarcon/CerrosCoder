@@ -1,0 +1,40 @@
+{
+  "id": "rev-receipt",
+  "titulo": "7 · Receipt",
+  "enunciado": "**Level ★★**\n\nAsk for an item's name, its price (a whole number) and the quantity (a whole number). Show a receipt:\n\nExample: the user types `pencil`, `1200` and `3`. The program shows:\n\n```text\nItem: pencil\nQuantity: 3\nTotal: 3600 pesos\n```",
+  "codigo_inicial": "item = input(\"Item: \")\n\n",
+  "usa_input": true,
+  "entradas_ejemplo": "pencil\n1200\n3",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "3 pencils at 1200",
+      "entradas": [
+        "pencil",
+        "1200",
+        "3"
+      ],
+      "esperado": "Item: pencil\nQuantity: 3\nTotal: 3600 pesos"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "1 notebook at 4500",
+      "entradas": [
+        "notebook",
+        "4500",
+        "1"
+      ],
+      "esperado": "Item: notebook\nQuantity: 1\nTotal: 4500 pesos"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "10 erasers at 800",
+      "entradas": [
+        "eraser",
+        "800",
+        "10"
+      ],
+      "esperado": "Item: eraser\nQuantity: 10\nTotal: 8000 pesos"
+    }
+  ]
+}

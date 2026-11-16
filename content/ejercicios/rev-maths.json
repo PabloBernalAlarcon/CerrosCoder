@@ -1,0 +1,20 @@
+{
+  "id": "rev-maths",
+  "titulo": "3 · Let Python do the maths",
+  "enunciado": "**Level ★**\n\nMake Python calculate these, one result per line. **Write the calculations, not the answers.**\n\n1. 125 + 380\n2. 45 times 12\n3. 100 divided by 8\n4. 7 plus 3, and then times 2\n\nThe output must be:\n\n```text\n505\n540\n12.5\n20\n```",
+  "codigo_inicial": "print(125 + 380)\n",
+  "pruebas": [
+    {
+      "tipo": "salida",
+      "descripcion": "Four results",
+      "entradas": [],
+      "esperado": "505\n540\n12.5\n20"
+    },
+    {
+      "tipo": "salida",
+      "descripcion": "Each result on its own line",
+      "entradas": [],
+      "esperado": "505\n540\n12.5\n20"
+    }
+  ]
+}
