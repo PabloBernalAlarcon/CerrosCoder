@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Visibility · Python Notebook</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+</head>
+<body>
+<header class="cabecera" data-header></header>
+<main class="hoja hoja-ancha">
+  <h1>Visibility</h1>
+  <p class="intro-visibilidad">Choose which units each class can see. Changes save straight away, and students see them the next time they load a page.</p>
+
+  <ul class="leyenda-estados">
+    <li><span class="muestra estado-open">Open</span> Students can read the lessons and do the exercises.</li>
+    <li><span class="muestra estado-locked">Locked</span> Students see the title with "Coming soon", but can't open it.</li>
+    <li><span class="muestra estado-hidden">Hidden</span> Students don't see the unit at all.</li>
+    <li><span class="muestra estado-default">Default</span> Follows the unlock date in <code>curso.json</code>. Open if the unit has no date.</li>
+  </ul>
+
+  <p class="estado-guardado" id="estado" aria-live="polite"></p>
+  <div id="contenido"><p class="texto-suave">Loading…</p></div>
+</main>
+
+<script type="module">
+import { sb, CONFIG, requireLogin, loadCourse, flatten, defaultState, loadAllVisibility, fetchAll, formatDate, esc, showFatal } from "./js/app.js";
+
+await requireLogin({ teacherOnly: true });
+document.title = `Visibility · ${CONFIG.APP_NAME}`;
+
+const contenido = document.getElementById("contenido");
+const estado = document.getElementById("estado");
+const ETIQUETA = { open: "Open", locked: "Locked", hidden: "Hidden" };
+
+function aviso(texto, esError = false) {
+  estado.textContent = texto;
+  estado.classList.toggle("error", esError);
+}
+
+try {
+  const curso = await loadCourse();
+  flatten(curso); // adds each unit's display name
+  const [perfiles, vis] = await Promise.all([
+    fetchAll(() => sb.from("profiles").select("grupo").eq("role", "student").order("grupo").order("id")),
+    loadAllVisibility(),
+  ]);
+
+  if (vis.error) {
+    contenido.innerHTML = `<div class="aviso aviso-error" role="alert">
+      <p><strong>The visibility settings aren't set up yet.</strong></p>
+      <p>In Supabase, open <strong>SQL Editor</strong>, paste the contents of <code>supabase/visibilidad.sql</code>, press <strong>Run</strong>, and reload this page.</p>
+      <p>Until then, units open according to their dates in <code>curso.json</code>.</p>
+    </div>`;
+    throw null;
+  }
+
+  const grupos = [...new Set(perfiles.map((p) => p.grupo).filter(Boolean))].sort();
+  if (!grupos.length) {
+    contenido.innerHTML = `<p>There are no classes yet. Create student accounts with <code>scripts/estudiantes.py</code>: each student's <em>group</em> becomes a class here.</p>`;
+    throw null;
+  }
+
+  const ajustes = vis.all; // grupo -> Map(unit_id -> state)
+  const ajuste = (g, u) => ajustes.get(g)?.get(u) || "default";
+  const efectivo = (g, unit) => { const a = ajuste(g, unit.id); return a === "default" ? defaultState(unit) : a; };
+
+  const textoDefecto = (unit) => {
+    const d = defaultState(unit);
+    if (!unit.desbloqueo) return "Default · open";
+    return d === "open" ? `Default · open (since ${formatDate(unit.desbloqueo)})` : `Default · locked until ${formatDate(unit.desbloqueo)}`;
+  };
+
+  const selector = (unit, g) => {
+    const a = ajuste(g, unit.id);
+    return `<select class="selector-estado estado-${a === "default" ? "default" : a} efectivo-${efectivo(g, unit)}"
+        data-unidad="${esc(unit.id)}" data-grupo="${esc(g)}" aria-label="${esc(unit.nombre)}, class ${esc(g)}">
+      <option value="default" ${a === "default" ? "selected" : ""}>${esc(textoDefecto(unit))}</option>
+      ${["open", "locked", "hidden"].map((s) => `<option value="${s}" ${a === s ? "selected" : ""}>${ETIQUETA[s]}</option>`).join("")}
+    </select>`;
+  };
+
+  contenido.innerHTML = `
+    <div class="tabla-envoltura">
+      <table class="tabla-visibilidad">
+        <thead><tr>
+          <th scope="col" class="col-unidad">Unit</th>
+          ${grupos.map((g) => `<th scope="col">${esc(g)}</th>`).join("")}
+          <th scope="col" class="col-todas">All classes</th>
+        </tr></thead>
+        <tbody>
+          ${curso.unidades.map((unit) => `<tr>
+            <th scope="row" class="col-unidad">${esc(unit.nombre)}</th>
+            ${grupos.map((g) => `<td>${selector(unit, g)}</td>`).join("")}
+            <td class="col-todas">
+              <select class="selector-todas" data-unidad="${esc(unit.id)}" aria-label="${esc(unit.nombre)}, all classes">
+                <option value="" selected>Set for all…</option>
+                <option value="default">Default</option>
+                <option value="open">Open</option>
+                <option value="locked">Locked</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
+
+  const unidadPorId = new Map(curso.unidades.map((u) => [u.id, u]));
+
+  // Save one class/unit setting. "default" removes the row.
+  async function guardar(g, unitId, valor) {
+    const q = valor === "default"
+      ? sb.from("unit_visibility").delete().eq("grupo", g).eq("unit_id", unitId)
+      : sb.from("unit_visibility").upsert({ grupo: g, unit_id: unitId, estado: valor, updated_at: new Date().toISOString() }, { onConflict: "grupo,unit_id" });
+    const { error } = await q;
+    if (error) throw error;
+    if (!ajustes.has(g)) ajustes.set(g, new Map());
+    if (valor === "default") ajustes.get(g).delete(unitId); else ajustes.get(g).set(unitId, valor);
+  }
+
+  function pintarSelector(sel) {
+    const unit = unidadPorId.get(sel.dataset.unidad);
+    const g = sel.dataset.grupo;
+    const a = ajuste(g, unit.id);
+    sel.value = a;
+    sel.className = `selector-estado estado-${a === "default" ? "default" : a} efectivo-${efectivo(g, unit)}`;
+  }
+
+  contenido.addEventListener("change", async (event) => {
+    const sel = event.target;
+    if (sel.matches(".selector-estado")) {
+      const unit = unidadPorId.get(sel.dataset.unidad);
+      sel.disabled = true;
+      aviso("Saving…");
+      try {
+        await guardar(sel.dataset.grupo, unit.id, sel.value);
+        aviso(`Saved: ${unit.nombre} is now ${ETIQUETA[efectivo(sel.dataset.grupo, unit)].toLowerCase()} for ${sel.dataset.grupo}.`);
+      } catch (err) {
+        console.error(err);
+        aviso("Couldn't save the change. Check your connection and try again.", true);
+      }
+      sel.disabled = false;
+      pintarSelector(sel);
+    } else if (sel.matches(".selector-todas") && sel.value) {
+      const unit = unidadPorId.get(sel.dataset.unidad);
+      const valor = sel.value;
+      sel.disabled = true;
+      aviso("Saving…");
+      try {
+        for (const g of grupos) await guardar(g, unit.id, valor);
+        aviso(`Saved: ${unit.nombre} is now ${valor === "default" ? "back to default" : ETIQUETA[valor].toLowerCase()} for all classes.`);
+      } catch (err) {
+        console.error(err);
+        aviso("Couldn't save every change. Check your connection and try again.", true);
+      }
+      contenido.querySelectorAll(`.selector-estado[data-unidad="${CSS.escape(unit.id)}"]`).forEach(pintarSelector);
+      sel.value = "";
+      sel.disabled = false;
+    }
+  });
+} catch (err) {
+  if (err) {
+    console.error(err);
+    showFatal("Couldn't load the visibility settings. Check your internet connection and reload the page.");
+  }
+}
+</script>
+</body>
+</html>

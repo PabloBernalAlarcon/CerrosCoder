@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Teacher panel · Cerros Coder</title>
+<title>Teacher panel · Python Notebook</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
@@ -21,6 +21,7 @@
     <h1>Teacher panel</h1>
     <div class="panel-controles">
       <label>Group <select id="grupo"></select></label>
+      <label>Unit <select id="unidad"></select></label>
       <button type="button" class="boton" id="btn-actualizar">Refresh</button>
       <button type="button" class="boton" id="btn-csv">Download CSV</button>
     </div>
@@ -31,6 +32,7 @@
     <li><span class="celda celda-ok">✓</span> Solved</li>
     <li><span class="celda celda-progreso">2</span> In progress (number of times they pressed Check)</li>
     <li><span class="celda-vacia"></span> Not started</li>
+    <li><span class="celda celda-libre">✎</span> Free workspace with saved code</li>
     <li><span class="inactivo">Red</span> No recent activity</li>
   </ul>
 
@@ -43,7 +45,7 @@
 </main>
 
 <script type="module">
-import { sb, CONFIG, requireLogin, loadCourse, flatten, isUnlocked, fetchAll, esc, relativeTime, daysSince, showFatal } from "./js/app.js";
+import { sb, CONFIG, requireLogin, loadCourse, flatten, unitState, loadAllVisibility, fetchAll, esc, relativeTime, daysSince, showFatal } from "./js/app.js";
 
 await requireLogin({ teacherOnly: true });
 document.title = `Teacher panel · ${CONFIG.APP_NAME}`;
@@ -55,7 +57,25 @@ const dialogo = document.getElementById("dialogo");
 
 const curso = await loadCourse();
 const { exercises } = flatten(curso);
-const disponibles = exercises.filter((e) => isUnlocked(e.unit, null)); // what students can see today
+// Which units each class can see (set on the Visibility page)
+let { all: visibilidad } = await loadAllVisibility();
+const visDe = (grupo) => visibilidad.get(grupo);
+const abiertaPara = (unit, grupo) => unitState(unit, visDe(grupo)) === "open";
+// Weekly auto-checked exercises a student of this class can work on today
+const disponiblesPara = (grupo) => exercises.filter((e) => !e.libre && !e.unit.repaso && abiertaPara(e.unit, grupo));
+
+// Unit filter: the grid can get very wide, so show one unit at a time by default:
+// the latest weekly unit that is open for at least one class.
+const selectUnidad = document.getElementById("unidad");
+selectUnidad.innerHTML = `<option value="__todas">All</option>` +
+  curso.unidades.map((u) => `<option value="${esc(u.id)}">${esc(u.nombre)}</option>`).join("");
+function unidadPorDefecto(grupos) {
+  const lista = grupos.length ? grupos : [""];
+  const abiertas = curso.unidades.filter((u) => !u.repaso && lista.some((g) => abiertaPara(u, g)));
+  return abiertas.length ? abiertas[abiertas.length - 1].id : "__todas";
+}
+let unidadElegida = false;
+const visibles = () => selectUnidad.value === "__todas" ? exercises : exercises.filter((e) => e.unit.id === selectUnidad.value);
 
 let estudiantes = [];
 let envios = new Map();     // "userId|exerciseId" -> row
@@ -80,6 +100,7 @@ async function cargar() {
   selectGrupo.innerHTML = `<option value="__todos">All</option>` +
     grupos.map((g) => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
   selectGrupo.value = grupos.includes(elegido) ? elegido : "__todos";
+  if (!unidadElegida) selectUnidad.value = unidadPorDefecto(grupos);
   pintar();
 }
 
@@ -88,7 +109,7 @@ function filtrados() {
   return g === "__todos" ? estudiantes : estudiantes.filter((e) => e.grupo === g);
 }
 
-const resueltosDe = (uid) => disponibles.filter((e) => envios.get(`${uid}|${e.id}`)?.passed).length;
+const resueltosDe = (est) => disponiblesPara(est.grupo).filter((e) => envios.get(`${est.id}|${e.id}`)?.passed).length;
 
 function pintar() {
   const lista = filtrados();
@@ -100,16 +121,23 @@ function pintar() {
   const activosSemana = lista.filter((e) => daysSince(ultimaVez.get(e.id)) < 7).length;
   resumen.textContent = `${lista.length} students. ${activosSemana} worked on the platform in the last 7 days.`;
 
-  const cabeza = exercises.map((e, i) => {
-    const abierto = isUnlocked(e.unit, null);
-    return `<th class="col-ejercicio ${abierto ? "" : "bloqueado"}" scope="col" title="Unit ${e.unit.numero}: ${esc(e.titulo)}${abierto ? "" : " (not open to students yet)"}">
+  const columnas = visibles();
+  // Dim the columns of units that the chosen class can't open (with "All": no class can)
+  const gruposVista = selectGrupo.value === "__todos" ? [...new Set(lista.map((e) => e.grupo))] : [selectGrupo.value];
+  const cabeza = columnas.map((e, i) => {
+    const abierto = gruposVista.some((g) => abiertaPara(e.unit, g));
+    return `<th class="col-ejercicio ${abierto ? "" : "bloqueado"}" scope="col" title="${esc(e.unit.nombre)}. ${esc(e.titulo)}${abierto ? "" : " (not open to students)"}">
       <span class="vertical">${i + 1}. ${esc(e.titulo)}</span></th>`;
   }).join("");
 
   const filas = lista.map((est) => {
-    const celdas = exercises.map((e) => {
+    const celdas = columnas.map((e) => {
       const f = envios.get(`${est.id}|${e.id}`);
       if (!f) return `<td><span class="celda-vacia" aria-label="Not started"></span></td>`;
+      if (e.libre) {
+        const t = `${est.username}, ${e.titulo}: code saved ${relativeTime(f.updated_at)}`;
+        return `<td><button type="button" class="celda celda-libre" data-u="${est.id}" data-e="${esc(e.id)}" aria-label="${esc(t)}" title="${esc(t)}">✎</button></td>`;
+      }
       const etiqueta = `${est.username}, ${e.titulo}: ${f.passed ? "solved" : "in progress"}, checked ${f.attempts} times`;
       return `<td><button type="button" class="celda ${f.passed ? "celda-ok" : "celda-progreso"}"
         data-u="${est.id}" data-e="${esc(e.id)}" aria-label="${esc(etiqueta)}" title="${esc(etiqueta)}">${f.passed ? "✓" : f.attempts}</button></td>`;
@@ -119,18 +147,19 @@ function pintar() {
     return `<tr>
       <th class="col-estudiante" scope="row">${esc(est.username)}</th>
       ${celdas}
-      <td class="col-dato">${resueltosDe(est.id)} / ${disponibles.length}</td>
+      <td class="col-dato">${resueltosDe(est)} / ${disponiblesPara(est.grupo).length}</td>
       <td class="col-dato ${inactivo ? "inactivo" : ""}">${relativeTime(ultima)}</td>
     </tr>`;
   }).join("");
 
-  const pie = exercises.map((e) => {
+  const pie = columnas.map((e) => {
+    if (e.libre) return `<td>—</td>`;
     const n = lista.filter((est) => envios.get(`${est.id}|${e.id}`)?.passed).length;
     return `<td>${Math.round((100 * n) / lista.length)}%</td>`;
   }).join("");
 
   tabla.innerHTML = `
-    <thead><tr><th class="col-estudiante" scope="col">Student</th>${cabeza}<th scope="col">Solved</th><th scope="col">Last active</th></tr></thead>
+    <thead><tr><th class="col-estudiante" scope="col">Student</th>${cabeza}<th scope="col">Solved<br><small>(all weeks)</small></th><th scope="col">Last active</th></tr></thead>
     <tbody>${filas}</tbody>
     <tfoot><tr><td class="col-estudiante">Solved by</td>${pie}<td></td><td></td></tr></tfoot>`;
 }
@@ -142,8 +171,9 @@ tabla.addEventListener("click", async (event) => {
   const ej = exercises.find((e) => e.id === celda.dataset.e);
   const f = envios.get(`${celda.dataset.u}|${celda.dataset.e}`);
   document.getElementById("dialogo-titulo").textContent = `${est.username}: ${ej.titulo}`;
-  document.getElementById("dialogo-detalle").textContent =
-    `${f.passed ? "Solved" : "In progress"}. Checked ${f.attempts} ${f.attempts === 1 ? "time" : "times"}. Last change: ${relativeTime(f.updated_at)}.`;
+  document.getElementById("dialogo-detalle").textContent = ej.libre
+    ? `Free workspace. Last change: ${relativeTime(f.updated_at)}.`
+    : `${f.passed ? "Solved" : "In progress"}. Checked ${f.attempts} ${f.attempts === 1 ? "time" : "times"}. Last change: ${relativeTime(f.updated_at)}.`;
   const codigo = document.getElementById("dialogo-codigo");
   codigo.textContent = "Loading…";
   dialogo.showModal();
@@ -159,15 +189,18 @@ function descargarCSV() {
   const lista = filtrados();
   const estadoTexto = (uid, eid) => {
     const f = envios.get(`${uid}|${eid}`);
-    return !f ? "" : f.passed ? "solved" : "in progress";
+    if (!f) return "";
+    if (exercises.find((e) => e.id === eid)?.libre) return "saved";
+    return f.passed ? "solved" : "in progress";
   };
   const filas = [["username", "group", ...exercises.map((e) => e.id), "solved", "available", "percent", "last_active"]];
   for (const est of lista) {
-    const r = resueltosDe(est.id);
+    const r = resueltosDe(est);
+    const n = disponiblesPara(est.grupo).length;
     filas.push([
       est.username, est.grupo,
       ...exercises.map((e) => estadoTexto(est.id, e.id)),
-      r, disponibles.length, disponibles.length ? Math.round((100 * r) / disponibles.length) : 0,
+      r, n, n ? Math.round((100 * r) / n) : 0,
       (ultimaVez.get(est.id) || "").slice(0, 10),
     ]);
   }
@@ -182,7 +215,11 @@ function descargarCSV() {
 }
 
 selectGrupo.addEventListener("change", pintar);
-document.getElementById("btn-actualizar").addEventListener("click", () => cargar().catch(fallo));
+selectUnidad.addEventListener("change", () => { unidadElegida = true; pintar(); });
+document.getElementById("btn-actualizar").addEventListener("click", async () => {
+  visibilidad = (await loadAllVisibility()).all;
+  cargar().catch(fallo);
+});
 document.getElementById("btn-csv").addEventListener("click", descargarCSV);
 
 function fallo(err) {
